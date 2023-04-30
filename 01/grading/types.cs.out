@@ -1,0 +1,65 @@
+#name "types.cs"
+#1 TYPEID int
+#1 OBJECTID a
+#1 ASSIGN
+#1 INT_CONST 5
+#1 ';'
+#2 TYPEID int
+#2 OBJECTID b
+#2 OBJECTID a
+#2 '+'
+#2 INT_CONST 2
+#2 ';'
+#3 TYPEID bool
+#3 OBJECTID test
+#3 ASSIGN
+#3 BOOL true
+#3 ';'
+#4 TYPEID int
+#4 OBJECTID c
+#4 ASSIGN
+#4 OBJECTID a
+#4 '+'
+#4 OBJECTID test
+#4 ';'
+#5 TYPEID float
+#5 OBJECTID temperature
+#5 ';'
+#6 OBJECTID string
+#6 TYPEID name
+#6 ';'
+#7 TYPEID MyClass
+#7 OBJECTID MyClass
+#7 ';'
+#8 TYPEID int[]
+#8 OBJECTID source
+#8 ASSIGN
+#8 '{'
+#8 INT_CONST 0
+#8 ','
+#8 INT_CONST 1
+#8 ','
+#8 INT_CONST 2
+#8 ','
+#8 INT_CONST 3
+#8 ','
+#8 INT_CONST 4
+#8 ','
+#8 INT_CONST 5
+#8 '}'
+#8 ';'
+#9 FUNCT
+#9 '<'
+#9 TYPEID int
+#9 ','
+#9 TYPEID int
+#9 '>'
+#9 OBJECTID f
+#9 ASSIGN
+#9 OBJECTID x
+#9 ASSIGN
+#9 '>'
+#9 OBJECTID x
+#9 '*'
+#9 OBJECTID x
+#9 ';'

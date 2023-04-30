@@ -1,0 +1,56 @@
+#name "loop.cs"
+ TYPEID int[]
+ OBJECTID numbers
+ ASSIGN
+ NEW
+ TYPEID int[]
+ '{'
+ INT_CONST 3
+ ','
+ INT_CONST 14
+ '}'
+ ';'
+ TYPEID int
+ OBJECTID num
+ ASSIGN
+ INT_CONST 0
+ ';'
+ FOREACH
+ '('
+ TYPEID int
+ OBJECTID item
+ IN
+ OBJECTID numbers
+ ')'
+ '{'
+ OBJECTID item
+ ASSIGN
+ OBJECTID num
+ '+'
+ '+'
+ ';'
+ '}'
+ TYPEID int
+ OBJECTID n
+ ASSIGN
+ INT_CONST 0
+ ';'
+ WHILE
+ '('
+ OBJECTID n
+ '<'
+ INT_CONST 5
+ ')'
+ '{'
+ TYPEID Console
+ '.'
+ OBJECTID write
+ '('
+ OBJECTID n
+ ')'
+ ';'
+ OBJECTID n
+ '+'
+ '+'
+ ';'
+ '}'

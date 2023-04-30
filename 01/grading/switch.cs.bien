@@ -1,0 +1,52 @@
+#name "switch.cs"
+ VOID
+ OBJECTID displayMeasurement
+ '('
+ TYPEID float
+ OBJECTID measurement
+ ')'
+ '{'
+ SWITCH
+ '('
+ OBJECTID measurement
+ ')'
+ '{'
+ CASE
+ '<'
+ FLOAT_CONST 0.0
+ ':'
+ TYPEID Console
+ '.'
+ TYPEID WriteLine
+ '('
+ STR_CONST "Measured value is too low."
+ ')'
+ ';'
+ BREAK
+ ';'
+ CASE
+ '>'
+ FLOAT_CONST 15.0
+ ':'
+ TYPEID Console
+ '.'
+ TYPEID WriteLine
+ '('
+ STR_CONST "Measured value is too high."
+ ')'
+ ';'
+ BREAK
+ ';'
+ DEFAULT
+ ':'
+ TYPEID Console
+ '.'
+ TYPEID WriteLine
+ '('
+ STR_CONST "Measured value is other."
+ ')'
+ ';'
+ BREAK
+ ';'
+ '}'
+ '}'

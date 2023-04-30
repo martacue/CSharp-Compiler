@@ -1,0 +1,31 @@
+#name "if-else.cs"
+ TYPEID int
+ OBJECTID time
+ ASSIGN
+ INT_CONST 20
+ ';'
+ IF
+ '('
+ OBJECTID time
+ '<'
+ INT_CONST 18
+ ')'
+ '{'
+ TYPEID Console
+ '.'
+ TYPEID WriteLine
+ '('
+ STR_CONST "Good day."
+ ')'
+ ';'
+ '}'
+ ELSE
+ '{'
+ TYPEID Console
+ '.'
+ TYPEID WriteLine
+ '('
+ STR_CONST "Good evening."
+ ')'
+ ';'
+ '}'

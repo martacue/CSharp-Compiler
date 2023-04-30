@@ -1,0 +1,22 @@
+#name "hello_world.cs"
+ USING
+ TYPEID System
+ ';'
+ CLASS
+ TYPEID Hello
+ '{'
+ STATIC
+ VOID
+ OBJECTID main
+ '('
+ ')'
+ '{'
+ TYPEID Console
+ '.'
+ OBJECTID writeLine
+ '('
+ STR_CONST "Hello, World"
+ ')'
+ ';'
+ '}'
+ '}'

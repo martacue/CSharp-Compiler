@@ -1,0 +1,26 @@
+#name "method_namespace.cs"
+ NAMESPACE
+ TYPEID SampleNamespace
+ '{'
+ CLASS
+ TYPEID SimpleMath
+ '{'
+ MODIFIER public
+ TYPEID int
+ OBJECTID addTwoNumbers
+ '('
+ TYPEID int
+ OBJECTID number1
+ ','
+ TYPEID int
+ OBJECTID number2
+ ')'
+ '{'
+ RETURN
+ OBJECTID number1
+ '+'
+ OBJECTID number2
+ ';'
+ '}'
+ '}'
+ '}'

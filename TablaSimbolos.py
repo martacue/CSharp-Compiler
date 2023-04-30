@@ -1,21 +1,23 @@
 class TablaSimbolos():
     def __init__(self):
         self.ambitos = list()
-        self.namespaces = list()
+        self.namespaces = dict()
         self.clases = list()
         self.metodos = list()
         self.atributos = list()
         self.arbol = Arbol()
 
+    def add_namespace(self, namespace):
+        self.namespaces[namespace.nombre] = namespace
+
+    def add_class(self, nombre_clase, nombre_padre):
+        self.clases.append((nombre_clase, nombre_padre))
         
-    def addClass(self, nombreClase, padre):
-        pass
-        
-    def addMethod(self,nombreMetodo,nombreClase,formales,tipo):
-        pass
+    def add_method(self, metodo, nombre_clase):
+        self.metodos.append((metodo, nombre_clase))
     
-    def addAttribute(self, attribute):
-        pass
+    def add_attribute(self, attribute, nombre_clase):
+        self.atributos.append((attribute, nombre_clase))
     
     def construyeArbol(self, nodo):
         hijos = list()

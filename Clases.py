@@ -399,7 +399,7 @@ class Entero(Expresion):
         resultado += f'{(n)*" "}: {self.cast}\n'
         return resultado
     
-    def Tipo(self):
+    def Tipo(self, Ambito):
         self.cast = 'int'
 
 
@@ -414,7 +414,7 @@ class String(Expresion):
         resultado += f'{(n)*" "}: {self.cast}\n'
         return resultado
     
-    def Tipo(self):
+    def Tipo(self, Ambito):
         self.cast = 'string'
 
 
@@ -429,7 +429,7 @@ class Flotante(Expresion):
         resultado += f'{(n)*" "}: {self.cast}\n'
         return resultado
     
-    def Tipo(self):
+    def Tipo(self, Ambito):
         self.cast = 'float'
 
 
@@ -444,7 +444,7 @@ class Booleano(Expresion):
         resultado += f'{(n)*" "}: {self.cast}\n'
         return resultado
     
-    def Tipo(self):
+    def Tipo(self, Ambito):
         self.cast = 'bool'
 
 @dataclass
@@ -463,6 +463,29 @@ class Programa(IterableNodo):
     
     def Tipo(self):
         Ambito = TablaSimbolos()
+        for namespace in self.secuencia:
+            Ambito.add_namespace(namespace)
+            for clase in namespace.clases:
+                Ambito.add_class(clase.nombre, clase.padre)
+                for metodo in clase.metodos:
+                    Ambito.add_method(metodo, clase.nombre)
+                for atributo in clase.atributos:
+                    Ambito.add_attribute(atributo, clase.nombre)
+            
+            for clase in namespace.clases:
+                if clase.padre != 'Object':
+                    copia_metodos = Ambito.metodos.copy()
+                    for metodo in copia_metodos:
+                        if metodo[1] == clase.padre and metodo[0].nombre not in [metodo.nombre for metodo in clase.metodos]:
+                            Ambito.add_method(metodo[0], clase.nombre)
+                    copia_atributos = Ambito.atributos.copy()
+                    for atributo in copia_atributos:
+                        if atributo[1] == clase.padre:
+                            Ambito.add_attribute(atributo[0], clase.nombre)
+        Ambito.construyeTotal()
+        for namespace in self.secuencia:
+            namespace.Tipo(Ambito)
+                    
 
 
 
@@ -487,6 +510,10 @@ class Namespace(Nodo):
         resultado += f'{(n+2)*" "}{self.nombre}\n'
         resultado += ''.join([c.str(n+2) for c in self.clases])
         return resultado
+    
+    def Tipo(self, Ambito):
+        for clase in self.clases:
+            clase.Tipo(Ambito)
 
 @dataclass
 class Caracteristica(Nodo):
@@ -512,8 +539,19 @@ class Metodo(Caracteristica):
         resultado += self.cuerpo.str(n+2)
 
         return resultado
+    
+    def Tipo(self, Ambito):
+        Ambito.enterScope()
+        for formal in self.formales:
+            Ambito.addSymbol(formal.nombre_variable, formal.tipo)      
+        
+        self.cuerpo.Tipo(Ambito)
+        if self.cuerpo.cast != self.tipo:
+            #error
+            print("Error Metodo")
+        Ambito.exitScope()
 
-
+@dataclass
 class Atributo(Caracteristica):
 
     def str(self, n):
@@ -524,6 +562,11 @@ class Atributo(Caracteristica):
         resultado += f'{(n+2)*" "}{self.tipo}\n'
         resultado += self.cuerpo.str(n+2)
         return resultado
+    
+    def Tipo(self, Ambito):
+        self.cuerpo.Tipo(Ambito)
+        if self.cuerpo.cast == self.tipo:
+            Ambito.addSymbol(self.nombre, self.tipo)
 
 @dataclass
 class Clase(Nodo):
@@ -546,3 +589,11 @@ class Clase(Nodo):
         resultado += f'{(n+2)*" "})\n'
         return resultado
 
+    def Tipo(self, Ambito):
+        Ambito.enterScope()
+        for atributo in self.atributos:
+                atributo.Tipo(Ambito)
+        for metodo in self.metodos:
+            metodo.Tipo(Ambito)
+        Ambito.exitScope()
+        

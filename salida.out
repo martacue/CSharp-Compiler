@@ -21,14 +21,14 @@ Rule 17    atributo -> MODIFIER TYPEID OBJECTID ASSIGN expr ;
 Rule 18    atributo -> MODIFIER TYPEID OBJECTID ;
 Rule 19    atributos -> atributo
 Rule 20    atributos -> atributos atributo
-Rule 21    metodo -> MODIFIER STATIC VOID OBJECTID ( formales ) { expr ; }
-Rule 22    metodo -> MODIFIER TYPEID VOID ( formales ) { expr ; }
-Rule 23    metodo -> MODIFIER STATIC VOID OBJECTID ( ) { expr ; }
-Rule 24    metodo -> MODIFIER VOID OBJECTID ( ) { expr ; }
-Rule 25    metodo -> MODIFIER STATIC TYPEID OBJECTID ( formales ) { expr ; }
-Rule 26    metodo -> MODIFIER TYPEID OBJECTID ( formales ) { expr ; }
-Rule 27    metodo -> MODIFIER STATIC TYPEID OBJECTID ( ) { expr ; }
-Rule 28    metodo -> MODIFIER TYPEID OBJECTID ( ) { expr ; }
+Rule 21    metodo -> MODIFIER STATIC VOID OBJECTID ( formales ) { expr }
+Rule 22    metodo -> MODIFIER TYPEID VOID ( formales ) { expr }
+Rule 23    metodo -> MODIFIER STATIC VOID OBJECTID ( ) { expr }
+Rule 24    metodo -> MODIFIER VOID OBJECTID ( ) { expr }
+Rule 25    metodo -> MODIFIER STATIC TYPEID OBJECTID ( formales ) { expr }
+Rule 26    metodo -> MODIFIER TYPEID OBJECTID ( formales ) { expr }
+Rule 27    metodo -> MODIFIER STATIC TYPEID OBJECTID ( ) { expr }
+Rule 28    metodo -> MODIFIER TYPEID OBJECTID ( ) { expr }
 Rule 29    metodos -> metodo
 Rule 30    metodos -> metodos metodo
 Rule 31    formal -> TYPEID OBJECTID
@@ -92,7 +92,7 @@ Terminals, with rules where they appear:
 .                    : 58 59 60 62
 /                    : 46
 :                    : 9 11 13 65 66
-;                    : 5 17 18 21 22 23 24 25 26 27 28 51 52 57 58 59 60 61 62 63 64 65 66
+;                    : 5 17 18 51 52 57 58 59 60 61 62 63 64 65 66
 <                    : 52
 >                    : 52
 AND                  : 41
@@ -365,14 +365,14 @@ state 22
     (30) metodos -> . metodos metodo
     (19) atributos -> . atributo
     (20) atributos -> . atributos atributo
-    (21) metodo -> . MODIFIER STATIC VOID OBJECTID ( formales ) { expr ; }
-    (22) metodo -> . MODIFIER TYPEID VOID ( formales ) { expr ; }
-    (23) metodo -> . MODIFIER STATIC VOID OBJECTID ( ) { expr ; }
-    (24) metodo -> . MODIFIER VOID OBJECTID ( ) { expr ; }
-    (25) metodo -> . MODIFIER STATIC TYPEID OBJECTID ( formales ) { expr ; }
-    (26) metodo -> . MODIFIER TYPEID OBJECTID ( formales ) { expr ; }
-    (27) metodo -> . MODIFIER STATIC TYPEID OBJECTID ( ) { expr ; }
-    (28) metodo -> . MODIFIER TYPEID OBJECTID ( ) { expr ; }
+    (21) metodo -> . MODIFIER STATIC VOID OBJECTID ( formales ) { expr }
+    (22) metodo -> . MODIFIER TYPEID VOID ( formales ) { expr }
+    (23) metodo -> . MODIFIER STATIC VOID OBJECTID ( ) { expr }
+    (24) metodo -> . MODIFIER VOID OBJECTID ( ) { expr }
+    (25) metodo -> . MODIFIER STATIC TYPEID OBJECTID ( formales ) { expr }
+    (26) metodo -> . MODIFIER TYPEID OBJECTID ( formales ) { expr }
+    (27) metodo -> . MODIFIER STATIC TYPEID OBJECTID ( ) { expr }
+    (28) metodo -> . MODIFIER TYPEID OBJECTID ( ) { expr }
     (17) atributo -> . MODIFIER TYPEID OBJECTID ASSIGN expr ;
     (18) atributo -> . MODIFIER TYPEID OBJECTID ;
     MODIFIER        shift and go to state 28
@@ -394,14 +394,14 @@ state 24
 
     (10) clase -> CLASS TYPEID { metodos . }
     (30) metodos -> metodos . metodo
-    (21) metodo -> . MODIFIER STATIC VOID OBJECTID ( formales ) { expr ; }
-    (22) metodo -> . MODIFIER TYPEID VOID ( formales ) { expr ; }
-    (23) metodo -> . MODIFIER STATIC VOID OBJECTID ( ) { expr ; }
-    (24) metodo -> . MODIFIER VOID OBJECTID ( ) { expr ; }
-    (25) metodo -> . MODIFIER STATIC TYPEID OBJECTID ( formales ) { expr ; }
-    (26) metodo -> . MODIFIER TYPEID OBJECTID ( formales ) { expr ; }
-    (27) metodo -> . MODIFIER STATIC TYPEID OBJECTID ( ) { expr ; }
-    (28) metodo -> . MODIFIER TYPEID OBJECTID ( ) { expr ; }
+    (21) metodo -> . MODIFIER STATIC VOID OBJECTID ( formales ) { expr }
+    (22) metodo -> . MODIFIER TYPEID VOID ( formales ) { expr }
+    (23) metodo -> . MODIFIER STATIC VOID OBJECTID ( ) { expr }
+    (24) metodo -> . MODIFIER VOID OBJECTID ( ) { expr }
+    (25) metodo -> . MODIFIER STATIC TYPEID OBJECTID ( formales ) { expr }
+    (26) metodo -> . MODIFIER TYPEID OBJECTID ( formales ) { expr }
+    (27) metodo -> . MODIFIER STATIC TYPEID OBJECTID ( ) { expr }
+    (28) metodo -> . MODIFIER TYPEID OBJECTID ( ) { expr }
     }               shift and go to state 30
     MODIFIER        shift and go to state 32
 
@@ -416,14 +416,14 @@ state 25
     (30) metodos -> . metodos metodo
     (17) atributo -> . MODIFIER TYPEID OBJECTID ASSIGN expr ;
     (18) atributo -> . MODIFIER TYPEID OBJECTID ;
-    (21) metodo -> . MODIFIER STATIC VOID OBJECTID ( formales ) { expr ; }
-    (22) metodo -> . MODIFIER TYPEID VOID ( formales ) { expr ; }
-    (23) metodo -> . MODIFIER STATIC VOID OBJECTID ( ) { expr ; }
-    (24) metodo -> . MODIFIER VOID OBJECTID ( ) { expr ; }
-    (25) metodo -> . MODIFIER STATIC TYPEID OBJECTID ( formales ) { expr ; }
-    (26) metodo -> . MODIFIER TYPEID OBJECTID ( formales ) { expr ; }
-    (27) metodo -> . MODIFIER STATIC TYPEID OBJECTID ( ) { expr ; }
-    (28) metodo -> . MODIFIER TYPEID OBJECTID ( ) { expr ; }
+    (21) metodo -> . MODIFIER STATIC VOID OBJECTID ( formales ) { expr }
+    (22) metodo -> . MODIFIER TYPEID VOID ( formales ) { expr }
+    (23) metodo -> . MODIFIER STATIC VOID OBJECTID ( ) { expr }
+    (24) metodo -> . MODIFIER VOID OBJECTID ( ) { expr }
+    (25) metodo -> . MODIFIER STATIC TYPEID OBJECTID ( formales ) { expr }
+    (26) metodo -> . MODIFIER TYPEID OBJECTID ( formales ) { expr }
+    (27) metodo -> . MODIFIER STATIC TYPEID OBJECTID ( ) { expr }
+    (28) metodo -> . MODIFIER TYPEID OBJECTID ( ) { expr }
     }               shift and go to state 33
     MODIFIER        shift and go to state 36
 
@@ -447,14 +447,14 @@ state 27
 
 state 28
 
-    (21) metodo -> MODIFIER . STATIC VOID OBJECTID ( formales ) { expr ; }
-    (22) metodo -> MODIFIER . TYPEID VOID ( formales ) { expr ; }
-    (23) metodo -> MODIFIER . STATIC VOID OBJECTID ( ) { expr ; }
-    (24) metodo -> MODIFIER . VOID OBJECTID ( ) { expr ; }
-    (25) metodo -> MODIFIER . STATIC TYPEID OBJECTID ( formales ) { expr ; }
-    (26) metodo -> MODIFIER . TYPEID OBJECTID ( formales ) { expr ; }
-    (27) metodo -> MODIFIER . STATIC TYPEID OBJECTID ( ) { expr ; }
-    (28) metodo -> MODIFIER . TYPEID OBJECTID ( ) { expr ; }
+    (21) metodo -> MODIFIER . STATIC VOID OBJECTID ( formales ) { expr }
+    (22) metodo -> MODIFIER . TYPEID VOID ( formales ) { expr }
+    (23) metodo -> MODIFIER . STATIC VOID OBJECTID ( ) { expr }
+    (24) metodo -> MODIFIER . VOID OBJECTID ( ) { expr }
+    (25) metodo -> MODIFIER . STATIC TYPEID OBJECTID ( formales ) { expr }
+    (26) metodo -> MODIFIER . TYPEID OBJECTID ( formales ) { expr }
+    (27) metodo -> MODIFIER . STATIC TYPEID OBJECTID ( ) { expr }
+    (28) metodo -> MODIFIER . TYPEID OBJECTID ( ) { expr }
     (17) atributo -> MODIFIER . TYPEID OBJECTID ASSIGN expr ;
     (18) atributo -> MODIFIER . TYPEID OBJECTID ;
     STATIC          shift and go to state 37
@@ -471,14 +471,14 @@ state 29
     (30) metodos -> . metodos metodo
     (19) atributos -> . atributo
     (20) atributos -> . atributos atributo
-    (21) metodo -> . MODIFIER STATIC VOID OBJECTID ( formales ) { expr ; }
-    (22) metodo -> . MODIFIER TYPEID VOID ( formales ) { expr ; }
-    (23) metodo -> . MODIFIER STATIC VOID OBJECTID ( ) { expr ; }
-    (24) metodo -> . MODIFIER VOID OBJECTID ( ) { expr ; }
-    (25) metodo -> . MODIFIER STATIC TYPEID OBJECTID ( formales ) { expr ; }
-    (26) metodo -> . MODIFIER TYPEID OBJECTID ( formales ) { expr ; }
-    (27) metodo -> . MODIFIER STATIC TYPEID OBJECTID ( ) { expr ; }
-    (28) metodo -> . MODIFIER TYPEID OBJECTID ( ) { expr ; }
+    (21) metodo -> . MODIFIER STATIC VOID OBJECTID ( formales ) { expr }
+    (22) metodo -> . MODIFIER TYPEID VOID ( formales ) { expr }
+    (23) metodo -> . MODIFIER STATIC VOID OBJECTID ( ) { expr }
+    (24) metodo -> . MODIFIER VOID OBJECTID ( ) { expr }
+    (25) metodo -> . MODIFIER STATIC TYPEID OBJECTID ( formales ) { expr }
+    (26) metodo -> . MODIFIER TYPEID OBJECTID ( formales ) { expr }
+    (27) metodo -> . MODIFIER STATIC TYPEID OBJECTID ( ) { expr }
+    (28) metodo -> . MODIFIER TYPEID OBJECTID ( ) { expr }
     (17) atributo -> . MODIFIER TYPEID OBJECTID ASSIGN expr ;
     (18) atributo -> . MODIFIER TYPEID OBJECTID ;
     MODIFIER        shift and go to state 28
@@ -504,14 +504,14 @@ state 31
 
 state 32
 
-    (21) metodo -> MODIFIER . STATIC VOID OBJECTID ( formales ) { expr ; }
-    (22) metodo -> MODIFIER . TYPEID VOID ( formales ) { expr ; }
-    (23) metodo -> MODIFIER . STATIC VOID OBJECTID ( ) { expr ; }
-    (24) metodo -> MODIFIER . VOID OBJECTID ( ) { expr ; }
-    (25) metodo -> MODIFIER . STATIC TYPEID OBJECTID ( formales ) { expr ; }
-    (26) metodo -> MODIFIER . TYPEID OBJECTID ( formales ) { expr ; }
-    (27) metodo -> MODIFIER . STATIC TYPEID OBJECTID ( ) { expr ; }
-    (28) metodo -> MODIFIER . TYPEID OBJECTID ( ) { expr ; }
+    (21) metodo -> MODIFIER . STATIC VOID OBJECTID ( formales ) { expr }
+    (22) metodo -> MODIFIER . TYPEID VOID ( formales ) { expr }
+    (23) metodo -> MODIFIER . STATIC VOID OBJECTID ( ) { expr }
+    (24) metodo -> MODIFIER . VOID OBJECTID ( ) { expr }
+    (25) metodo -> MODIFIER . STATIC TYPEID OBJECTID ( formales ) { expr }
+    (26) metodo -> MODIFIER . TYPEID OBJECTID ( formales ) { expr }
+    (27) metodo -> MODIFIER . STATIC TYPEID OBJECTID ( ) { expr }
+    (28) metodo -> MODIFIER . TYPEID OBJECTID ( ) { expr }
     STATIC          shift and go to state 37
     TYPEID          shift and go to state 42
     VOID            shift and go to state 38
@@ -528,14 +528,14 @@ state 34
 
     (14) clase -> CLASS TYPEID { atributos metodos . }
     (30) metodos -> metodos . metodo
-    (21) metodo -> . MODIFIER STATIC VOID OBJECTID ( formales ) { expr ; }
-    (22) metodo -> . MODIFIER TYPEID VOID ( formales ) { expr ; }
-    (23) metodo -> . MODIFIER STATIC VOID OBJECTID ( ) { expr ; }
-    (24) metodo -> . MODIFIER VOID OBJECTID ( ) { expr ; }
-    (25) metodo -> . MODIFIER STATIC TYPEID OBJECTID ( formales ) { expr ; }
-    (26) metodo -> . MODIFIER TYPEID OBJECTID ( formales ) { expr ; }
-    (27) metodo -> . MODIFIER STATIC TYPEID OBJECTID ( ) { expr ; }
-    (28) metodo -> . MODIFIER TYPEID OBJECTID ( ) { expr ; }
+    (21) metodo -> . MODIFIER STATIC VOID OBJECTID ( formales ) { expr }
+    (22) metodo -> . MODIFIER TYPEID VOID ( formales ) { expr }
+    (23) metodo -> . MODIFIER STATIC VOID OBJECTID ( ) { expr }
+    (24) metodo -> . MODIFIER VOID OBJECTID ( ) { expr }
+    (25) metodo -> . MODIFIER STATIC TYPEID OBJECTID ( formales ) { expr }
+    (26) metodo -> . MODIFIER TYPEID OBJECTID ( formales ) { expr }
+    (27) metodo -> . MODIFIER STATIC TYPEID OBJECTID ( ) { expr }
+    (28) metodo -> . MODIFIER TYPEID OBJECTID ( ) { expr }
     }               shift and go to state 43
     MODIFIER        shift and go to state 32
 
@@ -552,14 +552,14 @@ state 36
 
     (17) atributo -> MODIFIER . TYPEID OBJECTID ASSIGN expr ;
     (18) atributo -> MODIFIER . TYPEID OBJECTID ;
-    (21) metodo -> MODIFIER . STATIC VOID OBJECTID ( formales ) { expr ; }
-    (22) metodo -> MODIFIER . TYPEID VOID ( formales ) { expr ; }
-    (23) metodo -> MODIFIER . STATIC VOID OBJECTID ( ) { expr ; }
-    (24) metodo -> MODIFIER . VOID OBJECTID ( ) { expr ; }
-    (25) metodo -> MODIFIER . STATIC TYPEID OBJECTID ( formales ) { expr ; }
-    (26) metodo -> MODIFIER . TYPEID OBJECTID ( formales ) { expr ; }
-    (27) metodo -> MODIFIER . STATIC TYPEID OBJECTID ( ) { expr ; }
-    (28) metodo -> MODIFIER . TYPEID OBJECTID ( ) { expr ; }
+    (21) metodo -> MODIFIER . STATIC VOID OBJECTID ( formales ) { expr }
+    (22) metodo -> MODIFIER . TYPEID VOID ( formales ) { expr }
+    (23) metodo -> MODIFIER . STATIC VOID OBJECTID ( ) { expr }
+    (24) metodo -> MODIFIER . VOID OBJECTID ( ) { expr }
+    (25) metodo -> MODIFIER . STATIC TYPEID OBJECTID ( formales ) { expr }
+    (26) metodo -> MODIFIER . TYPEID OBJECTID ( formales ) { expr }
+    (27) metodo -> MODIFIER . STATIC TYPEID OBJECTID ( ) { expr }
+    (28) metodo -> MODIFIER . TYPEID OBJECTID ( ) { expr }
     TYPEID          shift and go to state 44
     STATIC          shift and go to state 37
     VOID            shift and go to state 38
@@ -567,25 +567,25 @@ state 36
 
 state 37
 
-    (21) metodo -> MODIFIER STATIC . VOID OBJECTID ( formales ) { expr ; }
-    (23) metodo -> MODIFIER STATIC . VOID OBJECTID ( ) { expr ; }
-    (25) metodo -> MODIFIER STATIC . TYPEID OBJECTID ( formales ) { expr ; }
-    (27) metodo -> MODIFIER STATIC . TYPEID OBJECTID ( ) { expr ; }
+    (21) metodo -> MODIFIER STATIC . VOID OBJECTID ( formales ) { expr }
+    (23) metodo -> MODIFIER STATIC . VOID OBJECTID ( ) { expr }
+    (25) metodo -> MODIFIER STATIC . TYPEID OBJECTID ( formales ) { expr }
+    (27) metodo -> MODIFIER STATIC . TYPEID OBJECTID ( ) { expr }
     VOID            shift and go to state 45
     TYPEID          shift and go to state 46
 
 
 state 38
 
-    (24) metodo -> MODIFIER VOID . OBJECTID ( ) { expr ; }
+    (24) metodo -> MODIFIER VOID . OBJECTID ( ) { expr }
     OBJECTID        shift and go to state 47
 
 
 state 39
 
-    (22) metodo -> MODIFIER TYPEID . VOID ( formales ) { expr ; }
-    (26) metodo -> MODIFIER TYPEID . OBJECTID ( formales ) { expr ; }
-    (28) metodo -> MODIFIER TYPEID . OBJECTID ( ) { expr ; }
+    (22) metodo -> MODIFIER TYPEID . VOID ( formales ) { expr }
+    (26) metodo -> MODIFIER TYPEID . OBJECTID ( formales ) { expr }
+    (28) metodo -> MODIFIER TYPEID . OBJECTID ( ) { expr }
     (17) atributo -> MODIFIER TYPEID . OBJECTID ASSIGN expr ;
     (18) atributo -> MODIFIER TYPEID . OBJECTID ;
     VOID            shift and go to state 48
@@ -596,14 +596,14 @@ state 40
 
     (9) clase -> CLASS TYPEID : TYPEID { metodos . }
     (30) metodos -> metodos . metodo
-    (21) metodo -> . MODIFIER STATIC VOID OBJECTID ( formales ) { expr ; }
-    (22) metodo -> . MODIFIER TYPEID VOID ( formales ) { expr ; }
-    (23) metodo -> . MODIFIER STATIC VOID OBJECTID ( ) { expr ; }
-    (24) metodo -> . MODIFIER VOID OBJECTID ( ) { expr ; }
-    (25) metodo -> . MODIFIER STATIC TYPEID OBJECTID ( formales ) { expr ; }
-    (26) metodo -> . MODIFIER TYPEID OBJECTID ( formales ) { expr ; }
-    (27) metodo -> . MODIFIER STATIC TYPEID OBJECTID ( ) { expr ; }
-    (28) metodo -> . MODIFIER TYPEID OBJECTID ( ) { expr ; }
+    (21) metodo -> . MODIFIER STATIC VOID OBJECTID ( formales ) { expr }
+    (22) metodo -> . MODIFIER TYPEID VOID ( formales ) { expr }
+    (23) metodo -> . MODIFIER STATIC VOID OBJECTID ( ) { expr }
+    (24) metodo -> . MODIFIER VOID OBJECTID ( ) { expr }
+    (25) metodo -> . MODIFIER STATIC TYPEID OBJECTID ( formales ) { expr }
+    (26) metodo -> . MODIFIER TYPEID OBJECTID ( formales ) { expr }
+    (27) metodo -> . MODIFIER STATIC TYPEID OBJECTID ( ) { expr }
+    (28) metodo -> . MODIFIER TYPEID OBJECTID ( ) { expr }
     }               shift and go to state 50
     MODIFIER        shift and go to state 32
 
@@ -618,14 +618,14 @@ state 41
     (30) metodos -> . metodos metodo
     (17) atributo -> . MODIFIER TYPEID OBJECTID ASSIGN expr ;
     (18) atributo -> . MODIFIER TYPEID OBJECTID ;
-    (21) metodo -> . MODIFIER STATIC VOID OBJECTID ( formales ) { expr ; }
-    (22) metodo -> . MODIFIER TYPEID VOID ( formales ) { expr ; }
-    (23) metodo -> . MODIFIER STATIC VOID OBJECTID ( ) { expr ; }
-    (24) metodo -> . MODIFIER VOID OBJECTID ( ) { expr ; }
-    (25) metodo -> . MODIFIER STATIC TYPEID OBJECTID ( formales ) { expr ; }
-    (26) metodo -> . MODIFIER TYPEID OBJECTID ( formales ) { expr ; }
-    (27) metodo -> . MODIFIER STATIC TYPEID OBJECTID ( ) { expr ; }
-    (28) metodo -> . MODIFIER TYPEID OBJECTID ( ) { expr ; }
+    (21) metodo -> . MODIFIER STATIC VOID OBJECTID ( formales ) { expr }
+    (22) metodo -> . MODIFIER TYPEID VOID ( formales ) { expr }
+    (23) metodo -> . MODIFIER STATIC VOID OBJECTID ( ) { expr }
+    (24) metodo -> . MODIFIER VOID OBJECTID ( ) { expr }
+    (25) metodo -> . MODIFIER STATIC TYPEID OBJECTID ( formales ) { expr }
+    (26) metodo -> . MODIFIER TYPEID OBJECTID ( formales ) { expr }
+    (27) metodo -> . MODIFIER STATIC TYPEID OBJECTID ( ) { expr }
+    (28) metodo -> . MODIFIER TYPEID OBJECTID ( ) { expr }
     }               shift and go to state 51
     MODIFIER        shift and go to state 36
 
@@ -635,9 +635,9 @@ state 41
 
 state 42
 
-    (22) metodo -> MODIFIER TYPEID . VOID ( formales ) { expr ; }
-    (26) metodo -> MODIFIER TYPEID . OBJECTID ( formales ) { expr ; }
-    (28) metodo -> MODIFIER TYPEID . OBJECTID ( ) { expr ; }
+    (22) metodo -> MODIFIER TYPEID . VOID ( formales ) { expr }
+    (26) metodo -> MODIFIER TYPEID . OBJECTID ( formales ) { expr }
+    (28) metodo -> MODIFIER TYPEID . OBJECTID ( ) { expr }
     VOID            shift and go to state 48
     OBJECTID        shift and go to state 53
 
@@ -653,48 +653,48 @@ state 44
 
     (17) atributo -> MODIFIER TYPEID . OBJECTID ASSIGN expr ;
     (18) atributo -> MODIFIER TYPEID . OBJECTID ;
-    (22) metodo -> MODIFIER TYPEID . VOID ( formales ) { expr ; }
-    (26) metodo -> MODIFIER TYPEID . OBJECTID ( formales ) { expr ; }
-    (28) metodo -> MODIFIER TYPEID . OBJECTID ( ) { expr ; }
+    (22) metodo -> MODIFIER TYPEID . VOID ( formales ) { expr }
+    (26) metodo -> MODIFIER TYPEID . OBJECTID ( formales ) { expr }
+    (28) metodo -> MODIFIER TYPEID . OBJECTID ( ) { expr }
     OBJECTID        shift and go to state 54
     VOID            shift and go to state 48
 
 
 state 45
 
-    (21) metodo -> MODIFIER STATIC VOID . OBJECTID ( formales ) { expr ; }
-    (23) metodo -> MODIFIER STATIC VOID . OBJECTID ( ) { expr ; }
+    (21) metodo -> MODIFIER STATIC VOID . OBJECTID ( formales ) { expr }
+    (23) metodo -> MODIFIER STATIC VOID . OBJECTID ( ) { expr }
     OBJECTID        shift and go to state 55
 
 
 state 46
 
-    (25) metodo -> MODIFIER STATIC TYPEID . OBJECTID ( formales ) { expr ; }
-    (27) metodo -> MODIFIER STATIC TYPEID . OBJECTID ( ) { expr ; }
+    (25) metodo -> MODIFIER STATIC TYPEID . OBJECTID ( formales ) { expr }
+    (27) metodo -> MODIFIER STATIC TYPEID . OBJECTID ( ) { expr }
     OBJECTID        shift and go to state 56
 
 
 state 47
 
-    (24) metodo -> MODIFIER VOID OBJECTID . ( ) { expr ; }
+    (24) metodo -> MODIFIER VOID OBJECTID . ( ) { expr }
     (               shift and go to state 57
 
 
 state 48
 
-    (22) metodo -> MODIFIER TYPEID VOID . ( formales ) { expr ; }
+    (22) metodo -> MODIFIER TYPEID VOID . ( formales ) { expr }
     (               shift and go to state 58
 
 
 state 49
 
-    (26) metodo -> MODIFIER TYPEID OBJECTID . ( formales ) { expr ; }
-    (28) metodo -> MODIFIER TYPEID OBJECTID . ( ) { expr ; }
+    (26) metodo -> MODIFIER TYPEID OBJECTID . ( formales ) { expr }
+    (28) metodo -> MODIFIER TYPEID OBJECTID . ( ) { expr }
     (17) atributo -> MODIFIER TYPEID OBJECTID . ASSIGN expr ;
     (18) atributo -> MODIFIER TYPEID OBJECTID . ;
     (               shift and go to state 59
-    ASSIGN          shift and go to state 61
-    ;               shift and go to state 60
+    ASSIGN          shift and go to state 60
+    ;               shift and go to state 61
 
 
 state 50
@@ -715,14 +715,14 @@ state 52
 
     (13) clase -> CLASS TYPEID : TYPEID { atributos metodos . }
     (30) metodos -> metodos . metodo
-    (21) metodo -> . MODIFIER STATIC VOID OBJECTID ( formales ) { expr ; }
-    (22) metodo -> . MODIFIER TYPEID VOID ( formales ) { expr ; }
-    (23) metodo -> . MODIFIER STATIC VOID OBJECTID ( ) { expr ; }
-    (24) metodo -> . MODIFIER VOID OBJECTID ( ) { expr ; }
-    (25) metodo -> . MODIFIER STATIC TYPEID OBJECTID ( formales ) { expr ; }
-    (26) metodo -> . MODIFIER TYPEID OBJECTID ( formales ) { expr ; }
-    (27) metodo -> . MODIFIER STATIC TYPEID OBJECTID ( ) { expr ; }
-    (28) metodo -> . MODIFIER TYPEID OBJECTID ( ) { expr ; }
+    (21) metodo -> . MODIFIER STATIC VOID OBJECTID ( formales ) { expr }
+    (22) metodo -> . MODIFIER TYPEID VOID ( formales ) { expr }
+    (23) metodo -> . MODIFIER STATIC VOID OBJECTID ( ) { expr }
+    (24) metodo -> . MODIFIER VOID OBJECTID ( ) { expr }
+    (25) metodo -> . MODIFIER STATIC TYPEID OBJECTID ( formales ) { expr }
+    (26) metodo -> . MODIFIER TYPEID OBJECTID ( formales ) { expr }
+    (27) metodo -> . MODIFIER STATIC TYPEID OBJECTID ( ) { expr }
+    (28) metodo -> . MODIFIER TYPEID OBJECTID ( ) { expr }
     }               shift and go to state 62
     MODIFIER        shift and go to state 32
 
@@ -730,8 +730,8 @@ state 52
 
 state 53
 
-    (26) metodo -> MODIFIER TYPEID OBJECTID . ( formales ) { expr ; }
-    (28) metodo -> MODIFIER TYPEID OBJECTID . ( ) { expr ; }
+    (26) metodo -> MODIFIER TYPEID OBJECTID . ( formales ) { expr }
+    (28) metodo -> MODIFIER TYPEID OBJECTID . ( ) { expr }
     (               shift and go to state 59
 
 
@@ -739,36 +739,36 @@ state 54
 
     (17) atributo -> MODIFIER TYPEID OBJECTID . ASSIGN expr ;
     (18) atributo -> MODIFIER TYPEID OBJECTID . ;
-    (26) metodo -> MODIFIER TYPEID OBJECTID . ( formales ) { expr ; }
-    (28) metodo -> MODIFIER TYPEID OBJECTID . ( ) { expr ; }
-    ASSIGN          shift and go to state 61
-    ;               shift and go to state 60
+    (26) metodo -> MODIFIER TYPEID OBJECTID . ( formales ) { expr }
+    (28) metodo -> MODIFIER TYPEID OBJECTID . ( ) { expr }
+    ASSIGN          shift and go to state 60
+    ;               shift and go to state 61
     (               shift and go to state 59
 
 
 state 55
 
-    (21) metodo -> MODIFIER STATIC VOID OBJECTID . ( formales ) { expr ; }
-    (23) metodo -> MODIFIER STATIC VOID OBJECTID . ( ) { expr ; }
+    (21) metodo -> MODIFIER STATIC VOID OBJECTID . ( formales ) { expr }
+    (23) metodo -> MODIFIER STATIC VOID OBJECTID . ( ) { expr }
     (               shift and go to state 63
 
 
 state 56
 
-    (25) metodo -> MODIFIER STATIC TYPEID OBJECTID . ( formales ) { expr ; }
-    (27) metodo -> MODIFIER STATIC TYPEID OBJECTID . ( ) { expr ; }
+    (25) metodo -> MODIFIER STATIC TYPEID OBJECTID . ( formales ) { expr }
+    (27) metodo -> MODIFIER STATIC TYPEID OBJECTID . ( ) { expr }
     (               shift and go to state 64
 
 
 state 57
 
-    (24) metodo -> MODIFIER VOID OBJECTID ( . ) { expr ; }
+    (24) metodo -> MODIFIER VOID OBJECTID ( . ) { expr }
     )               shift and go to state 65
 
 
 state 58
 
-    (22) metodo -> MODIFIER TYPEID VOID ( . formales ) { expr ; }
+    (22) metodo -> MODIFIER TYPEID VOID ( . formales ) { expr }
     (32) formales -> . formal
     (33) formales -> . formales , formal
     (31) formal -> . TYPEID OBJECTID
@@ -779,8 +779,8 @@ state 58
 
 state 59
 
-    (26) metodo -> MODIFIER TYPEID OBJECTID ( . formales ) { expr ; }
-    (28) metodo -> MODIFIER TYPEID OBJECTID ( . ) { expr ; }
+    (26) metodo -> MODIFIER TYPEID OBJECTID ( . formales ) { expr }
+    (28) metodo -> MODIFIER TYPEID OBJECTID ( . ) { expr }
     (32) formales -> . formal
     (33) formales -> . formales , formal
     (31) formal -> . TYPEID OBJECTID
@@ -791,13 +791,6 @@ state 59
     formal                         shift and go to state 68
 
 state 60
-
-    (18) atributo -> MODIFIER TYPEID OBJECTID ; .
-    }               reduce using rule 18 (atributo -> MODIFIER TYPEID OBJECTID ; .)
-    MODIFIER        reduce using rule 18 (atributo -> MODIFIER TYPEID OBJECTID ; .)
-
-
-state 61
 
     (17) atributo -> MODIFIER TYPEID OBJECTID ASSIGN . expr ;
     (34) expr -> . exprApoyo2
@@ -852,6 +845,13 @@ state 61
     expr                           shift and go to state 73
     exprApoyo2                     shift and go to state 74
 
+state 61
+
+    (18) atributo -> MODIFIER TYPEID OBJECTID ; .
+    }               reduce using rule 18 (atributo -> MODIFIER TYPEID OBJECTID ; .)
+    MODIFIER        reduce using rule 18 (atributo -> MODIFIER TYPEID OBJECTID ; .)
+
+
 state 62
 
     (13) clase -> CLASS TYPEID : TYPEID { atributos metodos } .
@@ -861,8 +861,8 @@ state 62
 
 state 63
 
-    (21) metodo -> MODIFIER STATIC VOID OBJECTID ( . formales ) { expr ; }
-    (23) metodo -> MODIFIER STATIC VOID OBJECTID ( . ) { expr ; }
+    (21) metodo -> MODIFIER STATIC VOID OBJECTID ( . formales ) { expr }
+    (23) metodo -> MODIFIER STATIC VOID OBJECTID ( . ) { expr }
     (32) formales -> . formal
     (33) formales -> . formales , formal
     (31) formal -> . TYPEID OBJECTID
@@ -874,8 +874,8 @@ state 63
 
 state 64
 
-    (25) metodo -> MODIFIER STATIC TYPEID OBJECTID ( . formales ) { expr ; }
-    (27) metodo -> MODIFIER STATIC TYPEID OBJECTID ( . ) { expr ; }
+    (25) metodo -> MODIFIER STATIC TYPEID OBJECTID ( . formales ) { expr }
+    (27) metodo -> MODIFIER STATIC TYPEID OBJECTID ( . ) { expr }
     (32) formales -> . formal
     (33) formales -> . formales , formal
     (31) formal -> . TYPEID OBJECTID
@@ -887,7 +887,7 @@ state 64
 
 state 65
 
-    (24) metodo -> MODIFIER VOID OBJECTID ( ) . { expr ; }
+    (24) metodo -> MODIFIER VOID OBJECTID ( ) . { expr }
     {               shift and go to state 92
 
 
@@ -899,7 +899,7 @@ state 66
 
 state 67
 
-    (22) metodo -> MODIFIER TYPEID VOID ( formales . ) { expr ; }
+    (22) metodo -> MODIFIER TYPEID VOID ( formales . ) { expr }
     (33) formales -> formales . , formal
     )               shift and go to state 94
     ,               shift and go to state 95
@@ -914,7 +914,7 @@ state 68
 
 state 69
 
-    (26) metodo -> MODIFIER TYPEID OBJECTID ( formales . ) { expr ; }
+    (26) metodo -> MODIFIER TYPEID OBJECTID ( formales . ) { expr }
     (33) formales -> formales . , formal
     )               shift and go to state 96
     ,               shift and go to state 95
@@ -922,7 +922,7 @@ state 69
 
 state 70
 
-    (28) metodo -> MODIFIER TYPEID OBJECTID ( ) . { expr ; }
+    (28) metodo -> MODIFIER TYPEID OBJECTID ( ) . { expr }
     {               shift and go to state 97
 
 
@@ -965,9 +965,9 @@ state 72
     IF              reduce using rule 39 (expr -> OBJECTID .)
     RETURN          reduce using rule 39 (expr -> OBJECTID .)
     TYPEID          reduce using rule 39 (expr -> OBJECTID .)
+    }               reduce using rule 39 (expr -> OBJECTID .)
     )               reduce using rule 39 (expr -> OBJECTID .)
     ,               reduce using rule 39 (expr -> OBJECTID .)
-    }               reduce using rule 39 (expr -> OBJECTID .)
     :               reduce using rule 39 (expr -> OBJECTID .)
     BREAK           reduce using rule 39 (expr -> OBJECTID .)
     (               shift and go to state 99
@@ -1115,9 +1115,9 @@ state 74
     -               reduce using rule 34 (expr -> exprApoyo2 .)
     +               reduce using rule 34 (expr -> exprApoyo2 .)
     .               reduce using rule 34 (expr -> exprApoyo2 .)
+    }               reduce using rule 34 (expr -> exprApoyo2 .)
     )               reduce using rule 34 (expr -> exprApoyo2 .)
     ,               reduce using rule 34 (expr -> exprApoyo2 .)
-    }               reduce using rule 34 (expr -> exprApoyo2 .)
     :               reduce using rule 34 (expr -> exprApoyo2 .)
     BREAK           reduce using rule 34 (expr -> exprApoyo2 .)
     BOOL_CONST      shift and go to state 75
@@ -1168,9 +1168,9 @@ state 75
     IF              reduce using rule 35 (expr -> BOOL_CONST .)
     RETURN          reduce using rule 35 (expr -> BOOL_CONST .)
     TYPEID          reduce using rule 35 (expr -> BOOL_CONST .)
+    }               reduce using rule 35 (expr -> BOOL_CONST .)
     )               reduce using rule 35 (expr -> BOOL_CONST .)
     ,               reduce using rule 35 (expr -> BOOL_CONST .)
-    }               reduce using rule 35 (expr -> BOOL_CONST .)
     :               reduce using rule 35 (expr -> BOOL_CONST .)
     BREAK           reduce using rule 35 (expr -> BOOL_CONST .)
 
@@ -1204,9 +1204,9 @@ state 76
     IF              reduce using rule 36 (expr -> STR_CONST .)
     RETURN          reduce using rule 36 (expr -> STR_CONST .)
     TYPEID          reduce using rule 36 (expr -> STR_CONST .)
+    }               reduce using rule 36 (expr -> STR_CONST .)
     )               reduce using rule 36 (expr -> STR_CONST .)
     ,               reduce using rule 36 (expr -> STR_CONST .)
-    }               reduce using rule 36 (expr -> STR_CONST .)
     :               reduce using rule 36 (expr -> STR_CONST .)
     BREAK           reduce using rule 36 (expr -> STR_CONST .)
 
@@ -1240,9 +1240,9 @@ state 77
     IF              reduce using rule 37 (expr -> FLOAT_CONST .)
     RETURN          reduce using rule 37 (expr -> FLOAT_CONST .)
     TYPEID          reduce using rule 37 (expr -> FLOAT_CONST .)
+    }               reduce using rule 37 (expr -> FLOAT_CONST .)
     )               reduce using rule 37 (expr -> FLOAT_CONST .)
     ,               reduce using rule 37 (expr -> FLOAT_CONST .)
-    }               reduce using rule 37 (expr -> FLOAT_CONST .)
     :               reduce using rule 37 (expr -> FLOAT_CONST .)
     BREAK           reduce using rule 37 (expr -> FLOAT_CONST .)
 
@@ -1276,9 +1276,9 @@ state 78
     IF              reduce using rule 38 (expr -> INT_CONST .)
     RETURN          reduce using rule 38 (expr -> INT_CONST .)
     TYPEID          reduce using rule 38 (expr -> INT_CONST .)
+    }               reduce using rule 38 (expr -> INT_CONST .)
     )               reduce using rule 38 (expr -> INT_CONST .)
     ,               reduce using rule 38 (expr -> INT_CONST .)
-    }               reduce using rule 38 (expr -> INT_CONST .)
     :               reduce using rule 38 (expr -> INT_CONST .)
     BREAK           reduce using rule 38 (expr -> INT_CONST .)
 
@@ -1446,7 +1446,7 @@ state 87
 
 state 88
 
-    (21) metodo -> MODIFIER STATIC VOID OBJECTID ( formales . ) { expr ; }
+    (21) metodo -> MODIFIER STATIC VOID OBJECTID ( formales . ) { expr }
     (33) formales -> formales . , formal
     )               shift and go to state 126
     ,               shift and go to state 95
@@ -1454,13 +1454,13 @@ state 88
 
 state 89
 
-    (23) metodo -> MODIFIER STATIC VOID OBJECTID ( ) . { expr ; }
+    (23) metodo -> MODIFIER STATIC VOID OBJECTID ( ) . { expr }
     {               shift and go to state 127
 
 
 state 90
 
-    (25) metodo -> MODIFIER STATIC TYPEID OBJECTID ( formales . ) { expr ; }
+    (25) metodo -> MODIFIER STATIC TYPEID OBJECTID ( formales . ) { expr }
     (33) formales -> formales . , formal
     )               shift and go to state 128
     ,               shift and go to state 95
@@ -1468,13 +1468,13 @@ state 90
 
 state 91
 
-    (27) metodo -> MODIFIER STATIC TYPEID OBJECTID ( ) . { expr ; }
+    (27) metodo -> MODIFIER STATIC TYPEID OBJECTID ( ) . { expr }
     {               shift and go to state 129
 
 
 state 92
 
-    (24) metodo -> MODIFIER VOID OBJECTID ( ) { . expr ; }
+    (24) metodo -> MODIFIER VOID OBJECTID ( ) { . expr }
     (34) expr -> . exprApoyo2
     (35) expr -> . BOOL_CONST
     (36) expr -> . STR_CONST
@@ -1536,7 +1536,7 @@ state 93
 
 state 94
 
-    (22) metodo -> MODIFIER TYPEID VOID ( formales ) . { expr ; }
+    (22) metodo -> MODIFIER TYPEID VOID ( formales ) . { expr }
     {               shift and go to state 131
 
 
@@ -1550,13 +1550,13 @@ state 95
 
 state 96
 
-    (26) metodo -> MODIFIER TYPEID OBJECTID ( formales ) . { expr ; }
+    (26) metodo -> MODIFIER TYPEID OBJECTID ( formales ) . { expr }
     {               shift and go to state 133
 
 
 state 97
 
-    (28) metodo -> MODIFIER TYPEID OBJECTID ( ) { . expr ; }
+    (28) metodo -> MODIFIER TYPEID OBJECTID ( ) { . expr }
     (34) expr -> . exprApoyo2
     (35) expr -> . BOOL_CONST
     (36) expr -> . STR_CONST
@@ -1805,9 +1805,9 @@ state 101
   ! shift/reduce conflict for RETURN resolved as shift
   ! shift/reduce conflict for TYPEID resolved as shift
     ;               reduce using rule 76 (exprApoyo2 -> expr expr .)
+    }               reduce using rule 76 (exprApoyo2 -> expr expr .)
     )               reduce using rule 76 (exprApoyo2 -> expr expr .)
     ,               reduce using rule 76 (exprApoyo2 -> expr expr .)
-    }               reduce using rule 76 (exprApoyo2 -> expr expr .)
     :               reduce using rule 76 (exprApoyo2 -> expr expr .)
     BREAK           reduce using rule 76 (exprApoyo2 -> expr expr .)
     OR              shift and go to state 103
@@ -2422,9 +2422,9 @@ state 113
   ! shift/reduce conflict for RETURN resolved as shift
   ! shift/reduce conflict for TYPEID resolved as shift
     ;               reduce using rule 75 (exprApoyo2 -> exprApoyo2 expr .)
+    }               reduce using rule 75 (exprApoyo2 -> exprApoyo2 expr .)
     )               reduce using rule 75 (exprApoyo2 -> exprApoyo2 expr .)
     ,               reduce using rule 75 (exprApoyo2 -> exprApoyo2 expr .)
-    }               reduce using rule 75 (exprApoyo2 -> exprApoyo2 expr .)
     :               reduce using rule 75 (exprApoyo2 -> exprApoyo2 expr .)
     BREAK           reduce using rule 75 (exprApoyo2 -> exprApoyo2 expr .)
     OR              shift and go to state 103
@@ -2528,9 +2528,9 @@ state 114
     IF              reduce using rule 45 (expr -> ! expr .)
     RETURN          reduce using rule 45 (expr -> ! expr .)
     TYPEID          reduce using rule 45 (expr -> ! expr .)
+    }               reduce using rule 45 (expr -> ! expr .)
     )               reduce using rule 45 (expr -> ! expr .)
     ,               reduce using rule 45 (expr -> ! expr .)
-    }               reduce using rule 45 (expr -> ! expr .)
     :               reduce using rule 45 (expr -> ! expr .)
     BREAK           reduce using rule 45 (expr -> ! expr .)
     .               shift and go to state 112
@@ -2568,9 +2568,9 @@ state 115
     IF              reduce using rule 50 (expr -> NEW OBJECTID .)
     RETURN          reduce using rule 50 (expr -> NEW OBJECTID .)
     TYPEID          reduce using rule 50 (expr -> NEW OBJECTID .)
+    }               reduce using rule 50 (expr -> NEW OBJECTID .)
     )               reduce using rule 50 (expr -> NEW OBJECTID .)
     ,               reduce using rule 50 (expr -> NEW OBJECTID .)
-    }               reduce using rule 50 (expr -> NEW OBJECTID .)
     :               reduce using rule 50 (expr -> NEW OBJECTID .)
     BREAK           reduce using rule 50 (expr -> NEW OBJECTID .)
 
@@ -2860,13 +2860,13 @@ state 125
 
 state 126
 
-    (21) metodo -> MODIFIER STATIC VOID OBJECTID ( formales ) . { expr ; }
+    (21) metodo -> MODIFIER STATIC VOID OBJECTID ( formales ) . { expr }
     {               shift and go to state 161
 
 
 state 127
 
-    (23) metodo -> MODIFIER STATIC VOID OBJECTID ( ) { . expr ; }
+    (23) metodo -> MODIFIER STATIC VOID OBJECTID ( ) { . expr }
     (34) expr -> . exprApoyo2
     (35) expr -> . BOOL_CONST
     (36) expr -> . STR_CONST
@@ -2921,13 +2921,13 @@ state 127
 
 state 128
 
-    (25) metodo -> MODIFIER STATIC TYPEID OBJECTID ( formales ) . { expr ; }
+    (25) metodo -> MODIFIER STATIC TYPEID OBJECTID ( formales ) . { expr }
     {               shift and go to state 163
 
 
 state 129
 
-    (27) metodo -> MODIFIER STATIC TYPEID OBJECTID ( ) { . expr ; }
+    (27) metodo -> MODIFIER STATIC TYPEID OBJECTID ( ) { . expr }
     (34) expr -> . exprApoyo2
     (35) expr -> . BOOL_CONST
     (36) expr -> . STR_CONST
@@ -2982,7 +2982,7 @@ state 129
 
 state 130
 
-    (24) metodo -> MODIFIER VOID OBJECTID ( ) { expr . ; }
+    (24) metodo -> MODIFIER VOID OBJECTID ( ) { expr . }
     (40) expr -> expr . OR expr
     (41) expr -> expr . AND expr
     (42) expr -> expr . LE expr
@@ -3028,7 +3028,7 @@ state 130
     (64) expr -> . OBJECTID ASSIGN expr ;
     (75) exprApoyo2 -> . exprApoyo2 expr
     (76) exprApoyo2 -> . expr expr
-    ;               shift and go to state 165
+    }               shift and go to state 165
     OR              shift and go to state 103
     AND             shift and go to state 104
     LE              shift and go to state 105
@@ -3060,7 +3060,7 @@ state 130
 
 state 131
 
-    (22) metodo -> MODIFIER TYPEID VOID ( formales ) { . expr ; }
+    (22) metodo -> MODIFIER TYPEID VOID ( formales ) { . expr }
     (34) expr -> . exprApoyo2
     (35) expr -> . BOOL_CONST
     (36) expr -> . STR_CONST
@@ -3122,7 +3122,7 @@ state 132
 
 state 133
 
-    (26) metodo -> MODIFIER TYPEID OBJECTID ( formales ) { . expr ; }
+    (26) metodo -> MODIFIER TYPEID OBJECTID ( formales ) { . expr }
     (34) expr -> . exprApoyo2
     (35) expr -> . BOOL_CONST
     (36) expr -> . STR_CONST
@@ -3177,7 +3177,7 @@ state 133
 
 state 134
 
-    (28) metodo -> MODIFIER TYPEID OBJECTID ( ) { expr . ; }
+    (28) metodo -> MODIFIER TYPEID OBJECTID ( ) { expr . }
     (40) expr -> expr . OR expr
     (41) expr -> expr . AND expr
     (42) expr -> expr . LE expr
@@ -3223,7 +3223,7 @@ state 134
     (64) expr -> . OBJECTID ASSIGN expr ;
     (75) exprApoyo2 -> . exprApoyo2 expr
     (76) exprApoyo2 -> . expr expr
-    ;               shift and go to state 168
+    }               shift and go to state 168
     OR              shift and go to state 103
     AND             shift and go to state 104
     LE              shift and go to state 105
@@ -3495,9 +3495,9 @@ state 140
     IF              reduce using rule 40 (expr -> expr OR expr .)
     RETURN          reduce using rule 40 (expr -> expr OR expr .)
     TYPEID          reduce using rule 40 (expr -> expr OR expr .)
+    }               reduce using rule 40 (expr -> expr OR expr .)
     )               reduce using rule 40 (expr -> expr OR expr .)
     ,               reduce using rule 40 (expr -> expr OR expr .)
-    }               reduce using rule 40 (expr -> expr OR expr .)
     :               reduce using rule 40 (expr -> expr OR expr .)
     BREAK           reduce using rule 40 (expr -> expr OR expr .)
     AND             shift and go to state 104
@@ -3579,9 +3579,9 @@ state 141
     IF              reduce using rule 41 (expr -> expr AND expr .)
     RETURN          reduce using rule 41 (expr -> expr AND expr .)
     TYPEID          reduce using rule 41 (expr -> expr AND expr .)
+    }               reduce using rule 41 (expr -> expr AND expr .)
     )               reduce using rule 41 (expr -> expr AND expr .)
     ,               reduce using rule 41 (expr -> expr AND expr .)
-    }               reduce using rule 41 (expr -> expr AND expr .)
     :               reduce using rule 41 (expr -> expr AND expr .)
     BREAK           reduce using rule 41 (expr -> expr AND expr .)
     LE              shift and go to state 105
@@ -3665,9 +3665,9 @@ state 142
     IF              reduce using rule 42 (expr -> expr LE expr .)
     RETURN          reduce using rule 42 (expr -> expr LE expr .)
     TYPEID          reduce using rule 42 (expr -> expr LE expr .)
+    }               reduce using rule 42 (expr -> expr LE expr .)
     )               reduce using rule 42 (expr -> expr LE expr .)
     ,               reduce using rule 42 (expr -> expr LE expr .)
-    }               reduce using rule 42 (expr -> expr LE expr .)
     :               reduce using rule 42 (expr -> expr LE expr .)
     BREAK           reduce using rule 42 (expr -> expr LE expr .)
     /               shift and go to state 108
@@ -3747,9 +3747,9 @@ state 143
     IF              reduce using rule 43 (expr -> expr DIFFERENT expr .)
     RETURN          reduce using rule 43 (expr -> expr DIFFERENT expr .)
     TYPEID          reduce using rule 43 (expr -> expr DIFFERENT expr .)
+    }               reduce using rule 43 (expr -> expr DIFFERENT expr .)
     )               reduce using rule 43 (expr -> expr DIFFERENT expr .)
     ,               reduce using rule 43 (expr -> expr DIFFERENT expr .)
-    }               reduce using rule 43 (expr -> expr DIFFERENT expr .)
     :               reduce using rule 43 (expr -> expr DIFFERENT expr .)
     BREAK           reduce using rule 43 (expr -> expr DIFFERENT expr .)
     LE              shift and go to state 105
@@ -3830,9 +3830,9 @@ state 144
     IF              reduce using rule 44 (expr -> expr EQUALS expr .)
     RETURN          reduce using rule 44 (expr -> expr EQUALS expr .)
     TYPEID          reduce using rule 44 (expr -> expr EQUALS expr .)
+    }               reduce using rule 44 (expr -> expr EQUALS expr .)
     )               reduce using rule 44 (expr -> expr EQUALS expr .)
     ,               reduce using rule 44 (expr -> expr EQUALS expr .)
-    }               reduce using rule 44 (expr -> expr EQUALS expr .)
     :               reduce using rule 44 (expr -> expr EQUALS expr .)
     BREAK           reduce using rule 44 (expr -> expr EQUALS expr .)
     LE              shift and go to state 105
@@ -3918,9 +3918,9 @@ state 145
     IF              reduce using rule 46 (expr -> expr / expr .)
     RETURN          reduce using rule 46 (expr -> expr / expr .)
     TYPEID          reduce using rule 46 (expr -> expr / expr .)
+    }               reduce using rule 46 (expr -> expr / expr .)
     )               reduce using rule 46 (expr -> expr / expr .)
     ,               reduce using rule 46 (expr -> expr / expr .)
-    }               reduce using rule 46 (expr -> expr / expr .)
     :               reduce using rule 46 (expr -> expr / expr .)
     BREAK           reduce using rule 46 (expr -> expr / expr .)
     .               shift and go to state 112
@@ -4001,9 +4001,9 @@ state 146
     IF              reduce using rule 47 (expr -> expr * expr .)
     RETURN          reduce using rule 47 (expr -> expr * expr .)
     TYPEID          reduce using rule 47 (expr -> expr * expr .)
+    }               reduce using rule 47 (expr -> expr * expr .)
     )               reduce using rule 47 (expr -> expr * expr .)
     ,               reduce using rule 47 (expr -> expr * expr .)
-    }               reduce using rule 47 (expr -> expr * expr .)
     :               reduce using rule 47 (expr -> expr * expr .)
     BREAK           reduce using rule 47 (expr -> expr * expr .)
     .               shift and go to state 112
@@ -4082,9 +4082,9 @@ state 147
     IF              reduce using rule 48 (expr -> expr - expr .)
     RETURN          reduce using rule 48 (expr -> expr - expr .)
     TYPEID          reduce using rule 48 (expr -> expr - expr .)
+    }               reduce using rule 48 (expr -> expr - expr .)
     )               reduce using rule 48 (expr -> expr - expr .)
     ,               reduce using rule 48 (expr -> expr - expr .)
-    }               reduce using rule 48 (expr -> expr - expr .)
     :               reduce using rule 48 (expr -> expr - expr .)
     BREAK           reduce using rule 48 (expr -> expr - expr .)
     /               shift and go to state 108
@@ -4165,9 +4165,9 @@ state 148
     IF              reduce using rule 49 (expr -> expr + expr .)
     RETURN          reduce using rule 49 (expr -> expr + expr .)
     TYPEID          reduce using rule 49 (expr -> expr + expr .)
+    }               reduce using rule 49 (expr -> expr + expr .)
     )               reduce using rule 49 (expr -> expr + expr .)
     ,               reduce using rule 49 (expr -> expr + expr .)
-    }               reduce using rule 49 (expr -> expr + expr .)
     :               reduce using rule 49 (expr -> expr + expr .)
     BREAK           reduce using rule 49 (expr -> expr + expr .)
     /               shift and go to state 108
@@ -4494,16 +4494,16 @@ state 160
     IF              reduce using rule 57 (expr -> RETURN expr ; .)
     RETURN          reduce using rule 57 (expr -> RETURN expr ; .)
     TYPEID          reduce using rule 57 (expr -> RETURN expr ; .)
+    }               reduce using rule 57 (expr -> RETURN expr ; .)
     )               reduce using rule 57 (expr -> RETURN expr ; .)
     ,               reduce using rule 57 (expr -> RETURN expr ; .)
-    }               reduce using rule 57 (expr -> RETURN expr ; .)
     :               reduce using rule 57 (expr -> RETURN expr ; .)
     BREAK           reduce using rule 57 (expr -> RETURN expr ; .)
 
 
 state 161
 
-    (21) metodo -> MODIFIER STATIC VOID OBJECTID ( formales ) { . expr ; }
+    (21) metodo -> MODIFIER STATIC VOID OBJECTID ( formales ) { . expr }
     (34) expr -> . exprApoyo2
     (35) expr -> . BOOL_CONST
     (36) expr -> . STR_CONST
@@ -4558,7 +4558,7 @@ state 161
 
 state 162
 
-    (23) metodo -> MODIFIER STATIC VOID OBJECTID ( ) { expr . ; }
+    (23) metodo -> MODIFIER STATIC VOID OBJECTID ( ) { expr . }
     (40) expr -> expr . OR expr
     (41) expr -> expr . AND expr
     (42) expr -> expr . LE expr
@@ -4604,7 +4604,7 @@ state 162
     (64) expr -> . OBJECTID ASSIGN expr ;
     (75) exprApoyo2 -> . exprApoyo2 expr
     (76) exprApoyo2 -> . expr expr
-    ;               shift and go to state 188
+    }               shift and go to state 188
     OR              shift and go to state 103
     AND             shift and go to state 104
     LE              shift and go to state 105
@@ -4636,7 +4636,7 @@ state 162
 
 state 163
 
-    (25) metodo -> MODIFIER STATIC TYPEID OBJECTID ( formales ) { . expr ; }
+    (25) metodo -> MODIFIER STATIC TYPEID OBJECTID ( formales ) { . expr }
     (34) expr -> . exprApoyo2
     (35) expr -> . BOOL_CONST
     (36) expr -> . STR_CONST
@@ -4691,7 +4691,7 @@ state 163
 
 state 164
 
-    (27) metodo -> MODIFIER STATIC TYPEID OBJECTID ( ) { expr . ; }
+    (27) metodo -> MODIFIER STATIC TYPEID OBJECTID ( ) { expr . }
     (40) expr -> expr . OR expr
     (41) expr -> expr . AND expr
     (42) expr -> expr . LE expr
@@ -4737,7 +4737,7 @@ state 164
     (64) expr -> . OBJECTID ASSIGN expr ;
     (75) exprApoyo2 -> . exprApoyo2 expr
     (76) exprApoyo2 -> . expr expr
-    ;               shift and go to state 190
+    }               shift and go to state 190
     OR              shift and go to state 103
     AND             shift and go to state 104
     LE              shift and go to state 105
@@ -4769,13 +4769,14 @@ state 164
 
 state 165
 
-    (24) metodo -> MODIFIER VOID OBJECTID ( ) { expr ; . }
-    }               shift and go to state 191
+    (24) metodo -> MODIFIER VOID OBJECTID ( ) { expr } .
+    }               reduce using rule 24 (metodo -> MODIFIER VOID OBJECTID ( ) { expr } .)
+    MODIFIER        reduce using rule 24 (metodo -> MODIFIER VOID OBJECTID ( ) { expr } .)
 
 
 state 166
 
-    (22) metodo -> MODIFIER TYPEID VOID ( formales ) { expr . ; }
+    (22) metodo -> MODIFIER TYPEID VOID ( formales ) { expr . }
     (40) expr -> expr . OR expr
     (41) expr -> expr . AND expr
     (42) expr -> expr . LE expr
@@ -4821,7 +4822,7 @@ state 166
     (64) expr -> . OBJECTID ASSIGN expr ;
     (75) exprApoyo2 -> . exprApoyo2 expr
     (76) exprApoyo2 -> . expr expr
-    ;               shift and go to state 192
+    }               shift and go to state 191
     OR              shift and go to state 103
     AND             shift and go to state 104
     LE              shift and go to state 105
@@ -4853,7 +4854,7 @@ state 166
 
 state 167
 
-    (26) metodo -> MODIFIER TYPEID OBJECTID ( formales ) { expr . ; }
+    (26) metodo -> MODIFIER TYPEID OBJECTID ( formales ) { expr . }
     (40) expr -> expr . OR expr
     (41) expr -> expr . AND expr
     (42) expr -> expr . LE expr
@@ -4899,7 +4900,7 @@ state 167
     (64) expr -> . OBJECTID ASSIGN expr ;
     (75) exprApoyo2 -> . exprApoyo2 expr
     (76) exprApoyo2 -> . expr expr
-    ;               shift and go to state 193
+    }               shift and go to state 192
     OR              shift and go to state 103
     AND             shift and go to state 104
     LE              shift and go to state 105
@@ -4931,8 +4932,9 @@ state 167
 
 state 168
 
-    (28) metodo -> MODIFIER TYPEID OBJECTID ( ) { expr ; . }
-    }               shift and go to state 194
+    (28) metodo -> MODIFIER TYPEID OBJECTID ( ) { expr } .
+    }               reduce using rule 28 (metodo -> MODIFIER TYPEID OBJECTID ( ) { expr } .)
+    MODIFIER        reduce using rule 28 (metodo -> MODIFIER TYPEID OBJECTID ( ) { expr } .)
 
 
 state 169
@@ -4974,7 +4976,7 @@ state 169
     (64) expr -> . OBJECTID ASSIGN expr ;
     (75) exprApoyo2 -> . exprApoyo2 expr
     (76) exprApoyo2 -> . expr expr
-    )               shift and go to state 196
+    )               shift and go to state 194
     BOOL_CONST      shift and go to state 75
     STR_CONST       shift and go to state 76
     FLOAT_CONST     shift and go to state 77
@@ -4991,14 +4993,14 @@ state 169
     RETURN          shift and go to state 87
     TYPEID          shift and go to state 71
 
-    exprApoyo1                     shift and go to state 195
+    exprApoyo1                     shift and go to state 193
     expr                           shift and go to state 138
     exprApoyo2                     shift and go to state 74
 
 state 170
 
     (61) expr -> OBJECTID ( exprApoyo1 ) . ;
-    ;               shift and go to state 197
+    ;               shift and go to state 195
 
 
 state 171
@@ -5053,7 +5055,7 @@ state 171
     RETURN          shift and go to state 87
     TYPEID          shift and go to state 71
 
-    expr                           shift and go to state 198
+    expr                           shift and go to state 196
     exprApoyo2                     shift and go to state 74
 
 state 172
@@ -5085,9 +5087,9 @@ state 172
     IF              reduce using rule 63 (expr -> OBJECTID ( ) ; .)
     RETURN          reduce using rule 63 (expr -> OBJECTID ( ) ; .)
     TYPEID          reduce using rule 63 (expr -> OBJECTID ( ) ; .)
+    }               reduce using rule 63 (expr -> OBJECTID ( ) ; .)
     )               reduce using rule 63 (expr -> OBJECTID ( ) ; .)
     ,               reduce using rule 63 (expr -> OBJECTID ( ) ; .)
-    }               reduce using rule 63 (expr -> OBJECTID ( ) ; .)
     :               reduce using rule 63 (expr -> OBJECTID ( ) ; .)
     BREAK           reduce using rule 63 (expr -> OBJECTID ( ) ; .)
 
@@ -5121,9 +5123,9 @@ state 173
     IF              reduce using rule 64 (expr -> OBJECTID ASSIGN expr ; .)
     RETURN          reduce using rule 64 (expr -> OBJECTID ASSIGN expr ; .)
     TYPEID          reduce using rule 64 (expr -> OBJECTID ASSIGN expr ; .)
+    }               reduce using rule 64 (expr -> OBJECTID ASSIGN expr ; .)
     )               reduce using rule 64 (expr -> OBJECTID ASSIGN expr ; .)
     ,               reduce using rule 64 (expr -> OBJECTID ASSIGN expr ; .)
-    }               reduce using rule 64 (expr -> OBJECTID ASSIGN expr ; .)
     :               reduce using rule 64 (expr -> OBJECTID ASSIGN expr ; .)
     BREAK           reduce using rule 64 (expr -> OBJECTID ASSIGN expr ; .)
 
@@ -5167,7 +5169,7 @@ state 174
     (64) expr -> . OBJECTID ASSIGN expr ;
     (75) exprApoyo2 -> . exprApoyo2 expr
     (76) exprApoyo2 -> . expr expr
-    )               shift and go to state 200
+    )               shift and go to state 198
     BOOL_CONST      shift and go to state 75
     STR_CONST       shift and go to state 76
     FLOAT_CONST     shift and go to state 77
@@ -5185,7 +5187,7 @@ state 174
     TYPEID          shift and go to state 71
 
     expr                           shift and go to state 138
-    exprApoyo1                     shift and go to state 199
+    exprApoyo1                     shift and go to state 197
     exprApoyo2                     shift and go to state 74
 
 state 175
@@ -5217,9 +5219,9 @@ state 175
     IF              reduce using rule 51 (expr -> { exprApoyo3 } ; .)
     RETURN          reduce using rule 51 (expr -> { exprApoyo3 } ; .)
     TYPEID          reduce using rule 51 (expr -> { exprApoyo3 } ; .)
+    }               reduce using rule 51 (expr -> { exprApoyo3 } ; .)
     )               reduce using rule 51 (expr -> { exprApoyo3 } ; .)
     ,               reduce using rule 51 (expr -> { exprApoyo3 } ; .)
-    }               reduce using rule 51 (expr -> { exprApoyo3 } ; .)
     :               reduce using rule 51 (expr -> { exprApoyo3 } ; .)
     BREAK           reduce using rule 51 (expr -> { exprApoyo3 } ; .)
 
@@ -5269,36 +5271,36 @@ state 181
 state 182
 
     (52) expr -> FUNCT < TYPEID , . TYPEID > OBJECTID ASSIGN OBJECTID ARROW expr ;
-    TYPEID          shift and go to state 201
+    TYPEID          shift and go to state 199
 
 
 state 183
 
     (53) expr -> SWITCH ( expr ) . { cases }
-    {               shift and go to state 202
+    {               shift and go to state 200
 
 
 state 184
 
     (54) expr -> FOREACH ( TYPEID OBJECTID . IN OBJECTID ) { expr }
-    IN              shift and go to state 203
+    IN              shift and go to state 201
 
 
 state 185
 
     (55) expr -> WHILE ( expr ) . { expr }
-    {               shift and go to state 204
+    {               shift and go to state 202
 
 
 state 186
 
     (56) expr -> IF ( expr ) . { expr } ELSE { expr }
-    {               shift and go to state 205
+    {               shift and go to state 203
 
 
 state 187
 
-    (21) metodo -> MODIFIER STATIC VOID OBJECTID ( formales ) { expr . ; }
+    (21) metodo -> MODIFIER STATIC VOID OBJECTID ( formales ) { expr . }
     (40) expr -> expr . OR expr
     (41) expr -> expr . AND expr
     (42) expr -> expr . LE expr
@@ -5344,7 +5346,7 @@ state 187
     (64) expr -> . OBJECTID ASSIGN expr ;
     (75) exprApoyo2 -> . exprApoyo2 expr
     (76) exprApoyo2 -> . expr expr
-    ;               shift and go to state 206
+    }               shift and go to state 204
     OR              shift and go to state 103
     AND             shift and go to state 104
     LE              shift and go to state 105
@@ -5376,13 +5378,14 @@ state 187
 
 state 188
 
-    (23) metodo -> MODIFIER STATIC VOID OBJECTID ( ) { expr ; . }
-    }               shift and go to state 207
+    (23) metodo -> MODIFIER STATIC VOID OBJECTID ( ) { expr } .
+    }               reduce using rule 23 (metodo -> MODIFIER STATIC VOID OBJECTID ( ) { expr } .)
+    MODIFIER        reduce using rule 23 (metodo -> MODIFIER STATIC VOID OBJECTID ( ) { expr } .)
 
 
 state 189
 
-    (25) metodo -> MODIFIER STATIC TYPEID OBJECTID ( formales ) { expr . ; }
+    (25) metodo -> MODIFIER STATIC TYPEID OBJECTID ( formales ) { expr . }
     (40) expr -> expr . OR expr
     (41) expr -> expr . AND expr
     (42) expr -> expr . LE expr
@@ -5428,7 +5431,7 @@ state 189
     (64) expr -> . OBJECTID ASSIGN expr ;
     (75) exprApoyo2 -> . exprApoyo2 expr
     (76) exprApoyo2 -> . expr expr
-    ;               shift and go to state 208
+    }               shift and go to state 205
     OR              shift and go to state 103
     AND             shift and go to state 104
     LE              shift and go to state 105
@@ -5460,51 +5463,40 @@ state 189
 
 state 190
 
-    (27) metodo -> MODIFIER STATIC TYPEID OBJECTID ( ) { expr ; . }
-    }               shift and go to state 209
+    (27) metodo -> MODIFIER STATIC TYPEID OBJECTID ( ) { expr } .
+    }               reduce using rule 27 (metodo -> MODIFIER STATIC TYPEID OBJECTID ( ) { expr } .)
+    MODIFIER        reduce using rule 27 (metodo -> MODIFIER STATIC TYPEID OBJECTID ( ) { expr } .)
 
 
 state 191
 
-    (24) metodo -> MODIFIER VOID OBJECTID ( ) { expr ; } .
-    }               reduce using rule 24 (metodo -> MODIFIER VOID OBJECTID ( ) { expr ; } .)
-    MODIFIER        reduce using rule 24 (metodo -> MODIFIER VOID OBJECTID ( ) { expr ; } .)
+    (22) metodo -> MODIFIER TYPEID VOID ( formales ) { expr } .
+    }               reduce using rule 22 (metodo -> MODIFIER TYPEID VOID ( formales ) { expr } .)
+    MODIFIER        reduce using rule 22 (metodo -> MODIFIER TYPEID VOID ( formales ) { expr } .)
 
 
 state 192
 
-    (22) metodo -> MODIFIER TYPEID VOID ( formales ) { expr ; . }
-    }               shift and go to state 210
+    (26) metodo -> MODIFIER TYPEID OBJECTID ( formales ) { expr } .
+    }               reduce using rule 26 (metodo -> MODIFIER TYPEID OBJECTID ( formales ) { expr } .)
+    MODIFIER        reduce using rule 26 (metodo -> MODIFIER TYPEID OBJECTID ( formales ) { expr } .)
 
 
 state 193
 
-    (26) metodo -> MODIFIER TYPEID OBJECTID ( formales ) { expr ; . }
-    }               shift and go to state 211
+    (58) expr -> TYPEID . OBJECTID ( exprApoyo1 . ) ;
+    (78) exprApoyo1 -> exprApoyo1 . , expr
+    )               shift and go to state 206
+    ,               shift and go to state 171
 
 
 state 194
 
-    (28) metodo -> MODIFIER TYPEID OBJECTID ( ) { expr ; } .
-    }               reduce using rule 28 (metodo -> MODIFIER TYPEID OBJECTID ( ) { expr ; } .)
-    MODIFIER        reduce using rule 28 (metodo -> MODIFIER TYPEID OBJECTID ( ) { expr ; } .)
+    (59) expr -> TYPEID . OBJECTID ( ) . ;
+    ;               shift and go to state 207
 
 
 state 195
-
-    (58) expr -> TYPEID . OBJECTID ( exprApoyo1 . ) ;
-    (78) exprApoyo1 -> exprApoyo1 . , expr
-    )               shift and go to state 212
-    ,               shift and go to state 171
-
-
-state 196
-
-    (59) expr -> TYPEID . OBJECTID ( ) . ;
-    ;               shift and go to state 213
-
-
-state 197
 
     (61) expr -> OBJECTID ( exprApoyo1 ) ; .
     ;               reduce using rule 61 (expr -> OBJECTID ( exprApoyo1 ) ; .)
@@ -5533,14 +5525,14 @@ state 197
     IF              reduce using rule 61 (expr -> OBJECTID ( exprApoyo1 ) ; .)
     RETURN          reduce using rule 61 (expr -> OBJECTID ( exprApoyo1 ) ; .)
     TYPEID          reduce using rule 61 (expr -> OBJECTID ( exprApoyo1 ) ; .)
+    }               reduce using rule 61 (expr -> OBJECTID ( exprApoyo1 ) ; .)
     )               reduce using rule 61 (expr -> OBJECTID ( exprApoyo1 ) ; .)
     ,               reduce using rule 61 (expr -> OBJECTID ( exprApoyo1 ) ; .)
-    }               reduce using rule 61 (expr -> OBJECTID ( exprApoyo1 ) ; .)
     :               reduce using rule 61 (expr -> OBJECTID ( exprApoyo1 ) ; .)
     BREAK           reduce using rule 61 (expr -> OBJECTID ( exprApoyo1 ) ; .)
 
 
-state 198
+state 196
 
     (78) exprApoyo1 -> exprApoyo1 , expr .
     (40) expr -> expr . OR expr
@@ -5619,46 +5611,46 @@ state 198
     expr                           shift and go to state 101
     exprApoyo2                     shift and go to state 74
 
-state 199
+state 197
 
     (60) expr -> expr . OBJECTID ( exprApoyo1 . ) ;
     (78) exprApoyo1 -> exprApoyo1 . , expr
-    )               shift and go to state 214
+    )               shift and go to state 208
     ,               shift and go to state 171
 
 
-state 200
+state 198
 
     (62) expr -> expr . OBJECTID ( ) . ;
-    ;               shift and go to state 215
+    ;               shift and go to state 209
 
 
-state 201
+state 199
 
     (52) expr -> FUNCT < TYPEID , TYPEID . > OBJECTID ASSIGN OBJECTID ARROW expr ;
-    >               shift and go to state 216
+    >               shift and go to state 210
 
 
-state 202
+state 200
 
     (53) expr -> SWITCH ( expr ) { . cases }
     (67) cases -> . case
     (68) cases -> . cases case
     (65) case -> . DEFAULT : expr BREAK ;
     (66) case -> . CASE expr : expr BREAK ;
-    DEFAULT         shift and go to state 219
-    CASE            shift and go to state 220
+    DEFAULT         shift and go to state 213
+    CASE            shift and go to state 214
 
-    cases                          shift and go to state 217
-    case                           shift and go to state 218
+    cases                          shift and go to state 211
+    case                           shift and go to state 212
 
-state 203
+state 201
 
     (54) expr -> FOREACH ( TYPEID OBJECTID IN . OBJECTID ) { expr }
-    OBJECTID        shift and go to state 221
+    OBJECTID        shift and go to state 215
 
 
-state 204
+state 202
 
     (55) expr -> WHILE ( expr ) { . expr }
     (34) expr -> . exprApoyo2
@@ -5710,10 +5702,10 @@ state 204
     RETURN          shift and go to state 87
     TYPEID          shift and go to state 71
 
-    expr                           shift and go to state 222
+    expr                           shift and go to state 216
     exprApoyo2                     shift and go to state 74
 
-state 205
+state 203
 
     (56) expr -> IF ( expr ) { . expr } ELSE { expr }
     (34) expr -> . exprApoyo2
@@ -5765,56 +5757,30 @@ state 205
     RETURN          shift and go to state 87
     TYPEID          shift and go to state 71
 
-    expr                           shift and go to state 223
+    expr                           shift and go to state 217
     exprApoyo2                     shift and go to state 74
+
+state 204
+
+    (21) metodo -> MODIFIER STATIC VOID OBJECTID ( formales ) { expr } .
+    }               reduce using rule 21 (metodo -> MODIFIER STATIC VOID OBJECTID ( formales ) { expr } .)
+    MODIFIER        reduce using rule 21 (metodo -> MODIFIER STATIC VOID OBJECTID ( formales ) { expr } .)
+
+
+state 205
+
+    (25) metodo -> MODIFIER STATIC TYPEID OBJECTID ( formales ) { expr } .
+    }               reduce using rule 25 (metodo -> MODIFIER STATIC TYPEID OBJECTID ( formales ) { expr } .)
+    MODIFIER        reduce using rule 25 (metodo -> MODIFIER STATIC TYPEID OBJECTID ( formales ) { expr } .)
+
 
 state 206
 
-    (21) metodo -> MODIFIER STATIC VOID OBJECTID ( formales ) { expr ; . }
-    }               shift and go to state 224
+    (58) expr -> TYPEID . OBJECTID ( exprApoyo1 ) . ;
+    ;               shift and go to state 218
 
 
 state 207
-
-    (23) metodo -> MODIFIER STATIC VOID OBJECTID ( ) { expr ; } .
-    }               reduce using rule 23 (metodo -> MODIFIER STATIC VOID OBJECTID ( ) { expr ; } .)
-    MODIFIER        reduce using rule 23 (metodo -> MODIFIER STATIC VOID OBJECTID ( ) { expr ; } .)
-
-
-state 208
-
-    (25) metodo -> MODIFIER STATIC TYPEID OBJECTID ( formales ) { expr ; . }
-    }               shift and go to state 225
-
-
-state 209
-
-    (27) metodo -> MODIFIER STATIC TYPEID OBJECTID ( ) { expr ; } .
-    }               reduce using rule 27 (metodo -> MODIFIER STATIC TYPEID OBJECTID ( ) { expr ; } .)
-    MODIFIER        reduce using rule 27 (metodo -> MODIFIER STATIC TYPEID OBJECTID ( ) { expr ; } .)
-
-
-state 210
-
-    (22) metodo -> MODIFIER TYPEID VOID ( formales ) { expr ; } .
-    }               reduce using rule 22 (metodo -> MODIFIER TYPEID VOID ( formales ) { expr ; } .)
-    MODIFIER        reduce using rule 22 (metodo -> MODIFIER TYPEID VOID ( formales ) { expr ; } .)
-
-
-state 211
-
-    (26) metodo -> MODIFIER TYPEID OBJECTID ( formales ) { expr ; } .
-    }               reduce using rule 26 (metodo -> MODIFIER TYPEID OBJECTID ( formales ) { expr ; } .)
-    MODIFIER        reduce using rule 26 (metodo -> MODIFIER TYPEID OBJECTID ( formales ) { expr ; } .)
-
-
-state 212
-
-    (58) expr -> TYPEID . OBJECTID ( exprApoyo1 ) . ;
-    ;               shift and go to state 226
-
-
-state 213
 
     (59) expr -> TYPEID . OBJECTID ( ) ; .
     ;               reduce using rule 59 (expr -> TYPEID . OBJECTID ( ) ; .)
@@ -5843,20 +5809,20 @@ state 213
     IF              reduce using rule 59 (expr -> TYPEID . OBJECTID ( ) ; .)
     RETURN          reduce using rule 59 (expr -> TYPEID . OBJECTID ( ) ; .)
     TYPEID          reduce using rule 59 (expr -> TYPEID . OBJECTID ( ) ; .)
+    }               reduce using rule 59 (expr -> TYPEID . OBJECTID ( ) ; .)
     )               reduce using rule 59 (expr -> TYPEID . OBJECTID ( ) ; .)
     ,               reduce using rule 59 (expr -> TYPEID . OBJECTID ( ) ; .)
-    }               reduce using rule 59 (expr -> TYPEID . OBJECTID ( ) ; .)
     :               reduce using rule 59 (expr -> TYPEID . OBJECTID ( ) ; .)
     BREAK           reduce using rule 59 (expr -> TYPEID . OBJECTID ( ) ; .)
 
 
-state 214
+state 208
 
     (60) expr -> expr . OBJECTID ( exprApoyo1 ) . ;
-    ;               shift and go to state 227
+    ;               shift and go to state 219
 
 
-state 215
+state 209
 
     (62) expr -> expr . OBJECTID ( ) ; .
     ;               reduce using rule 62 (expr -> expr . OBJECTID ( ) ; .)
@@ -5885,32 +5851,32 @@ state 215
     IF              reduce using rule 62 (expr -> expr . OBJECTID ( ) ; .)
     RETURN          reduce using rule 62 (expr -> expr . OBJECTID ( ) ; .)
     TYPEID          reduce using rule 62 (expr -> expr . OBJECTID ( ) ; .)
+    }               reduce using rule 62 (expr -> expr . OBJECTID ( ) ; .)
     )               reduce using rule 62 (expr -> expr . OBJECTID ( ) ; .)
     ,               reduce using rule 62 (expr -> expr . OBJECTID ( ) ; .)
-    }               reduce using rule 62 (expr -> expr . OBJECTID ( ) ; .)
     :               reduce using rule 62 (expr -> expr . OBJECTID ( ) ; .)
     BREAK           reduce using rule 62 (expr -> expr . OBJECTID ( ) ; .)
 
 
-state 216
+state 210
 
     (52) expr -> FUNCT < TYPEID , TYPEID > . OBJECTID ASSIGN OBJECTID ARROW expr ;
-    OBJECTID        shift and go to state 228
+    OBJECTID        shift and go to state 220
 
 
-state 217
+state 211
 
     (53) expr -> SWITCH ( expr ) { cases . }
     (68) cases -> cases . case
     (65) case -> . DEFAULT : expr BREAK ;
     (66) case -> . CASE expr : expr BREAK ;
-    }               shift and go to state 229
-    DEFAULT         shift and go to state 219
-    CASE            shift and go to state 220
+    }               shift and go to state 221
+    DEFAULT         shift and go to state 213
+    CASE            shift and go to state 214
 
-    case                           shift and go to state 230
+    case                           shift and go to state 222
 
-state 218
+state 212
 
     (67) cases -> case .
     }               reduce using rule 67 (cases -> case .)
@@ -5918,13 +5884,13 @@ state 218
     CASE            reduce using rule 67 (cases -> case .)
 
 
-state 219
+state 213
 
     (65) case -> DEFAULT . : expr BREAK ;
-    :               shift and go to state 231
+    :               shift and go to state 223
 
 
-state 220
+state 214
 
     (66) case -> CASE . expr : expr BREAK ;
     (34) expr -> . exprApoyo2
@@ -5976,16 +5942,16 @@ state 220
     RETURN          shift and go to state 87
     TYPEID          shift and go to state 71
 
-    expr                           shift and go to state 232
+    expr                           shift and go to state 224
     exprApoyo2                     shift and go to state 74
 
-state 221
+state 215
 
     (54) expr -> FOREACH ( TYPEID OBJECTID IN OBJECTID . ) { expr }
-    )               shift and go to state 233
+    )               shift and go to state 225
 
 
-state 222
+state 216
 
     (55) expr -> WHILE ( expr ) { expr . }
     (40) expr -> expr . OR expr
@@ -6033,7 +5999,7 @@ state 222
     (64) expr -> . OBJECTID ASSIGN expr ;
     (75) exprApoyo2 -> . exprApoyo2 expr
     (76) exprApoyo2 -> . expr expr
-    }               shift and go to state 234
+    }               shift and go to state 226
     OR              shift and go to state 103
     AND             shift and go to state 104
     LE              shift and go to state 105
@@ -6063,7 +6029,7 @@ state 222
     expr                           shift and go to state 101
     exprApoyo2                     shift and go to state 74
 
-state 223
+state 217
 
     (56) expr -> IF ( expr ) { expr . } ELSE { expr }
     (40) expr -> expr . OR expr
@@ -6111,7 +6077,7 @@ state 223
     (64) expr -> . OBJECTID ASSIGN expr ;
     (75) exprApoyo2 -> . exprApoyo2 expr
     (76) exprApoyo2 -> . expr expr
-    }               shift and go to state 235
+    }               shift and go to state 227
     OR              shift and go to state 103
     AND             shift and go to state 104
     LE              shift and go to state 105
@@ -6141,21 +6107,7 @@ state 223
     expr                           shift and go to state 101
     exprApoyo2                     shift and go to state 74
 
-state 224
-
-    (21) metodo -> MODIFIER STATIC VOID OBJECTID ( formales ) { expr ; } .
-    }               reduce using rule 21 (metodo -> MODIFIER STATIC VOID OBJECTID ( formales ) { expr ; } .)
-    MODIFIER        reduce using rule 21 (metodo -> MODIFIER STATIC VOID OBJECTID ( formales ) { expr ; } .)
-
-
-state 225
-
-    (25) metodo -> MODIFIER STATIC TYPEID OBJECTID ( formales ) { expr ; } .
-    }               reduce using rule 25 (metodo -> MODIFIER STATIC TYPEID OBJECTID ( formales ) { expr ; } .)
-    MODIFIER        reduce using rule 25 (metodo -> MODIFIER STATIC TYPEID OBJECTID ( formales ) { expr ; } .)
-
-
-state 226
+state 218
 
     (58) expr -> TYPEID . OBJECTID ( exprApoyo1 ) ; .
     ;               reduce using rule 58 (expr -> TYPEID . OBJECTID ( exprApoyo1 ) ; .)
@@ -6184,14 +6136,14 @@ state 226
     IF              reduce using rule 58 (expr -> TYPEID . OBJECTID ( exprApoyo1 ) ; .)
     RETURN          reduce using rule 58 (expr -> TYPEID . OBJECTID ( exprApoyo1 ) ; .)
     TYPEID          reduce using rule 58 (expr -> TYPEID . OBJECTID ( exprApoyo1 ) ; .)
+    }               reduce using rule 58 (expr -> TYPEID . OBJECTID ( exprApoyo1 ) ; .)
     )               reduce using rule 58 (expr -> TYPEID . OBJECTID ( exprApoyo1 ) ; .)
     ,               reduce using rule 58 (expr -> TYPEID . OBJECTID ( exprApoyo1 ) ; .)
-    }               reduce using rule 58 (expr -> TYPEID . OBJECTID ( exprApoyo1 ) ; .)
     :               reduce using rule 58 (expr -> TYPEID . OBJECTID ( exprApoyo1 ) ; .)
     BREAK           reduce using rule 58 (expr -> TYPEID . OBJECTID ( exprApoyo1 ) ; .)
 
 
-state 227
+state 219
 
     (60) expr -> expr . OBJECTID ( exprApoyo1 ) ; .
     ;               reduce using rule 60 (expr -> expr . OBJECTID ( exprApoyo1 ) ; .)
@@ -6220,20 +6172,20 @@ state 227
     IF              reduce using rule 60 (expr -> expr . OBJECTID ( exprApoyo1 ) ; .)
     RETURN          reduce using rule 60 (expr -> expr . OBJECTID ( exprApoyo1 ) ; .)
     TYPEID          reduce using rule 60 (expr -> expr . OBJECTID ( exprApoyo1 ) ; .)
+    }               reduce using rule 60 (expr -> expr . OBJECTID ( exprApoyo1 ) ; .)
     )               reduce using rule 60 (expr -> expr . OBJECTID ( exprApoyo1 ) ; .)
     ,               reduce using rule 60 (expr -> expr . OBJECTID ( exprApoyo1 ) ; .)
-    }               reduce using rule 60 (expr -> expr . OBJECTID ( exprApoyo1 ) ; .)
     :               reduce using rule 60 (expr -> expr . OBJECTID ( exprApoyo1 ) ; .)
     BREAK           reduce using rule 60 (expr -> expr . OBJECTID ( exprApoyo1 ) ; .)
 
 
-state 228
+state 220
 
     (52) expr -> FUNCT < TYPEID , TYPEID > OBJECTID . ASSIGN OBJECTID ARROW expr ;
-    ASSIGN          shift and go to state 236
+    ASSIGN          shift and go to state 228
 
 
-state 229
+state 221
 
     (53) expr -> SWITCH ( expr ) { cases } .
     ;               reduce using rule 53 (expr -> SWITCH ( expr ) { cases } .)
@@ -6262,14 +6214,14 @@ state 229
     IF              reduce using rule 53 (expr -> SWITCH ( expr ) { cases } .)
     RETURN          reduce using rule 53 (expr -> SWITCH ( expr ) { cases } .)
     TYPEID          reduce using rule 53 (expr -> SWITCH ( expr ) { cases } .)
+    }               reduce using rule 53 (expr -> SWITCH ( expr ) { cases } .)
     )               reduce using rule 53 (expr -> SWITCH ( expr ) { cases } .)
     ,               reduce using rule 53 (expr -> SWITCH ( expr ) { cases } .)
-    }               reduce using rule 53 (expr -> SWITCH ( expr ) { cases } .)
     :               reduce using rule 53 (expr -> SWITCH ( expr ) { cases } .)
     BREAK           reduce using rule 53 (expr -> SWITCH ( expr ) { cases } .)
 
 
-state 230
+state 222
 
     (68) cases -> cases case .
     }               reduce using rule 68 (cases -> cases case .)
@@ -6277,7 +6229,7 @@ state 230
     CASE            reduce using rule 68 (cases -> cases case .)
 
 
-state 231
+state 223
 
     (65) case -> DEFAULT : . expr BREAK ;
     (34) expr -> . exprApoyo2
@@ -6329,10 +6281,10 @@ state 231
     RETURN          shift and go to state 87
     TYPEID          shift and go to state 71
 
-    expr                           shift and go to state 237
+    expr                           shift and go to state 229
     exprApoyo2                     shift and go to state 74
 
-state 232
+state 224
 
     (66) case -> CASE expr . : expr BREAK ;
     (40) expr -> expr . OR expr
@@ -6380,7 +6332,7 @@ state 232
     (64) expr -> . OBJECTID ASSIGN expr ;
     (75) exprApoyo2 -> . exprApoyo2 expr
     (76) exprApoyo2 -> . expr expr
-    :               shift and go to state 238
+    :               shift and go to state 230
     OR              shift and go to state 103
     AND             shift and go to state 104
     LE              shift and go to state 105
@@ -6410,13 +6362,13 @@ state 232
     expr                           shift and go to state 101
     exprApoyo2                     shift and go to state 74
 
-state 233
+state 225
 
     (54) expr -> FOREACH ( TYPEID OBJECTID IN OBJECTID ) . { expr }
-    {               shift and go to state 239
+    {               shift and go to state 231
 
 
-state 234
+state 226
 
     (55) expr -> WHILE ( expr ) { expr } .
     ;               reduce using rule 55 (expr -> WHILE ( expr ) { expr } .)
@@ -6445,26 +6397,26 @@ state 234
     IF              reduce using rule 55 (expr -> WHILE ( expr ) { expr } .)
     RETURN          reduce using rule 55 (expr -> WHILE ( expr ) { expr } .)
     TYPEID          reduce using rule 55 (expr -> WHILE ( expr ) { expr } .)
+    }               reduce using rule 55 (expr -> WHILE ( expr ) { expr } .)
     )               reduce using rule 55 (expr -> WHILE ( expr ) { expr } .)
     ,               reduce using rule 55 (expr -> WHILE ( expr ) { expr } .)
-    }               reduce using rule 55 (expr -> WHILE ( expr ) { expr } .)
     :               reduce using rule 55 (expr -> WHILE ( expr ) { expr } .)
     BREAK           reduce using rule 55 (expr -> WHILE ( expr ) { expr } .)
 
 
-state 235
+state 227
 
     (56) expr -> IF ( expr ) { expr } . ELSE { expr }
-    ELSE            shift and go to state 240
+    ELSE            shift and go to state 232
 
 
-state 236
+state 228
 
     (52) expr -> FUNCT < TYPEID , TYPEID > OBJECTID ASSIGN . OBJECTID ARROW expr ;
-    OBJECTID        shift and go to state 241
+    OBJECTID        shift and go to state 233
 
 
-state 237
+state 229
 
     (65) case -> DEFAULT : expr . BREAK ;
     (40) expr -> expr . OR expr
@@ -6512,7 +6464,7 @@ state 237
     (64) expr -> . OBJECTID ASSIGN expr ;
     (75) exprApoyo2 -> . exprApoyo2 expr
     (76) exprApoyo2 -> . expr expr
-    BREAK           shift and go to state 242
+    BREAK           shift and go to state 234
     OR              shift and go to state 103
     AND             shift and go to state 104
     LE              shift and go to state 105
@@ -6542,9 +6494,348 @@ state 237
     expr                           shift and go to state 101
     exprApoyo2                     shift and go to state 74
 
-state 238
+state 230
 
     (66) case -> CASE expr : . expr BREAK ;
+    (34) expr -> . exprApoyo2
+    (35) expr -> . BOOL_CONST
+    (36) expr -> . STR_CONST
+    (37) expr -> . FLOAT_CONST
+    (38) expr -> . INT_CONST
+    (39) expr -> . OBJECTID
+    (40) expr -> . expr OR expr
+    (41) expr -> . expr AND expr
+    (42) expr -> . expr LE expr
+    (43) expr -> . expr DIFFERENT expr
+    (44) expr -> . expr EQUALS expr
+    (45) expr -> . ! expr
+    (46) expr -> . expr / expr
+    (47) expr -> . expr * expr
+    (48) expr -> . expr - expr
+    (49) expr -> . expr + expr
+    (50) expr -> . NEW OBJECTID
+    (51) expr -> . { exprApoyo3 } ;
+    (52) expr -> . FUNCT < TYPEID , TYPEID > OBJECTID ASSIGN OBJECTID ARROW expr ;
+    (53) expr -> . SWITCH ( expr ) { cases }
+    (54) expr -> . FOREACH ( TYPEID OBJECTID IN OBJECTID ) { expr }
+    (55) expr -> . WHILE ( expr ) { expr }
+    (56) expr -> . IF ( expr ) { expr } ELSE { expr }
+    (57) expr -> . RETURN expr ;
+    (58) expr -> . TYPEID . OBJECTID ( exprApoyo1 ) ;
+    (59) expr -> . TYPEID . OBJECTID ( ) ;
+    (60) expr -> . expr . OBJECTID ( exprApoyo1 ) ;
+    (61) expr -> . OBJECTID ( exprApoyo1 ) ;
+    (62) expr -> . expr . OBJECTID ( ) ;
+    (63) expr -> . OBJECTID ( ) ;
+    (64) expr -> . OBJECTID ASSIGN expr ;
+    (75) exprApoyo2 -> . exprApoyo2 expr
+    (76) exprApoyo2 -> . expr expr
+    BOOL_CONST      shift and go to state 75
+    STR_CONST       shift and go to state 76
+    FLOAT_CONST     shift and go to state 77
+    INT_CONST       shift and go to state 78
+    OBJECTID        shift and go to state 72
+    !               shift and go to state 79
+    NEW             shift and go to state 80
+    {               shift and go to state 81
+    FUNCT           shift and go to state 82
+    SWITCH          shift and go to state 83
+    FOREACH         shift and go to state 84
+    WHILE           shift and go to state 85
+    IF              shift and go to state 86
+    RETURN          shift and go to state 87
+    TYPEID          shift and go to state 71
+
+    expr                           shift and go to state 235
+    exprApoyo2                     shift and go to state 74
+
+state 231
+
+    (54) expr -> FOREACH ( TYPEID OBJECTID IN OBJECTID ) { . expr }
+    (34) expr -> . exprApoyo2
+    (35) expr -> . BOOL_CONST
+    (36) expr -> . STR_CONST
+    (37) expr -> . FLOAT_CONST
+    (38) expr -> . INT_CONST
+    (39) expr -> . OBJECTID
+    (40) expr -> . expr OR expr
+    (41) expr -> . expr AND expr
+    (42) expr -> . expr LE expr
+    (43) expr -> . expr DIFFERENT expr
+    (44) expr -> . expr EQUALS expr
+    (45) expr -> . ! expr
+    (46) expr -> . expr / expr
+    (47) expr -> . expr * expr
+    (48) expr -> . expr - expr
+    (49) expr -> . expr + expr
+    (50) expr -> . NEW OBJECTID
+    (51) expr -> . { exprApoyo3 } ;
+    (52) expr -> . FUNCT < TYPEID , TYPEID > OBJECTID ASSIGN OBJECTID ARROW expr ;
+    (53) expr -> . SWITCH ( expr ) { cases }
+    (54) expr -> . FOREACH ( TYPEID OBJECTID IN OBJECTID ) { expr }
+    (55) expr -> . WHILE ( expr ) { expr }
+    (56) expr -> . IF ( expr ) { expr } ELSE { expr }
+    (57) expr -> . RETURN expr ;
+    (58) expr -> . TYPEID . OBJECTID ( exprApoyo1 ) ;
+    (59) expr -> . TYPEID . OBJECTID ( ) ;
+    (60) expr -> . expr . OBJECTID ( exprApoyo1 ) ;
+    (61) expr -> . OBJECTID ( exprApoyo1 ) ;
+    (62) expr -> . expr . OBJECTID ( ) ;
+    (63) expr -> . OBJECTID ( ) ;
+    (64) expr -> . OBJECTID ASSIGN expr ;
+    (75) exprApoyo2 -> . exprApoyo2 expr
+    (76) exprApoyo2 -> . expr expr
+    BOOL_CONST      shift and go to state 75
+    STR_CONST       shift and go to state 76
+    FLOAT_CONST     shift and go to state 77
+    INT_CONST       shift and go to state 78
+    OBJECTID        shift and go to state 72
+    !               shift and go to state 79
+    NEW             shift and go to state 80
+    {               shift and go to state 81
+    FUNCT           shift and go to state 82
+    SWITCH          shift and go to state 83
+    FOREACH         shift and go to state 84
+    WHILE           shift and go to state 85
+    IF              shift and go to state 86
+    RETURN          shift and go to state 87
+    TYPEID          shift and go to state 71
+
+    expr                           shift and go to state 236
+    exprApoyo2                     shift and go to state 74
+
+state 232
+
+    (56) expr -> IF ( expr ) { expr } ELSE . { expr }
+    {               shift and go to state 237
+
+
+state 233
+
+    (52) expr -> FUNCT < TYPEID , TYPEID > OBJECTID ASSIGN OBJECTID . ARROW expr ;
+    ARROW           shift and go to state 238
+
+
+state 234
+
+    (65) case -> DEFAULT : expr BREAK . ;
+    ;               shift and go to state 239
+
+
+state 235
+
+    (66) case -> CASE expr : expr . BREAK ;
+    (40) expr -> expr . OR expr
+    (41) expr -> expr . AND expr
+    (42) expr -> expr . LE expr
+    (43) expr -> expr . DIFFERENT expr
+    (44) expr -> expr . EQUALS expr
+    (46) expr -> expr . / expr
+    (47) expr -> expr . * expr
+    (48) expr -> expr . - expr
+    (49) expr -> expr . + expr
+    (60) expr -> expr . . OBJECTID ( exprApoyo1 ) ;
+    (62) expr -> expr . . OBJECTID ( ) ;
+    (76) exprApoyo2 -> expr . expr
+    (34) expr -> . exprApoyo2
+    (35) expr -> . BOOL_CONST
+    (36) expr -> . STR_CONST
+    (37) expr -> . FLOAT_CONST
+    (38) expr -> . INT_CONST
+    (39) expr -> . OBJECTID
+    (40) expr -> . expr OR expr
+    (41) expr -> . expr AND expr
+    (42) expr -> . expr LE expr
+    (43) expr -> . expr DIFFERENT expr
+    (44) expr -> . expr EQUALS expr
+    (45) expr -> . ! expr
+    (46) expr -> . expr / expr
+    (47) expr -> . expr * expr
+    (48) expr -> . expr - expr
+    (49) expr -> . expr + expr
+    (50) expr -> . NEW OBJECTID
+    (51) expr -> . { exprApoyo3 } ;
+    (52) expr -> . FUNCT < TYPEID , TYPEID > OBJECTID ASSIGN OBJECTID ARROW expr ;
+    (53) expr -> . SWITCH ( expr ) { cases }
+    (54) expr -> . FOREACH ( TYPEID OBJECTID IN OBJECTID ) { expr }
+    (55) expr -> . WHILE ( expr ) { expr }
+    (56) expr -> . IF ( expr ) { expr } ELSE { expr }
+    (57) expr -> . RETURN expr ;
+    (58) expr -> . TYPEID . OBJECTID ( exprApoyo1 ) ;
+    (59) expr -> . TYPEID . OBJECTID ( ) ;
+    (60) expr -> . expr . OBJECTID ( exprApoyo1 ) ;
+    (61) expr -> . OBJECTID ( exprApoyo1 ) ;
+    (62) expr -> . expr . OBJECTID ( ) ;
+    (63) expr -> . OBJECTID ( ) ;
+    (64) expr -> . OBJECTID ASSIGN expr ;
+    (75) exprApoyo2 -> . exprApoyo2 expr
+    (76) exprApoyo2 -> . expr expr
+    BREAK           shift and go to state 240
+    OR              shift and go to state 103
+    AND             shift and go to state 104
+    LE              shift and go to state 105
+    DIFFERENT       shift and go to state 106
+    EQUALS          shift and go to state 107
+    /               shift and go to state 108
+    *               shift and go to state 109
+    -               shift and go to state 110
+    +               shift and go to state 111
+    .               shift and go to state 112
+    BOOL_CONST      shift and go to state 75
+    STR_CONST       shift and go to state 76
+    FLOAT_CONST     shift and go to state 77
+    INT_CONST       shift and go to state 78
+    OBJECTID        shift and go to state 72
+    !               shift and go to state 79
+    NEW             shift and go to state 80
+    {               shift and go to state 81
+    FUNCT           shift and go to state 82
+    SWITCH          shift and go to state 83
+    FOREACH         shift and go to state 84
+    WHILE           shift and go to state 85
+    IF              shift and go to state 86
+    RETURN          shift and go to state 87
+    TYPEID          shift and go to state 71
+
+    expr                           shift and go to state 101
+    exprApoyo2                     shift and go to state 74
+
+state 236
+
+    (54) expr -> FOREACH ( TYPEID OBJECTID IN OBJECTID ) { expr . }
+    (40) expr -> expr . OR expr
+    (41) expr -> expr . AND expr
+    (42) expr -> expr . LE expr
+    (43) expr -> expr . DIFFERENT expr
+    (44) expr -> expr . EQUALS expr
+    (46) expr -> expr . / expr
+    (47) expr -> expr . * expr
+    (48) expr -> expr . - expr
+    (49) expr -> expr . + expr
+    (60) expr -> expr . . OBJECTID ( exprApoyo1 ) ;
+    (62) expr -> expr . . OBJECTID ( ) ;
+    (76) exprApoyo2 -> expr . expr
+    (34) expr -> . exprApoyo2
+    (35) expr -> . BOOL_CONST
+    (36) expr -> . STR_CONST
+    (37) expr -> . FLOAT_CONST
+    (38) expr -> . INT_CONST
+    (39) expr -> . OBJECTID
+    (40) expr -> . expr OR expr
+    (41) expr -> . expr AND expr
+    (42) expr -> . expr LE expr
+    (43) expr -> . expr DIFFERENT expr
+    (44) expr -> . expr EQUALS expr
+    (45) expr -> . ! expr
+    (46) expr -> . expr / expr
+    (47) expr -> . expr * expr
+    (48) expr -> . expr - expr
+    (49) expr -> . expr + expr
+    (50) expr -> . NEW OBJECTID
+    (51) expr -> . { exprApoyo3 } ;
+    (52) expr -> . FUNCT < TYPEID , TYPEID > OBJECTID ASSIGN OBJECTID ARROW expr ;
+    (53) expr -> . SWITCH ( expr ) { cases }
+    (54) expr -> . FOREACH ( TYPEID OBJECTID IN OBJECTID ) { expr }
+    (55) expr -> . WHILE ( expr ) { expr }
+    (56) expr -> . IF ( expr ) { expr } ELSE { expr }
+    (57) expr -> . RETURN expr ;
+    (58) expr -> . TYPEID . OBJECTID ( exprApoyo1 ) ;
+    (59) expr -> . TYPEID . OBJECTID ( ) ;
+    (60) expr -> . expr . OBJECTID ( exprApoyo1 ) ;
+    (61) expr -> . OBJECTID ( exprApoyo1 ) ;
+    (62) expr -> . expr . OBJECTID ( ) ;
+    (63) expr -> . OBJECTID ( ) ;
+    (64) expr -> . OBJECTID ASSIGN expr ;
+    (75) exprApoyo2 -> . exprApoyo2 expr
+    (76) exprApoyo2 -> . expr expr
+    }               shift and go to state 241
+    OR              shift and go to state 103
+    AND             shift and go to state 104
+    LE              shift and go to state 105
+    DIFFERENT       shift and go to state 106
+    EQUALS          shift and go to state 107
+    /               shift and go to state 108
+    *               shift and go to state 109
+    -               shift and go to state 110
+    +               shift and go to state 111
+    .               shift and go to state 112
+    BOOL_CONST      shift and go to state 75
+    STR_CONST       shift and go to state 76
+    FLOAT_CONST     shift and go to state 77
+    INT_CONST       shift and go to state 78
+    OBJECTID        shift and go to state 72
+    !               shift and go to state 79
+    NEW             shift and go to state 80
+    {               shift and go to state 81
+    FUNCT           shift and go to state 82
+    SWITCH          shift and go to state 83
+    FOREACH         shift and go to state 84
+    WHILE           shift and go to state 85
+    IF              shift and go to state 86
+    RETURN          shift and go to state 87
+    TYPEID          shift and go to state 71
+
+    expr                           shift and go to state 101
+    exprApoyo2                     shift and go to state 74
+
+state 237
+
+    (56) expr -> IF ( expr ) { expr } ELSE { . expr }
+    (34) expr -> . exprApoyo2
+    (35) expr -> . BOOL_CONST
+    (36) expr -> . STR_CONST
+    (37) expr -> . FLOAT_CONST
+    (38) expr -> . INT_CONST
+    (39) expr -> . OBJECTID
+    (40) expr -> . expr OR expr
+    (41) expr -> . expr AND expr
+    (42) expr -> . expr LE expr
+    (43) expr -> . expr DIFFERENT expr
+    (44) expr -> . expr EQUALS expr
+    (45) expr -> . ! expr
+    (46) expr -> . expr / expr
+    (47) expr -> . expr * expr
+    (48) expr -> . expr - expr
+    (49) expr -> . expr + expr
+    (50) expr -> . NEW OBJECTID
+    (51) expr -> . { exprApoyo3 } ;
+    (52) expr -> . FUNCT < TYPEID , TYPEID > OBJECTID ASSIGN OBJECTID ARROW expr ;
+    (53) expr -> . SWITCH ( expr ) { cases }
+    (54) expr -> . FOREACH ( TYPEID OBJECTID IN OBJECTID ) { expr }
+    (55) expr -> . WHILE ( expr ) { expr }
+    (56) expr -> . IF ( expr ) { expr } ELSE { expr }
+    (57) expr -> . RETURN expr ;
+    (58) expr -> . TYPEID . OBJECTID ( exprApoyo1 ) ;
+    (59) expr -> . TYPEID . OBJECTID ( ) ;
+    (60) expr -> . expr . OBJECTID ( exprApoyo1 ) ;
+    (61) expr -> . OBJECTID ( exprApoyo1 ) ;
+    (62) expr -> . expr . OBJECTID ( ) ;
+    (63) expr -> . OBJECTID ( ) ;
+    (64) expr -> . OBJECTID ASSIGN expr ;
+    (75) exprApoyo2 -> . exprApoyo2 expr
+    (76) exprApoyo2 -> . expr expr
+    BOOL_CONST      shift and go to state 75
+    STR_CONST       shift and go to state 76
+    FLOAT_CONST     shift and go to state 77
+    INT_CONST       shift and go to state 78
+    OBJECTID        shift and go to state 72
+    !               shift and go to state 79
+    NEW             shift and go to state 80
+    {               shift and go to state 81
+    FUNCT           shift and go to state 82
+    SWITCH          shift and go to state 83
+    FOREACH         shift and go to state 84
+    WHILE           shift and go to state 85
+    IF              shift and go to state 86
+    RETURN          shift and go to state 87
+    TYPEID          shift and go to state 71
+
+    expr                           shift and go to state 242
+    exprApoyo2                     shift and go to state 74
+
+state 238
+
+    (52) expr -> FUNCT < TYPEID , TYPEID > OBJECTID ASSIGN OBJECTID ARROW . expr ;
     (34) expr -> . exprApoyo2
     (35) expr -> . BOOL_CONST
     (36) expr -> . STR_CONST
@@ -6599,358 +6890,19 @@ state 238
 
 state 239
 
-    (54) expr -> FOREACH ( TYPEID OBJECTID IN OBJECTID ) { . expr }
-    (34) expr -> . exprApoyo2
-    (35) expr -> . BOOL_CONST
-    (36) expr -> . STR_CONST
-    (37) expr -> . FLOAT_CONST
-    (38) expr -> . INT_CONST
-    (39) expr -> . OBJECTID
-    (40) expr -> . expr OR expr
-    (41) expr -> . expr AND expr
-    (42) expr -> . expr LE expr
-    (43) expr -> . expr DIFFERENT expr
-    (44) expr -> . expr EQUALS expr
-    (45) expr -> . ! expr
-    (46) expr -> . expr / expr
-    (47) expr -> . expr * expr
-    (48) expr -> . expr - expr
-    (49) expr -> . expr + expr
-    (50) expr -> . NEW OBJECTID
-    (51) expr -> . { exprApoyo3 } ;
-    (52) expr -> . FUNCT < TYPEID , TYPEID > OBJECTID ASSIGN OBJECTID ARROW expr ;
-    (53) expr -> . SWITCH ( expr ) { cases }
-    (54) expr -> . FOREACH ( TYPEID OBJECTID IN OBJECTID ) { expr }
-    (55) expr -> . WHILE ( expr ) { expr }
-    (56) expr -> . IF ( expr ) { expr } ELSE { expr }
-    (57) expr -> . RETURN expr ;
-    (58) expr -> . TYPEID . OBJECTID ( exprApoyo1 ) ;
-    (59) expr -> . TYPEID . OBJECTID ( ) ;
-    (60) expr -> . expr . OBJECTID ( exprApoyo1 ) ;
-    (61) expr -> . OBJECTID ( exprApoyo1 ) ;
-    (62) expr -> . expr . OBJECTID ( ) ;
-    (63) expr -> . OBJECTID ( ) ;
-    (64) expr -> . OBJECTID ASSIGN expr ;
-    (75) exprApoyo2 -> . exprApoyo2 expr
-    (76) exprApoyo2 -> . expr expr
-    BOOL_CONST      shift and go to state 75
-    STR_CONST       shift and go to state 76
-    FLOAT_CONST     shift and go to state 77
-    INT_CONST       shift and go to state 78
-    OBJECTID        shift and go to state 72
-    !               shift and go to state 79
-    NEW             shift and go to state 80
-    {               shift and go to state 81
-    FUNCT           shift and go to state 82
-    SWITCH          shift and go to state 83
-    FOREACH         shift and go to state 84
-    WHILE           shift and go to state 85
-    IF              shift and go to state 86
-    RETURN          shift and go to state 87
-    TYPEID          shift and go to state 71
-
-    expr                           shift and go to state 244
-    exprApoyo2                     shift and go to state 74
-
-state 240
-
-    (56) expr -> IF ( expr ) { expr } ELSE . { expr }
-    {               shift and go to state 245
-
-
-state 241
-
-    (52) expr -> FUNCT < TYPEID , TYPEID > OBJECTID ASSIGN OBJECTID . ARROW expr ;
-    ARROW           shift and go to state 246
-
-
-state 242
-
-    (65) case -> DEFAULT : expr BREAK . ;
-    ;               shift and go to state 247
-
-
-state 243
-
-    (66) case -> CASE expr : expr . BREAK ;
-    (40) expr -> expr . OR expr
-    (41) expr -> expr . AND expr
-    (42) expr -> expr . LE expr
-    (43) expr -> expr . DIFFERENT expr
-    (44) expr -> expr . EQUALS expr
-    (46) expr -> expr . / expr
-    (47) expr -> expr . * expr
-    (48) expr -> expr . - expr
-    (49) expr -> expr . + expr
-    (60) expr -> expr . . OBJECTID ( exprApoyo1 ) ;
-    (62) expr -> expr . . OBJECTID ( ) ;
-    (76) exprApoyo2 -> expr . expr
-    (34) expr -> . exprApoyo2
-    (35) expr -> . BOOL_CONST
-    (36) expr -> . STR_CONST
-    (37) expr -> . FLOAT_CONST
-    (38) expr -> . INT_CONST
-    (39) expr -> . OBJECTID
-    (40) expr -> . expr OR expr
-    (41) expr -> . expr AND expr
-    (42) expr -> . expr LE expr
-    (43) expr -> . expr DIFFERENT expr
-    (44) expr -> . expr EQUALS expr
-    (45) expr -> . ! expr
-    (46) expr -> . expr / expr
-    (47) expr -> . expr * expr
-    (48) expr -> . expr - expr
-    (49) expr -> . expr + expr
-    (50) expr -> . NEW OBJECTID
-    (51) expr -> . { exprApoyo3 } ;
-    (52) expr -> . FUNCT < TYPEID , TYPEID > OBJECTID ASSIGN OBJECTID ARROW expr ;
-    (53) expr -> . SWITCH ( expr ) { cases }
-    (54) expr -> . FOREACH ( TYPEID OBJECTID IN OBJECTID ) { expr }
-    (55) expr -> . WHILE ( expr ) { expr }
-    (56) expr -> . IF ( expr ) { expr } ELSE { expr }
-    (57) expr -> . RETURN expr ;
-    (58) expr -> . TYPEID . OBJECTID ( exprApoyo1 ) ;
-    (59) expr -> . TYPEID . OBJECTID ( ) ;
-    (60) expr -> . expr . OBJECTID ( exprApoyo1 ) ;
-    (61) expr -> . OBJECTID ( exprApoyo1 ) ;
-    (62) expr -> . expr . OBJECTID ( ) ;
-    (63) expr -> . OBJECTID ( ) ;
-    (64) expr -> . OBJECTID ASSIGN expr ;
-    (75) exprApoyo2 -> . exprApoyo2 expr
-    (76) exprApoyo2 -> . expr expr
-    BREAK           shift and go to state 248
-    OR              shift and go to state 103
-    AND             shift and go to state 104
-    LE              shift and go to state 105
-    DIFFERENT       shift and go to state 106
-    EQUALS          shift and go to state 107
-    /               shift and go to state 108
-    *               shift and go to state 109
-    -               shift and go to state 110
-    +               shift and go to state 111
-    .               shift and go to state 112
-    BOOL_CONST      shift and go to state 75
-    STR_CONST       shift and go to state 76
-    FLOAT_CONST     shift and go to state 77
-    INT_CONST       shift and go to state 78
-    OBJECTID        shift and go to state 72
-    !               shift and go to state 79
-    NEW             shift and go to state 80
-    {               shift and go to state 81
-    FUNCT           shift and go to state 82
-    SWITCH          shift and go to state 83
-    FOREACH         shift and go to state 84
-    WHILE           shift and go to state 85
-    IF              shift and go to state 86
-    RETURN          shift and go to state 87
-    TYPEID          shift and go to state 71
-
-    expr                           shift and go to state 101
-    exprApoyo2                     shift and go to state 74
-
-state 244
-
-    (54) expr -> FOREACH ( TYPEID OBJECTID IN OBJECTID ) { expr . }
-    (40) expr -> expr . OR expr
-    (41) expr -> expr . AND expr
-    (42) expr -> expr . LE expr
-    (43) expr -> expr . DIFFERENT expr
-    (44) expr -> expr . EQUALS expr
-    (46) expr -> expr . / expr
-    (47) expr -> expr . * expr
-    (48) expr -> expr . - expr
-    (49) expr -> expr . + expr
-    (60) expr -> expr . . OBJECTID ( exprApoyo1 ) ;
-    (62) expr -> expr . . OBJECTID ( ) ;
-    (76) exprApoyo2 -> expr . expr
-    (34) expr -> . exprApoyo2
-    (35) expr -> . BOOL_CONST
-    (36) expr -> . STR_CONST
-    (37) expr -> . FLOAT_CONST
-    (38) expr -> . INT_CONST
-    (39) expr -> . OBJECTID
-    (40) expr -> . expr OR expr
-    (41) expr -> . expr AND expr
-    (42) expr -> . expr LE expr
-    (43) expr -> . expr DIFFERENT expr
-    (44) expr -> . expr EQUALS expr
-    (45) expr -> . ! expr
-    (46) expr -> . expr / expr
-    (47) expr -> . expr * expr
-    (48) expr -> . expr - expr
-    (49) expr -> . expr + expr
-    (50) expr -> . NEW OBJECTID
-    (51) expr -> . { exprApoyo3 } ;
-    (52) expr -> . FUNCT < TYPEID , TYPEID > OBJECTID ASSIGN OBJECTID ARROW expr ;
-    (53) expr -> . SWITCH ( expr ) { cases }
-    (54) expr -> . FOREACH ( TYPEID OBJECTID IN OBJECTID ) { expr }
-    (55) expr -> . WHILE ( expr ) { expr }
-    (56) expr -> . IF ( expr ) { expr } ELSE { expr }
-    (57) expr -> . RETURN expr ;
-    (58) expr -> . TYPEID . OBJECTID ( exprApoyo1 ) ;
-    (59) expr -> . TYPEID . OBJECTID ( ) ;
-    (60) expr -> . expr . OBJECTID ( exprApoyo1 ) ;
-    (61) expr -> . OBJECTID ( exprApoyo1 ) ;
-    (62) expr -> . expr . OBJECTID ( ) ;
-    (63) expr -> . OBJECTID ( ) ;
-    (64) expr -> . OBJECTID ASSIGN expr ;
-    (75) exprApoyo2 -> . exprApoyo2 expr
-    (76) exprApoyo2 -> . expr expr
-    }               shift and go to state 249
-    OR              shift and go to state 103
-    AND             shift and go to state 104
-    LE              shift and go to state 105
-    DIFFERENT       shift and go to state 106
-    EQUALS          shift and go to state 107
-    /               shift and go to state 108
-    *               shift and go to state 109
-    -               shift and go to state 110
-    +               shift and go to state 111
-    .               shift and go to state 112
-    BOOL_CONST      shift and go to state 75
-    STR_CONST       shift and go to state 76
-    FLOAT_CONST     shift and go to state 77
-    INT_CONST       shift and go to state 78
-    OBJECTID        shift and go to state 72
-    !               shift and go to state 79
-    NEW             shift and go to state 80
-    {               shift and go to state 81
-    FUNCT           shift and go to state 82
-    SWITCH          shift and go to state 83
-    FOREACH         shift and go to state 84
-    WHILE           shift and go to state 85
-    IF              shift and go to state 86
-    RETURN          shift and go to state 87
-    TYPEID          shift and go to state 71
-
-    expr                           shift and go to state 101
-    exprApoyo2                     shift and go to state 74
-
-state 245
-
-    (56) expr -> IF ( expr ) { expr } ELSE { . expr }
-    (34) expr -> . exprApoyo2
-    (35) expr -> . BOOL_CONST
-    (36) expr -> . STR_CONST
-    (37) expr -> . FLOAT_CONST
-    (38) expr -> . INT_CONST
-    (39) expr -> . OBJECTID
-    (40) expr -> . expr OR expr
-    (41) expr -> . expr AND expr
-    (42) expr -> . expr LE expr
-    (43) expr -> . expr DIFFERENT expr
-    (44) expr -> . expr EQUALS expr
-    (45) expr -> . ! expr
-    (46) expr -> . expr / expr
-    (47) expr -> . expr * expr
-    (48) expr -> . expr - expr
-    (49) expr -> . expr + expr
-    (50) expr -> . NEW OBJECTID
-    (51) expr -> . { exprApoyo3 } ;
-    (52) expr -> . FUNCT < TYPEID , TYPEID > OBJECTID ASSIGN OBJECTID ARROW expr ;
-    (53) expr -> . SWITCH ( expr ) { cases }
-    (54) expr -> . FOREACH ( TYPEID OBJECTID IN OBJECTID ) { expr }
-    (55) expr -> . WHILE ( expr ) { expr }
-    (56) expr -> . IF ( expr ) { expr } ELSE { expr }
-    (57) expr -> . RETURN expr ;
-    (58) expr -> . TYPEID . OBJECTID ( exprApoyo1 ) ;
-    (59) expr -> . TYPEID . OBJECTID ( ) ;
-    (60) expr -> . expr . OBJECTID ( exprApoyo1 ) ;
-    (61) expr -> . OBJECTID ( exprApoyo1 ) ;
-    (62) expr -> . expr . OBJECTID ( ) ;
-    (63) expr -> . OBJECTID ( ) ;
-    (64) expr -> . OBJECTID ASSIGN expr ;
-    (75) exprApoyo2 -> . exprApoyo2 expr
-    (76) exprApoyo2 -> . expr expr
-    BOOL_CONST      shift and go to state 75
-    STR_CONST       shift and go to state 76
-    FLOAT_CONST     shift and go to state 77
-    INT_CONST       shift and go to state 78
-    OBJECTID        shift and go to state 72
-    !               shift and go to state 79
-    NEW             shift and go to state 80
-    {               shift and go to state 81
-    FUNCT           shift and go to state 82
-    SWITCH          shift and go to state 83
-    FOREACH         shift and go to state 84
-    WHILE           shift and go to state 85
-    IF              shift and go to state 86
-    RETURN          shift and go to state 87
-    TYPEID          shift and go to state 71
-
-    expr                           shift and go to state 250
-    exprApoyo2                     shift and go to state 74
-
-state 246
-
-    (52) expr -> FUNCT < TYPEID , TYPEID > OBJECTID ASSIGN OBJECTID ARROW . expr ;
-    (34) expr -> . exprApoyo2
-    (35) expr -> . BOOL_CONST
-    (36) expr -> . STR_CONST
-    (37) expr -> . FLOAT_CONST
-    (38) expr -> . INT_CONST
-    (39) expr -> . OBJECTID
-    (40) expr -> . expr OR expr
-    (41) expr -> . expr AND expr
-    (42) expr -> . expr LE expr
-    (43) expr -> . expr DIFFERENT expr
-    (44) expr -> . expr EQUALS expr
-    (45) expr -> . ! expr
-    (46) expr -> . expr / expr
-    (47) expr -> . expr * expr
-    (48) expr -> . expr - expr
-    (49) expr -> . expr + expr
-    (50) expr -> . NEW OBJECTID
-    (51) expr -> . { exprApoyo3 } ;
-    (52) expr -> . FUNCT < TYPEID , TYPEID > OBJECTID ASSIGN OBJECTID ARROW expr ;
-    (53) expr -> . SWITCH ( expr ) { cases }
-    (54) expr -> . FOREACH ( TYPEID OBJECTID IN OBJECTID ) { expr }
-    (55) expr -> . WHILE ( expr ) { expr }
-    (56) expr -> . IF ( expr ) { expr } ELSE { expr }
-    (57) expr -> . RETURN expr ;
-    (58) expr -> . TYPEID . OBJECTID ( exprApoyo1 ) ;
-    (59) expr -> . TYPEID . OBJECTID ( ) ;
-    (60) expr -> . expr . OBJECTID ( exprApoyo1 ) ;
-    (61) expr -> . OBJECTID ( exprApoyo1 ) ;
-    (62) expr -> . expr . OBJECTID ( ) ;
-    (63) expr -> . OBJECTID ( ) ;
-    (64) expr -> . OBJECTID ASSIGN expr ;
-    (75) exprApoyo2 -> . exprApoyo2 expr
-    (76) exprApoyo2 -> . expr expr
-    BOOL_CONST      shift and go to state 75
-    STR_CONST       shift and go to state 76
-    FLOAT_CONST     shift and go to state 77
-    INT_CONST       shift and go to state 78
-    OBJECTID        shift and go to state 72
-    !               shift and go to state 79
-    NEW             shift and go to state 80
-    {               shift and go to state 81
-    FUNCT           shift and go to state 82
-    SWITCH          shift and go to state 83
-    FOREACH         shift and go to state 84
-    WHILE           shift and go to state 85
-    IF              shift and go to state 86
-    RETURN          shift and go to state 87
-    TYPEID          shift and go to state 71
-
-    expr                           shift and go to state 251
-    exprApoyo2                     shift and go to state 74
-
-state 247
-
     (65) case -> DEFAULT : expr BREAK ; .
     }               reduce using rule 65 (case -> DEFAULT : expr BREAK ; .)
     DEFAULT         reduce using rule 65 (case -> DEFAULT : expr BREAK ; .)
     CASE            reduce using rule 65 (case -> DEFAULT : expr BREAK ; .)
 
 
-state 248
+state 240
 
     (66) case -> CASE expr : expr BREAK . ;
-    ;               shift and go to state 252
+    ;               shift and go to state 244
 
 
-state 249
+state 241
 
     (54) expr -> FOREACH ( TYPEID OBJECTID IN OBJECTID ) { expr } .
     ;               reduce using rule 54 (expr -> FOREACH ( TYPEID OBJECTID IN OBJECTID ) { expr } .)
@@ -6979,14 +6931,14 @@ state 249
     IF              reduce using rule 54 (expr -> FOREACH ( TYPEID OBJECTID IN OBJECTID ) { expr } .)
     RETURN          reduce using rule 54 (expr -> FOREACH ( TYPEID OBJECTID IN OBJECTID ) { expr } .)
     TYPEID          reduce using rule 54 (expr -> FOREACH ( TYPEID OBJECTID IN OBJECTID ) { expr } .)
+    }               reduce using rule 54 (expr -> FOREACH ( TYPEID OBJECTID IN OBJECTID ) { expr } .)
     )               reduce using rule 54 (expr -> FOREACH ( TYPEID OBJECTID IN OBJECTID ) { expr } .)
     ,               reduce using rule 54 (expr -> FOREACH ( TYPEID OBJECTID IN OBJECTID ) { expr } .)
-    }               reduce using rule 54 (expr -> FOREACH ( TYPEID OBJECTID IN OBJECTID ) { expr } .)
     :               reduce using rule 54 (expr -> FOREACH ( TYPEID OBJECTID IN OBJECTID ) { expr } .)
     BREAK           reduce using rule 54 (expr -> FOREACH ( TYPEID OBJECTID IN OBJECTID ) { expr } .)
 
 
-state 250
+state 242
 
     (56) expr -> IF ( expr ) { expr } ELSE { expr . }
     (40) expr -> expr . OR expr
@@ -7034,7 +6986,7 @@ state 250
     (64) expr -> . OBJECTID ASSIGN expr ;
     (75) exprApoyo2 -> . exprApoyo2 expr
     (76) exprApoyo2 -> . expr expr
-    }               shift and go to state 253
+    }               shift and go to state 245
     OR              shift and go to state 103
     AND             shift and go to state 104
     LE              shift and go to state 105
@@ -7064,7 +7016,7 @@ state 250
     expr                           shift and go to state 101
     exprApoyo2                     shift and go to state 74
 
-state 251
+state 243
 
     (52) expr -> FUNCT < TYPEID , TYPEID > OBJECTID ASSIGN OBJECTID ARROW expr . ;
     (40) expr -> expr . OR expr
@@ -7112,7 +7064,7 @@ state 251
     (64) expr -> . OBJECTID ASSIGN expr ;
     (75) exprApoyo2 -> . exprApoyo2 expr
     (76) exprApoyo2 -> . expr expr
-    ;               shift and go to state 254
+    ;               shift and go to state 246
     OR              shift and go to state 103
     AND             shift and go to state 104
     LE              shift and go to state 105
@@ -7142,7 +7094,7 @@ state 251
     expr                           shift and go to state 101
     exprApoyo2                     shift and go to state 74
 
-state 252
+state 244
 
     (66) case -> CASE expr : expr BREAK ; .
     }               reduce using rule 66 (case -> CASE expr : expr BREAK ; .)
@@ -7150,7 +7102,7 @@ state 252
     CASE            reduce using rule 66 (case -> CASE expr : expr BREAK ; .)
 
 
-state 253
+state 245
 
     (56) expr -> IF ( expr ) { expr } ELSE { expr } .
     ;               reduce using rule 56 (expr -> IF ( expr ) { expr } ELSE { expr } .)
@@ -7179,14 +7131,14 @@ state 253
     IF              reduce using rule 56 (expr -> IF ( expr ) { expr } ELSE { expr } .)
     RETURN          reduce using rule 56 (expr -> IF ( expr ) { expr } ELSE { expr } .)
     TYPEID          reduce using rule 56 (expr -> IF ( expr ) { expr } ELSE { expr } .)
+    }               reduce using rule 56 (expr -> IF ( expr ) { expr } ELSE { expr } .)
     )               reduce using rule 56 (expr -> IF ( expr ) { expr } ELSE { expr } .)
     ,               reduce using rule 56 (expr -> IF ( expr ) { expr } ELSE { expr } .)
-    }               reduce using rule 56 (expr -> IF ( expr ) { expr } ELSE { expr } .)
     :               reduce using rule 56 (expr -> IF ( expr ) { expr } ELSE { expr } .)
     BREAK           reduce using rule 56 (expr -> IF ( expr ) { expr } ELSE { expr } .)
 
 
-state 254
+state 246
 
     (52) expr -> FUNCT < TYPEID , TYPEID > OBJECTID ASSIGN OBJECTID ARROW expr ; .
     ;               reduce using rule 52 (expr -> FUNCT < TYPEID , TYPEID > OBJECTID ASSIGN OBJECTID ARROW expr ; .)
@@ -7215,9 +7167,9 @@ state 254
     IF              reduce using rule 52 (expr -> FUNCT < TYPEID , TYPEID > OBJECTID ASSIGN OBJECTID ARROW expr ; .)
     RETURN          reduce using rule 52 (expr -> FUNCT < TYPEID , TYPEID > OBJECTID ASSIGN OBJECTID ARROW expr ; .)
     TYPEID          reduce using rule 52 (expr -> FUNCT < TYPEID , TYPEID > OBJECTID ASSIGN OBJECTID ARROW expr ; .)
+    }               reduce using rule 52 (expr -> FUNCT < TYPEID , TYPEID > OBJECTID ASSIGN OBJECTID ARROW expr ; .)
     )               reduce using rule 52 (expr -> FUNCT < TYPEID , TYPEID > OBJECTID ASSIGN OBJECTID ARROW expr ; .)
     ,               reduce using rule 52 (expr -> FUNCT < TYPEID , TYPEID > OBJECTID ASSIGN OBJECTID ARROW expr ; .)
-    }               reduce using rule 52 (expr -> FUNCT < TYPEID , TYPEID > OBJECTID ASSIGN OBJECTID ARROW expr ; .)
     :               reduce using rule 52 (expr -> FUNCT < TYPEID , TYPEID > OBJECTID ASSIGN OBJECTID ARROW expr ; .)
     BREAK           reduce using rule 52 (expr -> FUNCT < TYPEID , TYPEID > OBJECTID ASSIGN OBJECTID ARROW expr ; .)
 

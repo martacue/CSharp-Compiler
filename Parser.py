@@ -59,27 +59,33 @@ class CSharpParser(Parser):
     
     @_('CLASS TYPEID "{" atributos metodos "}"')
     def clase(self, p):
-        return Clase(linea=p.lineno, nombre=p.TYPEID, padre="Object", atributos=p.atributos, metodos=p.metodos)
+        return Clase(linea=p.lineno, nombre=p.TYPEID, padre="Object", atributos=p.atributos, metodos=p.metodos, 
+                     nombre_fichero=self.nombre_fichero)
     
     @_('CLASS TYPEID ":" TYPEID "{" atributos metodos "}"')
     def clase(self, p):
-        return Clase(linea=p.lineno, nombre=p.TYPEID0, padre=p.TYPEID1 ,atributos=p.atributos, metodos=p.metodos)
+        return Clase(linea=p.lineno, nombre=p.TYPEID0, padre=p.TYPEID1 ,atributos=p.atributos, metodos=p.metodos, 
+                     nombre_fichero=self.nombre_fichero)
     
     @_('CLASS TYPEID "{" atributos "}"')
     def clase(self, p):
-        return Clase(linea=p.lineno, nombre=p.TYPEID, padre="Object", atributos=p.atributos, metodos=[])
+        return Clase(linea=p.lineno, nombre=p.TYPEID, padre="Object", atributos=p.atributos, metodos=[], 
+                     nombre_fichero=self.nombre_fichero)
 
     @_('CLASS TYPEID ":" TYPEID "{" atributos "}"')
     def clase(self, p):
-        return Clase(linea=p.lineno, nombre=p.TYPEID0, padre=p.TYPEID1 ,atributos=p.atributos, metodos=[])
+        return Clase(linea=p.lineno, nombre=p.TYPEID0, padre=p.TYPEID1 ,atributos=p.atributos, metodos=[], 
+                     nombre_fichero=self.nombre_fichero)
     
     @_('CLASS TYPEID "{" metodos "}"')
     def clase(self, p):
-        return Clase(linea=p.lineno, nombre=p.TYPEID, padre="Object", atributos=[], metodos=p.metodos)
+        return Clase(linea=p.lineno, nombre=p.TYPEID, padre="Object", atributos=[], metodos=p.metodos, 
+                     nombre_fichero=self.nombre_fichero)
     
     @_('CLASS TYPEID ":" TYPEID "{" metodos "}"')
     def clase(self, p):
-        return Clase(linea=p.lineno, nombre=p.TYPEID0, padre=p.TYPEID1 ,atributos=[], metodos=p.metodos)
+        return Clase(linea=p.lineno, nombre=p.TYPEID0, padre=p.TYPEID1 ,atributos=[], metodos=p.metodos, 
+                     nombre_fichero=self.nombre_fichero)
     
     @_('clases clase')
     def clases(self, p):
@@ -91,11 +97,11 @@ class CSharpParser(Parser):
     
     @_('MODIFIER TYPEID OBJECTID ";"')
     def atributo(self, p):
-        return Atributo(linea=p.lineno, nombre=p.OBJECTID, modificador=p.MODIFIER, tipo=p.TYPEID)
+        return Atributo(linea=p.lineno, nombre=p.OBJECTID, modificador=p.MODIFIER, tipo=p.TYPEID, cuerpo=NoExpr())
     
     @_('MODIFIER TYPEID OBJECTID ASSIGN expr ";"')
     def atributo(self, p):
-        return Atributo(linea=p.lineno, nombre=p.OBJECTID, modificador=p.MODIFIER, tipo=p.TYPEID, expresion=p.expr)
+        return Atributo(linea=p.lineno, nombre=p.OBJECTID, modificador=p.MODIFIER, tipo=p.TYPEID, cuerpo=p.expr)
     
     @_('atributos atributo')
     def atributos(self, p):
@@ -105,45 +111,45 @@ class CSharpParser(Parser):
     def atributos(self, p):
         return [p.atributo]
     
-    @_('MODIFIER TYPEID OBJECTID "(" ")" "{" expr ";" "}"')
+    @_('MODIFIER TYPEID OBJECTID "(" ")" "{" expr "}"')
     def metodo(self, p):
         return Metodo(linea=p.lineno, nombre=p.OBJECTID, modificador=p.MODIFIER, tipo=p.TYPEID, formales=[], 
-                      estatico=False, expresion=p.expr)
+                      estatico=False, cuerpo=p.expr)
     
-    @_('MODIFIER STATIC TYPEID OBJECTID "(" ")" "{" expr ";" "}"')
+    @_('MODIFIER STATIC TYPEID OBJECTID "(" ")" "{" expr "}"')
     def metodo(self, p):
         return Metodo(linea=p.lineno, nombre=p.OBJECTID, modificador=p.MODIFIER, tipo=p.TYPEID, formales=[], 
-                      estatico=True, expresion=p.expr)
+                      estatico=True, cuerpo=p.expr)
     
-    @_('MODIFIER TYPEID OBJECTID "(" formales ")" "{" expr ";" "}"')
+    @_('MODIFIER TYPEID OBJECTID "(" formales ")" "{" expr "}"')
     def metodo(self, p):
         return Metodo(linea=p.lineno, nombre=p.OBJECTID, modificador=p.MODIFIER, tipo=p.TYPEID, formales=p.formales, 
-                      estatico=False, expresion=p.expr)
+                      estatico=False, cuerpo=p.expr)
     
-    @_('MODIFIER STATIC TYPEID OBJECTID "(" formales ")" "{" expr ";" "}"')
+    @_('MODIFIER STATIC TYPEID OBJECTID "(" formales ")" "{" expr "}"')
     def metodo(self, p):
         return Metodo(linea=p.lineno, nombre=p.OBJECTID, modificador=p.MODIFIER, tipo=p.TYPEID, formales=p.formales, 
-                      estatico=True, expresion=p.expr)
+                      estatico=True, cuerpo=p.expr)
     
-    @_('MODIFIER VOID OBJECTID "(" ")" "{" expr ";" "}"')
+    @_('MODIFIER VOID OBJECTID "(" ")" "{" expr "}"')
     def metodo(self, p):
         return Metodo(linea=p.lineno, nombre=p.OBJECTID, modificador=p.MODIFIER, tipo=p.VOID, formales=[], 
-                      estatico=False, expresion=p.expr)
+                      estatico=False, cuerpo=p.expr)
     
-    @_('MODIFIER STATIC VOID OBJECTID "(" ")" "{" expr ";" "}"')
+    @_('MODIFIER STATIC VOID OBJECTID "(" ")" "{" expr "}"')
     def metodo(self, p):
         return Metodo(linea=p.lineno, nombre=p.OBJECTID, modificador=p.MODIFIER, tipo=p.VOID, formales=[], 
-                      estatico=True, expresion=p.expr)
+                      estatico=True, cuerpo=p.expr)
     
-    @_('MODIFIER TYPEID VOID "(" formales ")" "{" expr ";" "}"')
+    @_('MODIFIER TYPEID VOID "(" formales ")" "{" expr "}"')
     def metodo(self, p):
         return Metodo(linea=p.lineno, nombre=p.OBJECTID, modificador=p.MODIFIER, tipo=p.VOID, formales=p.formales, 
-                      estatico=False, expresion=p.expr)
+                      estatico=False, cuerpo=p.expr)
     
-    @_('MODIFIER STATIC VOID OBJECTID "(" formales ")" "{" expr ";" "}"')
+    @_('MODIFIER STATIC VOID OBJECTID "(" formales ")" "{" expr "}"')
     def metodo(self, p):
         return Metodo(linea=p.lineno, nombre=p.OBJECTID, modificador=p.MODIFIER, tipo=p.VOID, formales=p.formales, 
-                      estatico=True, expresion=p.expr)
+                      estatico=True, cuerpo=p.expr)
     
     @_('metodos metodo')
     def metodos(self, p):

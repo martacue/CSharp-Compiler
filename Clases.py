@@ -106,7 +106,8 @@ class Bucle(Expresion):
         resultado += self.cuerpo.str(n+2)
         resultado += f'{(n)*" "}: {self.cast}\n'
         return resultado
-    
+
+@dataclass
 class BucleParaCada(Expresion):
     nombre_variable: str = '_no_set'
     tipo: str = '_no_type'
@@ -122,7 +123,8 @@ class BucleParaCada(Expresion):
         resultado += self.cuerpo.str(n+2)
         resultado += f'{(n)*" "}: {self.cast}\n'
         return resultado
-    
+
+@dataclass
 class Retorno(Expresion):
     cuerpo: Expresion = None
 
@@ -484,7 +486,6 @@ class Namespace(Nodo):
         resultado += f'{(n)*" "}_namespace\n'
         resultado += f'{(n+2)*" "}{self.nombre}\n'
         resultado += ''.join([c.str(n+2) for c in self.clases])
-        resultado += self.cuerpo.str(n+2)
         return resultado
 
 @dataclass
@@ -492,6 +493,7 @@ class Caracteristica(Nodo):
     nombre: str = '_no_set'
     tipo: str = '_no_set'
     cuerpo: Expresion = None
+    modificador: str = '_no_set'
 
 
 @dataclass
@@ -503,6 +505,7 @@ class Metodo(Caracteristica):
         resultado = super().str(n)
         resultado += f'{(n)*" "}_method\n'
         resultado += f'{(n+2)*" "}{self.nombre}\n'
+        resultado += f'{(n+2)*" "}{self.modificador}\n'
         resultado += f'{(n+2)*" "}{"_static" if self.estatico else "_no_static"}\n'
         resultado += ''.join([c.str(n+2) for c in self.formales])
         resultado += f'{(n + 2) * " "}{self.tipo}\n'
@@ -517,6 +520,7 @@ class Atributo(Caracteristica):
         resultado = super().str(n)
         resultado += f'{(n)*" "}_attr\n'
         resultado += f'{(n+2)*" "}{self.nombre}\n'
+        resultado += f'{(n+2)*" "}{self.modificador}\n'
         resultado += f'{(n+2)*" "}{self.tipo}\n'
         resultado += self.cuerpo.str(n+2)
         return resultado

@@ -1,0 +1,22 @@
+namespace Programa
+{
+    class A {
+    private int a = 0;
+    private int d = 1;
+    private int f() { a = a + d; return a;}
+    }
+
+    class B : A {
+    private int b = 2;
+    private int f() {return a;}
+    private int g() { a = a - b; return a; }
+    }
+
+    class C : A {
+    private int c = 3;
+    private int h() { a = a -c ; return a ;}
+    }
+
+    class Main { private int main () { return 6; } }
+
+}

@@ -146,6 +146,9 @@ class Bloque(Expresion):
         resultado += f'{(n)*" "}: {self.cast}\n'
         resultado += '\n'
         return resultado
+    
+    def Tipo(self, Ambito): # TODO: Implementar
+        pass 
 
 
 @dataclass
@@ -222,6 +225,12 @@ class Nueva(Expresion):
         resultado += f'{(n+2)*" "}{self.tipo}\n'
         resultado += f'{(n)*" "}: {self.cast}\n'
         return resultado
+    
+    def Tipo(self, Ambito):
+        if self.tipo in [clase[0] for clase in Ambito.clases]:
+            self.cast = self.tipo
+        else:
+            print(f'Error: Tipo {self.tipo} no definido')
 
 
 
@@ -242,6 +251,15 @@ class Suma(OperacionBinaria):
         resultado += self.derecha.str(n+2)
         resultado += f'{(n)*" "}: {self.cast}\n'
         return resultado
+    
+    def Tipo(self, Ambito):
+        self.izquierda.Tipo(Ambito)
+        self.derecha.Tipo(Ambito)
+        tipos_validos = ['int', 'float']
+        if self.izquierda.cast in tipos_validos and self.izquierda.cast == self.derecha.cast:
+            self.cast = self.izquierda.cast
+        else:
+            print('Error +: Los tipos no coinciden o no son validos')
 
 
 @dataclass
@@ -255,6 +273,15 @@ class Resta(OperacionBinaria):
         resultado += self.derecha.str(n+2)
         resultado += f'{(n)*" "}: {self.cast}\n'
         return resultado
+    
+    def Tipo(self, Ambito):
+        self.izquierda.Tipo(Ambito)
+        self.derecha.Tipo(Ambito)
+        tipos_validos = ['int', 'float']
+        if self.izquierda.cast in tipos_validos and self.izquierda.cast == self.derecha.cast:
+            self.cast = self.izquierda.cast
+        else:
+            print('Error -: Los tipos no coinciden o no son validos')
 
 
 @dataclass
@@ -268,6 +295,15 @@ class Multiplicacion(OperacionBinaria):
         resultado += self.derecha.str(n+2)
         resultado += f'{(n)*" "}: {self.cast}\n'
         return resultado
+    
+    def Tipo(self, Ambito):
+        self.izquierda.Tipo(Ambito)
+        self.derecha.Tipo(Ambito)
+        tipos_validos = ['int', 'float']
+        if self.izquierda.cast in tipos_validos and self.izquierda.cast == self.derecha.cast:
+            self.cast = self.izquierda.cast
+        else:
+            print('Error *: Los tipos no coinciden o no son validos')
 
 
 
@@ -282,6 +318,15 @@ class Division(OperacionBinaria):
         resultado += self.derecha.str(n+2)
         resultado += f'{(n)*" "}: {self.cast}\n'
         return resultado
+    
+    def Tipo(self, Ambito):
+        self.izquierda.Tipo(Ambito)
+        self.derecha.Tipo(Ambito)
+        tipos_validos = ['int', 'float']
+        if self.izquierda.cast in tipos_validos and self.izquierda.cast == self.derecha.cast:
+            self.cast = self.izquierda.cast
+        else:
+            print('Error /: Los tipos no coinciden o no son validos')
 
 
 @dataclass
@@ -295,6 +340,15 @@ class LeIgual(OperacionBinaria):
         resultado += self.derecha.str(n+2)
         resultado += f'{(n)*" "}: {self.cast}\n'
         return resultado
+    
+    def Tipo(self, Ambito):
+        self.izquierda.Tipo(Ambito)
+        self.derecha.Tipo(Ambito)
+        tipos_validos = ['int', 'float']
+        if self.izquierda.cast in tipos_validos and self.izquierda.cast == self.derecha.cast:
+            self.cast = 'bool'
+        else:
+            print('Error <=: Los tipos no coinciden o no son validos')
 
 
 @dataclass
@@ -308,6 +362,14 @@ class Igual(OperacionBinaria):
         resultado += self.derecha.str(n+2)
         resultado += f'{(n)*" "}: {self.cast}\n'
         return resultado
+    
+    def Tipo(self, Ambito):
+        self.izquierda.Tipo(Ambito)
+        self.derecha.Tipo(Ambito)
+        if self.izquierda.cast == self.derecha.cast:
+            self.cast = 'bool'
+        else:
+            print('Error ==: Los tipos no coinciden')
 
 @dataclass
 class Distinto(OperacionBinaria):
@@ -320,6 +382,14 @@ class Distinto(OperacionBinaria):
         resultado += self.derecha.str(n+2)
         resultado += f'{(n)*" "}: {self.cast}\n'
         return resultado
+    
+    def Tipo(self, Ambito):
+        self.izquierda.Tipo(Ambito)
+        self.derecha.Tipo(Ambito)
+        if self.izquierda.cast == self.derecha.cast:
+            self.cast = 'bool'
+        else:
+            print('Error !=: Los tipos no coinciden')
 
 @dataclass
 class Not(Expresion):
@@ -332,6 +402,13 @@ class Not(Expresion):
         resultado += self.expr.str(n+2)
         resultado += f'{(n)*" "}: {self.cast}\n'
         return resultado
+    
+    def Tipo(self, Ambito):
+        self.expr.Tipo(Ambito)
+        if self.expr.cast == 'bool':
+            self.cast = 'bool'
+        else:
+            print('Error not: La expresion no es booleana')
 
 @dataclass
 class And(OperacionBinaria):
@@ -345,6 +422,14 @@ class And(OperacionBinaria):
         resultado += f'{(n)*" "}: {self.cast}\n'
         return resultado
     
+    def Tipo(self, Ambito):
+        self.izquierda.Tipo(Ambito)
+        self.derecha.Tipo(Ambito)
+        if self.izquierda.cast == 'bool' and self.derecha.cast == 'bool':
+            self.cast = 'bool'
+        else:
+            print('Error and: Los tipos de las expresiones no son booleanos')
+    
 @dataclass
 class Or(OperacionBinaria):
     operando: str = '||'
@@ -356,6 +441,14 @@ class Or(OperacionBinaria):
         resultado += self.derecha.str(n+2)
         resultado += f'{(n)*" "}: {self.cast}\n'
         return resultado
+
+    def Tipo(self, Ambito):
+        self.izquierda.Tipo(Ambito)
+        self.derecha.Tipo(Ambito)
+        if self.izquierda.cast == 'bool' and self.derecha.cast == 'bool':
+            self.cast = 'bool'
+        else:
+            print('Error or: Los tipos de las expresiones no son booleanos')
 
 
 @dataclass
@@ -372,6 +465,8 @@ class Objeto(Expresion):
     def Tipo(self, Ambito):
         if Ambito.checkScope(self.nombre):
             self.cast = Ambito.findSymbol(self.nombre)
+        else:
+            print(f'Error: El objeto {self.nombre} no existe en el ambito actual')
 
 
 @dataclass
@@ -472,6 +567,7 @@ class Programa(IterableNodo):
                 for atributo in clase.atributos:
                     Ambito.add_attribute(atributo, clase.nombre)
             
+            # agrega los metodos y atributos de la clase padre que no esten en la clase hija
             for clase in namespace.clases:
                 if clase.padre != 'Object':
                     copia_metodos = Ambito.metodos.copy()
@@ -567,6 +663,8 @@ class Atributo(Caracteristica):
         self.cuerpo.Tipo(Ambito)
         if self.cuerpo.cast == self.tipo:
             Ambito.addSymbol(self.nombre, self.tipo)
+        else:
+            print("Error Atributo")
 
 @dataclass
 class Clase(Nodo):
@@ -592,7 +690,11 @@ class Clase(Nodo):
     def Tipo(self, Ambito):
         Ambito.enterScope()
         for atributo in self.atributos:
-                atributo.Tipo(Ambito)
+            atributo.Tipo(Ambito)
+        # anhadir al ambito los atributos del padre que no esten redefinidos
+        for atributo in [atributo[0] for atributo in Ambito.atributos if atributo[1] == self.nombre and 
+                         atributo[0].nombre not in [atributo.nombre for atributo in self.atributos]]:
+            Ambito.addSymbol(atributo.nombre, atributo.tipo)
         for metodo in self.metodos:
             metodo.Tipo(Ambito)
         Ambito.exitScope()

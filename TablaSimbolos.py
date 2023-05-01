@@ -76,7 +76,7 @@ class Nodo:
     def es_descendiente(self, ancestro):
         if self.padre is None:
             return False
-        if self.padre == ancestro:
+        if self.nombre == ancestro or self.padre == ancestro:
             return True
         return self.padre.es_descendiente(ancestro)
 
@@ -93,11 +93,8 @@ class Arbol:
     def es_subtipo(self, clase1, clase2):
         if self.busca_clase(clase1) is None:
             raise ValueError(f"Class {clase1} not defined.")
-        if self.busca_clase(clase2) is None:
-            raise ValueError(f"Class {clase2} not defined.")
         clase1_nodo = self.busca_clase(clase1)
-        clase2_nodo = self.busca_clase(clase2)
-        return clase1_nodo.es_descendiente(clase2_nodo)
+        return clase1_nodo.es_descendiente(clase2)
 
     def es_primitivo(self, nombre_tipo):
         return nombre_tipo in self.primitivos

@@ -178,7 +178,7 @@ class CSharpParser(Parser):
     @_('OBJECTID "(" ")" ";"')
     def expr(self, p):
         return LlamadaMetodo(linea=p.lineno, nombre_metodo=p.OBJECTID, argumentos=[],
-                             cuerpo=NoExpr())
+                             cuerpo=Objeto(nombre="self"))
     
     @_('expr "." OBJECTID "(" ")" ";"')
     def expr(self, p):
@@ -188,7 +188,7 @@ class CSharpParser(Parser):
     @_('OBJECTID "(" exprApoyo1 ")" ";"')
     def expr(self, p):
         return LlamadaMetodo(linea=p.lineno, nombre_metodo=p.OBJECTID, argumentos=p.exprApoyo1,
-                             cuerpo=NoExpr())
+                             cuerpo=Objeto(nombre="self"))
     
     @_('expr "." OBJECTID "(" exprApoyo1 ")" ";"')
     def expr(self, p):

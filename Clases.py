@@ -41,6 +41,35 @@ class Asignacion(Expresion):
         resultado += f'{(n)*" "}: {self.cast}\n'
         return resultado
 
+    def Tipo(self, Ambito):
+        if not Ambito.checkScope(self.nombre):
+            raise Exception(f"Variable {self.nombre} no definida")
+        self.cuerpo.Tipo(Ambito)
+        if Ambito.findSymbol(self.nombre) != self.cuerpo.cast:
+            raise Exception(f"Error de tipos: {Ambito.findSymbol(self.nombre)} != {self.cuerpo.cast}")
+    
+@dataclass
+class NuevaVariable(Expresion):
+    nombre: str = '_no_set'
+    tipo: str = '_no_type'
+    cuerpo: Expresion = None
+
+    def str(self, n):
+        resultado = super().str(n)
+        resultado += f'{(n)*" "}_new_variable\n'
+        resultado += f'{(n+2)*" "}{self.nombre}\n'
+        resultado += f'{(n+2)*" "}{self.tipo}\n'
+        resultado += self.cuerpo.str(n+2)
+        resultado += f'{(n)*" "}: {self.cast}\n'
+        return resultado
+
+    def Tipo(self, Ambito):
+        self.cuerpo.Tipo(Ambito)
+        if self.tipo != self.cuerpo.cast:
+            raise Exception(f"Error de tipos: {self.tipo} != {self.cuerpo.cast}")
+        Ambito.addSymbol(self.nombre, self.tipo)
+
+
 
 @dataclass
 class LlamadaMetodoEstatico(Expresion):
@@ -59,6 +88,19 @@ class LlamadaMetodoEstatico(Expresion):
         resultado += f'{(n)*" "}: _no_type\n'
         return resultado
 
+    def Tipo(self, Ambito):
+        for arg in self.argumentos:
+            arg.Tipo(Ambito)
+        metodo = Ambito.encuentra_metodo(self.nombre_metodo, self.clase)
+        if not metodo:
+            raise Exception(f"No existe el metodo {self.nombre_metodo} en la clase {self.clase}")
+        for i, arg in enumerate(self.argumentos):
+            if arg.cast != metodo.formales[i].tipo:
+                raise Exception(f"El tipo de los argumentos no coincide con los formales")
+        
+        self.cast = metodo.tipo
+
+
 
 @dataclass
 class LlamadaMetodo(Expresion):
@@ -76,6 +118,20 @@ class LlamadaMetodo(Expresion):
         resultado += f'{(n+2)*" "})\n'
         resultado += f'{(n)*" "}: {self.cast}\n'
         return resultado
+    
+    def Tipo(self, Ambito):
+        self.cuerpo.Tipo(Ambito)
+        for arg in self.argumentos:
+            arg.Tipo(Ambito)
+        
+        metodo = Ambito.encuentra_metodo(self.nombre_metodo, self.cuerpo.cast)
+        if not metodo:
+            raise Exception(f"No existe el metodo {self.nombre_metodo} en la clase {self.cuerpo.cast}")
+        for i, arg in enumerate(self.argumentos):
+            if arg.cast != metodo.formales[i].tipo:
+                raise Exception(f"El tipo de los argumentos no coincide con los formales")
+        
+        self.cast = metodo.tipo
 
 
 @dataclass
@@ -92,6 +148,16 @@ class Condicional(Expresion):
         resultado += self.falso.str(n+2)
         resultado += f'{(n)*" "}: {self.cast}\n'
         return resultado
+    
+    def Tipo(self, Ambito):
+        self.condicion.Tipo(Ambito)
+        if self.condicion.cast != 'bool':
+            raise Exception("La condicion no es booleana")
+        self.verdadero.Tipo(Ambito)
+        self.falso.Tipo(Ambito)
+        if self.verdadero.cast != self.falso.cast:
+            raise Exception("Los tipos de las ramas no coinciden")
+        self.cast = self.verdadero.cast
 
 
 @dataclass
@@ -106,6 +172,12 @@ class Bucle(Expresion):
         resultado += self.cuerpo.str(n+2)
         resultado += f'{(n)*" "}: {self.cast}\n'
         return resultado
+    
+    def Tipo(self, Ambito):
+        self.condicion.Tipo(Ambito)
+        if self.condicion.cast != 'bool':
+            raise Exception("La condicion no es booleana")
+        self.cuerpo.Tipo(Ambito)
 
 @dataclass
 class BucleParaCada(Expresion):
@@ -123,6 +195,23 @@ class BucleParaCada(Expresion):
         resultado += self.cuerpo.str(n+2)
         resultado += f'{(n)*" "}: {self.cast}\n'
         return resultado
+    
+    def Tipo(self, Ambito):
+        if not Ambito.checkScope(self.coleccion):
+            raise Exception("No existe la coleccion")
+        tipo_coleccion = Ambito.findSymbol(self.coleccion)
+        if not tipo_coleccion.startswith('list_of_'):
+            raise Exception("No es una coleccion")
+        if not tipo_coleccion.contains(self.tipo):
+            raise Exception("No es una coleccion de ese tipo")
+        
+        Ambito.enterScope()
+        Ambito.addSymbol(self.nombre_variable, self.tipo)
+        self.cuerpo.Tipo(Ambito)
+        Ambito.exitScope()
+
+        self.cast = self.cuerpo.cast
+        
 
 @dataclass
 class Retorno(Expresion):
@@ -134,6 +223,10 @@ class Retorno(Expresion):
         resultado += self.cuerpo.str(n+2)
         resultado += f'{(n)*" "}: {self.cast}\n'
         return resultado
+    
+    def Tipo(self, Ambito):
+        self.cuerpo.Tipo(Ambito)
+        self.cast = self.cuerpo.cast
 
 @dataclass
 class Bloque(Expresion):
@@ -147,14 +240,24 @@ class Bloque(Expresion):
         resultado += '\n'
         return resultado
     
-    def Tipo(self, Ambito): # TODO: Implementar
-        pass 
-
+    def Tipo(self, Ambito): 
+        for expresion in self.expresiones:
+            expresion.Tipo(Ambito)
+        self.cast = self.expresiones[-1].cast
 
 @dataclass
-class RamaCase(Nodo):
+class Rama(Nodo):
     condicion: Expresion = None
     cuerpo: Expresion = None
+
+    def Tipo(self, Ambito):
+        self.condicion.Tipo(Ambito)
+        Ambito.enterScope()
+        self.cuerpo.Tipo(Ambito)
+        Ambito.exitScope()
+
+@dataclass
+class RamaCase(Rama):
 
     def str(self, n):
         resultado = super().str(n)
@@ -164,8 +267,7 @@ class RamaCase(Nodo):
         return resultado
     
 @dataclass
-class RamaDefault(Nodo):
-    cuerpo: Expresion = None
+class RamaDefault(Rama):
 
     def str(self, n):
         resultado = super().str(n)
@@ -177,15 +279,28 @@ class RamaDefault(Nodo):
 @dataclass
 class Switch(Expresion):
     expr: Expresion = None
-    casos: List[RamaCase] = field(default_factory=list)
+    casos: List[Rama] = field(default_factory=list)
 
     def str(self, n):
         resultado = super().str(n)
-        resultado += f'{(n)*" "}_typcase\n'
+        resultado += f'{(n)*" "}_switch\n'
         resultado += self.expr.str(n+2)
         resultado += ''.join([c.str(n+2) for c in self.casos])
         resultado += f'{(n)*" "}: {self.cast}\n'
         return resultado
+    
+    def Tipo(self, Ambito):
+        self.expr.Tipo(Ambito)
+        tipos_cuerpos = []
+        for caso in self.casos[:-1]:
+            caso.Tipo(Ambito)
+            if self.expr.cast != caso.condicion.cast:
+                raise Exception(f'Error de tipos en switch: {self.expr.cast} != {caso.condicion.cast}')
+            tipos_cuerpos.append(caso.cuerpo.cast)
+        self.casos[-1].Tipo(Ambito)
+        tipos_cuerpos.append(self.casos[-1].cuerpo.cast)
+        self.cast = tipos_cuerpos[0]
+
 
 @dataclass
 class Funcion(Expresion):
@@ -205,6 +320,16 @@ class Funcion(Expresion):
         resultado += f'{(n)*" "}: {self.cast}\n'
         return resultado
     
+    def Tipo(self, Ambito):
+        Ambito.enterScope()
+        Ambito.addSymbol(self.parametro, self.tipo_parametro)
+        self.cuerpo.Tipo(Ambito)
+        if self.tipo_retorno == self.cuerpo.cast:
+            self.cast = self.tipo_retorno
+        else:
+            print(f'Error: El tipo de retorno no coincide con el tipo de la expresion')
+        Ambito.exitScope()
+    
 @dataclass
 class Coleccion(Expresion):
     elementos: List[Expresion] = field(default_factory=list)
@@ -215,6 +340,18 @@ class Coleccion(Expresion):
         resultado += ''.join([e.str(n+2) for e in self.elementos])
         resultado += f'{(n)*" "}: {self.cast}\n'
         return resultado
+    
+    def Tipo(self, Ambito):
+        self.cast = 'list'
+        for elemento in self.elementos:
+            elemento.Tipo(Ambito)
+        
+        # comprobar que todos los elementos son del mismo tipo
+        tipos = [elemento.cast for elemento in self.elementos]
+        if len(set(tipos)) != 1:
+            print(f'Error: Los elementos de la lista no son del mismo tipo')
+        
+        self.cast += f'_of_{tipos[0]}'
 
 @dataclass
 class Nueva(Expresion):
@@ -558,6 +695,7 @@ class Programa(IterableNodo):
     
     def Tipo(self):
         Ambito = TablaSimbolos()
+        Ambito.enterScope()
         for namespace in self.secuencia:
             Ambito.add_namespace(namespace)
             for clase in namespace.clases:
@@ -581,7 +719,8 @@ class Programa(IterableNodo):
         Ambito.construyeTotal()
         for namespace in self.secuencia:
             namespace.Tipo(Ambito)
-                    
+        
+        Ambito.exitScope()            
 
 
 

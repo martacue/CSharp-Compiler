@@ -16,6 +16,12 @@ class TablaSimbolos():
     def add_method(self, metodo, nombre_clase):
         self.metodos.append((metodo, nombre_clase))
     
+    def encuentra_metodo(self, nombre_metodo, nombre_clase):
+        for metodo in self.metodos:
+            if metodo.nombre == nombre_metodo and metodo[1] == nombre_clase:
+                return metodo
+        return None
+    
     def add_attribute(self, attribute, nombre_clase):
         self.atributos.append((attribute, nombre_clase))
     
@@ -48,7 +54,7 @@ class TablaSimbolos():
         return None
     
     def addSymbol(self, nombre, tipo):
-        self.ambitos[-1][nombre] = tipo #PREGUNTAR: guardar el valor?
+        self.ambitos[-1][nombre] = tipo
         
     def checkScope(self, nombre):
         for ambito in reversed(self.Ambitos):

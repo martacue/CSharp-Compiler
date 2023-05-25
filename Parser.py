@@ -175,6 +175,10 @@ class CSharpParser(Parser):
     def expr(self, p):
         return Asignacion(linea=p.lineno, nombre=p.OBJECTID, cuerpo=p.expr)
     
+    @_('TYPEID OBJECTID ASSIGN expr ";"')
+    def expr(self, p):
+        return NuevaVariable(linea=p.lineno, nombre=p.OBJECTID, tipo=p.TYPEID, cuerpo=p.expr)
+    
     @_('OBJECTID "(" ")" ";"')
     def expr(self, p):
         return LlamadaMetodo(linea=p.lineno, nombre_metodo=p.OBJECTID, argumentos=[],
@@ -230,7 +234,7 @@ class CSharpParser(Parser):
     
     @_('DEFAULT ":" expr BREAK ";"')
     def case(self, p):
-        return RamaDefault(linea=p.lineno, cuerpo=p.expr)
+        return RamaDefault(linea=p.lineno, condicion=NoExpr() ,cuerpo=p.expr)
     
     @_('cases case')
     def cases(self, p):

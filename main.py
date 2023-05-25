@@ -3,6 +3,7 @@ import re
 import sys
 from colorama import init
 from termcolor import colored
+import traceback
 init()
 
 
@@ -101,4 +102,37 @@ for fich in TESTS:
                     g.close()
         except Exception as e:
             print(f"Lanza excepción en {fich} con el texto {e}")
+            traceback.print_exc()
+    elif PRACTICA == '04':
+        parser = CSharpParser()
+        parser.nombre_fichero = fich
+        g.close()
+        j = parser.parse(lexer.tokenize(entrada))
+        try:
+            out = j.codigo(0)
+            exec(out)
+            main = Main()
+            orig_stdout = sys.stdout
+            sys.stdout = open(os.path.join(DIR, fich)+'.nuestro', "w")
+            main.main()
+            sys.stdout.close()
+            sys.stdout=orig_stdout 
+            nuestro = open(os.path.join(DIR, fich)+'.nuestro','r')
+            bien = open(os.path.join(DIR, fich)+'.out')
+
+            nuestro_lines = nuestro.readlines()
+            bien_lines = bien.readlines()
+
+            for i in range(len(bien_lines)):
+                if nuestro_lines[i] != bien_lines[i]:
+                    print("Line " + str(i+1) + " doesn't match.")
+                    print("Nuestro: " + nuestro_lines[i])
+                    print("Bien: " + bien_lines[i])
+                    print("------------------------")
+
+            nuestro.close()
+            bien.close()
+        except Exception as e:
+            print(f"Lanza excepción en {fich} con el texto {e}")
+            traceback.print_exc()
 

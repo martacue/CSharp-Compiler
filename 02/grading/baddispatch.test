@@ -1,0 +1,12 @@
+using System;
+
+namespace Programa{
+class Main {
+    public string test(int x) {
+        x(5,4,3,);
+    }
+    public string ok(int x) {
+        x(5,4,3);
+    }
+}
+}

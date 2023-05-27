@@ -66,9 +66,8 @@ class CSharpLexer(Lexer):
     LE = r'<='
     AND = r'&&'
     OR = r'\|\|'
-    ASSIGN = r'='
     ARROW = r'=>'
-    
+    ASSIGN = r'='
     ignore = '\t '
     literals = {':',';', '(', ')', '{','}','+','<','>', '-','~','*','@','_',',','.','=','/','"','\\', '?', '!'}
     
@@ -108,6 +107,10 @@ class CSharpLexer(Lexer):
     @_(r'\n')
     def SALTO_LINEA(self, t):
         self.lineno += 1
+    
+    @_(r'\r\n')
+    def SALTO_LINEA(self, t):
+        self.lineno += 1 
         
     @_(r'\s+')
     def ESPACIO(self, t):

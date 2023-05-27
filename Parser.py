@@ -13,16 +13,13 @@ class CSharpParser(Parser):
     debugfile = "salida.out"
     errores = []
     precedence = (
-    ('right', 'ASSIGN'),
     ('left', 'OR'),
     ('left', 'AND'),
     ('left', 'EQUALS', 'DIFFERENT'),
     ('nonassoc', 'LE'),
     ('left', '+', '-'),
     ('left', '*', '/'),
-    ('right', '!'),
-    ('left', '.'),
-    ('left', 'ARROW'),
+    ('right', '!')
     )
 
     @_('namespace_declarations')
@@ -37,11 +34,11 @@ class CSharpParser(Parser):
     def using_directive(self, p):
         return Using(linea=p.lineno, nombre=p.TYPEID)
     
-    @_('using_directive ";" using_directives')
+    @_('using_directive using_directives')
     def using_directives(self, p):
         return p.using_directives + [p.using_directive]
     
-    @_('using_directive')
+    @_('using_directive ";"')
     def using_directives(self, p):
         return [p.using_directive]
     
@@ -62,6 +59,11 @@ class CSharpParser(Parser):
         return Clase(linea=p.lineno, nombre=p.TYPEID, padre="Object", atributos=p.atributos, metodos=p.metodos, 
                      nombre_fichero=self.nombre_fichero)
     
+    @_('CLASS error "{" atributos metodos "}"')
+    def clase(self, p):
+        return Clase(linea=p.lineno, nombre=p.error, padre="Object", atributos=p.atributos, metodos=p.metodos, 
+                     nombre_fichero=self.nombre_fichero)
+    
     @_('CLASS TYPEID ":" TYPEID "{" atributos metodos "}"')
     def clase(self, p):
         return Clase(linea=p.lineno, nombre=p.TYPEID0, padre=p.TYPEID1 ,atributos=p.atributos, metodos=p.metodos, 
@@ -75,6 +77,11 @@ class CSharpParser(Parser):
     @_('CLASS TYPEID ":" TYPEID "{" atributos "}"')
     def clase(self, p):
         return Clase(linea=p.lineno, nombre=p.TYPEID0, padre=p.TYPEID1 ,atributos=p.atributos, metodos=[], 
+                     nombre_fichero=self.nombre_fichero)
+
+    @_('CLASS TYPEID ":" error "{" atributos "}"')
+    def clase(self, p):
+        return Clase(linea=p.lineno, nombre=p.TYPEID, padre=p.error ,atributos=p.atributos, metodos=[], 
                      nombre_fichero=self.nombre_fichero)
     
     @_('CLASS TYPEID "{" metodos "}"')
@@ -161,11 +168,15 @@ class CSharpParser(Parser):
     
     @_('TYPEID OBJECTID')
     def formal(self, p):
-        return Formal(linea=p.lineno, nombre=p.OBJECTID, tipo=p.TYPEID)
+        return Formal(linea=p.lineno, nombre_variable=p.OBJECTID, tipo=p.TYPEID)
     
     @_('formales "," formal')
     def formales(self, p):
         return p.formales + [p.formal]
+
+    @_('formales error formal')
+    def formales(self, p):
+        return p.formales + [p.error, p.formal]
     
     @_('formal')
     def formales(self, p):
@@ -194,6 +205,10 @@ class CSharpParser(Parser):
         return LlamadaMetodo(linea=p.lineno, nombre_metodo=p.OBJECTID, argumentos=p.exprApoyo1,
                              cuerpo=Objeto(nombre="self"))
     
+    @_('OBJECTID "(" exprApoyo1 ")"')
+    def expr(self, p):
+        return LlamadaMetodo(linea=p.lineno, nombre_metodo=p.OBJECTID, argumentos=p.exprApoyo1,
+                             cuerpo=Objeto(nombre="self"))
     @_('expr "." OBJECTID "(" exprApoyo1 ")" ";"')
     def expr(self, p):
         return LlamadaMetodo(linea=p.lineno, nombre_metodo=p.OBJECTID, argumentos=p.exprApoyo1,
@@ -249,37 +264,21 @@ class CSharpParser(Parser):
         return Funcion(linea=p.lineno, tipo_parametro=p.TYPEID0, tipo_retorno=p.TYPEID1, nombre=p.OBJECTID0, 
                        parametro=p.OBJECTID1, cuerpo=p.expr)
     
-    @_('"{" exprApoyo3 "}" ";"')
+    @_('"{" exprApoyo3 "}"')
     def expr(self, p):
-        return Coleccion(linea=p.lineno, expresiones=p.exprApoyo3)
-    
-    @_('STR_CONST "," STR_CONST')
+        return Coleccion(linea=p.lineno, elementos=p.exprApoyo3)
+
+    @_('expr "," expr')
     def exprApoyo3(self, p):
-        return [p.STR_CONST0, p.STR_CONST1]
+        return [p.expr0, p.expr1]
     
-    @_('exprApoyo3 "," STR_CONST')
+    @_('exprApoyo3 "," expr')
     def exprApoyo3(self, p):
-        return p.exprApoyo3 + [p.STR_CONST]
+        return p.exprApoyo3 + [p.expr]
     
-    @_('INT_CONST "," INT_CONST')
-    def exprApoyo3(self, p):
-        return [p.INT_CONST0, p.INT_CONST1]
-    
-    @_('exprApoyo3 "," INT_CONST')
-    def exprApoyo3(self, p):
-        return p.exprApoyo3 + [p.INT_CONST]
-    
-    @_('FLOAT_CONST "," FLOAT_CONST')
-    def exprApoyo3(self, p):
-        return [p.FLOAT_CONST0, p.FLOAT_CONST1]
-    
-    @_('exprApoyo3 "," FLOAT_CONST')
-    def exprApoyo3(self, p):
-        return p.exprApoyo3 + [p.FLOAT_CONST]
-    
-    @_('NEW OBJECTID')
+    @_('NEW TYPEID "(" ")"')
     def expr(self, p):
-        return Nueva(linea=p.lineno, tipo=p.OBJECTID)
+        return Nueva(linea=p.lineno, tipo=p.TYPEID)
     
     @_('expr "+" expr')
     def expr(self, p):
@@ -299,7 +298,7 @@ class CSharpParser(Parser):
     
     @_('"!" expr')
     def expr(self, p):
-        return Not(linea=p.lineno, cuerpo=p.expr)
+        return Not(linea=p.lineno, expr=p.expr)
     
     @_('expr EQUALS expr')
     def expr(self, p):

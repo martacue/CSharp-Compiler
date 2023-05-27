@@ -1,0 +1,85 @@
+_program
+  _using
+    System
+  _namespace
+    Programa
+    _class
+      HelloWorld
+      Object
+      "namespaces.test"
+      (
+      _method
+        main
+        public
+        _static
+        _formal
+          args
+          string[]
+        void
+        _static_dispatch
+          Console
+          writeLine
+          (
+          _dispatch
+            _object
+              self
+            : _no_type
+            suma
+            (
+            _int
+              1
+            : _no_type
+            _int
+              2
+            : _no_type
+            )
+          : _no_type
+          )
+        : _no_type
+      _method
+        suma
+        public
+        _no_static
+        _formal
+          num1
+          int
+        _formal
+          num2
+          int
+        int
+        _return
+          _plus
+            _object
+              num1
+            : _no_type
+            _object
+              num2
+            : _no_type
+          : _no_type
+        : _no_type
+      )
+  _namespace
+    Namespace2
+    _class
+      Clase2
+      Object
+      "namespaces.test"
+      (
+      _attr
+        texto
+        private
+        string
+        _string
+          "Hola"
+        : _no_type
+      _method
+        getTexto
+        public
+        _no_static
+        string
+        _return
+          _object
+            texto
+          : _no_type
+        : _no_type
+      )

@@ -1,0 +1,64 @@
+_program
+  _using
+    System
+  _namespace
+    Programa
+    _class
+      A
+      Object
+      "herencia.test"
+      (
+      _attr
+        nombre
+        private
+        string
+        _string
+          "A"
+        : _no_type
+      _method
+        pass
+        public
+        _no_static
+        void
+        _return
+          _int
+            0
+          : _no_type
+        : _no_type
+      )
+    _class
+      B
+      A
+      "herencia.test"
+      (
+      _attr
+        nombre
+        private
+        string
+        _string
+          "B"
+        : _no_type
+      )
+    _class
+      C
+      B
+      "herencia.test"
+      (
+      _attr
+        nombre
+        private
+        string
+        _string
+          "C"
+        : _no_type
+      _method
+        nombre
+        public
+        _no_static
+        string
+        _return
+          _object
+            nombre
+          : _no_type
+        : _no_type
+      )

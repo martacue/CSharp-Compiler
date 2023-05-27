@@ -1,0 +1,25 @@
+_program
+  _using
+    System
+  _namespace
+    MyNamespace
+    _class
+      MyClass
+      Object
+      "simpleclass.test"
+      (
+      _method
+        myMethod
+        public
+        _no_static
+        void
+        _static_dispatch
+          Console
+          writeLine
+          (
+          _string
+            "Creating my namespace"
+          : _no_type
+          )
+        : _no_type
+      )

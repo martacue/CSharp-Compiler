@@ -1,0 +1,7 @@
+using System;
+
+namespace Programa{
+class Hola : adios {
+    private int foo;
+}
+}

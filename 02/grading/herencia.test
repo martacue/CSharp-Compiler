@@ -1,0 +1,21 @@
+using System;
+namespace Programa {
+class A {
+    private string nombre = "A";
+    public void pass() {
+        return 0;
+    }
+}
+
+class B : A {
+    private string nombre = "B";
+}
+
+class C : B {
+    private string nombre = "C";
+    
+    public string nombre() {
+        return nombre;
+    }
+}
+}

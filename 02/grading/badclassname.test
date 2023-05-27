@@ -1,0 +1,16 @@
+using System;
+
+namespace Programa{
+class hola {
+    private int foo;
+    public int bar() {
+        return 5;
+    }
+}
+class adios {
+    private int foo;
+    public int bar() {
+        return 5;
+    }
+}
+}

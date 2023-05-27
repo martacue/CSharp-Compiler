@@ -1,0 +1,12 @@
+using System;
+namespace MyNamespace
+{
+    class MyClass
+    {
+        public void myMethod()
+        {
+            Console.writeLine("Creating my namespace");
+		}
+	}
+    
+}

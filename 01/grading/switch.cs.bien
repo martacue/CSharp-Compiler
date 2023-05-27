@@ -12,12 +12,13 @@
  ')'
  '{'
  CASE
- '<'
+ OBJECTID measurement
+ LE
  FLOAT_CONST 0.0
  ':'
  TYPEID Console
  '.'
- TYPEID WriteLine
+ OBJECTID writeLine
  '('
  STR_CONST "Measured value is too low."
  ')'
@@ -25,12 +26,13 @@
  BREAK
  ';'
  CASE
- '>'
+ OBJECTID measurement
+ DIFFERENT
  FLOAT_CONST 15.0
  ':'
  TYPEID Console
  '.'
- TYPEID WriteLine
+ OBJECTID writeLine
  '('
  STR_CONST "Measured value is too high."
  ')'
@@ -41,7 +43,7 @@
  ':'
  TYPEID Console
  '.'
- TYPEID WriteLine
+ OBJECTID writeLine
  '('
  STR_CONST "Measured value is other."
  ')'

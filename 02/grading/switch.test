@@ -1,5 +1,9 @@
-void displayMeasurement(float measurement)
-{
+using System;
+
+namespace Programa{
+class Main {
+    public static void main(string[] args){
+    float measurement = 1.75;
     switch (measurement)
     {
         case measurement <= 0.0:
@@ -14,4 +18,6 @@ void displayMeasurement(float measurement)
             Console.writeLine("Measured value is other.");
             break;
     }
+    }
+}
 }

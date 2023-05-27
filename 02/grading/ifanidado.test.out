@@ -1,0 +1,105 @@
+_program
+  _using
+    System
+  _namespace
+    Programa
+    _class
+      Main
+      Object
+      "ifanidado.test"
+      (
+      _method
+        main
+        public
+        _static
+        _formal
+          args
+          string[]
+        void
+        _block
+          _object
+            bool
+          : _no_type
+          _block
+            _assign
+              respondido
+              _bool
+                0
+              : _no_type
+            : _no_type
+            _cond
+              _comp
+                _object
+                  respondido
+                : _no_type
+              : _no_type
+              _block
+                _static_dispatch
+                  Console
+                  writeLine
+                  (
+                  _string
+                    "Paso 1"
+                  : _no_type
+                  )
+                : _no_type
+                _block
+                  _new_variable
+                    texto1
+                    string
+                    _string
+                      "hola"
+                    : _no_type
+                  : _no_type
+                  _block
+                    _new_variable
+                      texto2
+                      string
+                      _string
+                        "hola"
+                      : _no_type
+                    : _no_type
+                    _cond
+                      _eq
+                        _object
+                          texto1
+                        : _no_type
+                        _object
+                          texto2
+                        : _no_type
+                      : _no_type
+                      _static_dispatch
+                        Console
+                        writeLine
+                        (
+                        _string
+                          "textos iguales"
+                        : _no_type
+                        )
+                      : _no_type
+                      _static_dispatch
+                        Console
+                        writeLine
+                        (
+                        _string
+                          "textos distintos"
+                        : _no_type
+                        )
+                      : _no_type
+                    : _no_type
+                  : _no_type
+                : _no_type
+              : _no_type
+              _static_dispatch
+                Console
+                writeLine
+                (
+                _string
+                  "finalizado"
+                : _no_type
+                )
+              : _no_type
+            : _no_type
+          : _no_type
+        : _no_type
+      )

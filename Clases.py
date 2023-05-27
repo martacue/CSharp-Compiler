@@ -47,6 +47,7 @@ class Asignacion(Expresion):
         self.cuerpo.Tipo(Ambito)
         if Ambito.findSymbol(self.nombre) != self.cuerpo.cast:
             raise Exception(f"Error de tipos: {Ambito.findSymbol(self.nombre)} != {self.cuerpo.cast}")
+        self.cast = self.cuerpo.cast
     
 @dataclass
 class NuevaVariable(Expresion):
@@ -616,7 +617,7 @@ class NoExpr(Expresion):
         resultado += f'{(n)*" "}: {self.cast}\n'
         return resultado
     
-    def Tipo(self):
+    def Tipo(self, Ambito):
         pass
 
 
@@ -707,15 +708,14 @@ class Programa(IterableNodo):
             
             # agrega los metodos y atributos de la clase padre que no esten en la clase hija
             for clase in namespace.clases:
-                if clase.padre != 'Object':
-                    copia_metodos = Ambito.metodos.copy()
-                    for metodo in copia_metodos:
-                        if metodo[1] == clase.padre and metodo[0].nombre not in [metodo.nombre for metodo in clase.metodos]:
-                            Ambito.add_method(metodo[0], clase.nombre)
-                    copia_atributos = Ambito.atributos.copy()
-                    for atributo in copia_atributos:
-                        if atributo[1] == clase.padre:
-                            Ambito.add_attribute(atributo[0], clase.nombre)
+                copia_metodos = Ambito.metodos.copy()
+                for metodo in copia_metodos:
+                    if metodo[1] == clase.padre and metodo[0].nombre not in [metodo.nombre for metodo in clase.metodos]:
+                        Ambito.add_method(metodo[0], clase.nombre)
+                copia_atributos = Ambito.atributos.copy()
+                for atributo in copia_atributos:
+                    if atributo[1] == clase.padre:
+                        Ambito.add_attribute(atributo[0], clase.nombre)
         Ambito.construyeTotal()
         for namespace in self.secuencia:
             namespace.Tipo(Ambito)
@@ -802,8 +802,10 @@ class Atributo(Caracteristica):
         self.cuerpo.Tipo(Ambito)
         if self.cuerpo.cast == self.tipo:
             Ambito.addSymbol(self.nombre, self.tipo)
+        elif self.cuerpo.cast == '_no_type':
+            Ambito.addSymbol(self.nombre, self.tipo)
         else:
-            print("Error Atributo")
+            print(f'Error Atributo {self.nombre}')
 
 @dataclass
 class Clase(Nodo):
@@ -831,7 +833,7 @@ class Clase(Nodo):
         for atributo in self.atributos:
             atributo.Tipo(Ambito)
         # anhadir al ambito los atributos del padre que no esten redefinidos
-        for atributo in [atributo[0] for atributo in Ambito.atributos if atributo[1] == self.nombre and 
+        for atributo in [atributo[0] for atributo in Ambito.atributos if atributo[1] == self.padre and 
                          atributo[0].nombre not in [atributo.nombre for atributo in self.atributos]]:
             Ambito.addSymbol(atributo.nombre, atributo.tipo)
         for metodo in self.metodos:

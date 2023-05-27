@@ -1,0 +1,22 @@
+using System;
+namespace Programa {
+class Foo {
+    private int x = 3;
+}
+class Main
+{
+    private int x;
+    private string y;
+    private Foo foo;
+    public static void main(string[] args)
+    {
+        x = 3;
+        x = 5;
+        y = "test";
+        foo = new Foo();
+    }
+    public string foo() {
+        return "test";
+    }
+}
+}

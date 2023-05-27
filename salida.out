@@ -43,16 +43,16 @@ Rule 39    expr -> STR_CONST
 Rule 40    expr -> FLOAT_CONST
 Rule 41    expr -> INT_CONST
 Rule 42    expr -> OBJECTID
-Rule 43    expr -> expr OR expr  [precedence=left, level=2]
-Rule 44    expr -> expr AND expr  [precedence=left, level=3]
-Rule 45    expr -> expr LE expr  [precedence=nonassoc, level=5]
-Rule 46    expr -> expr DIFFERENT expr  [precedence=left, level=4]
-Rule 47    expr -> expr EQUALS expr  [precedence=left, level=4]
-Rule 48    expr -> ! expr  [precedence=right, level=8]
-Rule 49    expr -> expr / expr  [precedence=left, level=7]
-Rule 50    expr -> expr * expr  [precedence=left, level=7]
-Rule 51    expr -> expr - expr  [precedence=left, level=6]
-Rule 52    expr -> expr + expr  [precedence=left, level=6]
+Rule 43    expr -> expr OR expr  [precedence=left, level=1]
+Rule 44    expr -> expr AND expr  [precedence=left, level=2]
+Rule 45    expr -> expr LE expr  [precedence=nonassoc, level=4]
+Rule 46    expr -> expr DIFFERENT expr  [precedence=left, level=3]
+Rule 47    expr -> expr EQUALS expr  [precedence=left, level=3]
+Rule 48    expr -> ! expr  [precedence=right, level=7]
+Rule 49    expr -> expr / expr  [precedence=left, level=6]
+Rule 50    expr -> expr * expr  [precedence=left, level=6]
+Rule 51    expr -> expr - expr  [precedence=left, level=5]
+Rule 52    expr -> expr + expr  [precedence=left, level=5]
 Rule 53    expr -> NEW TYPEID ( )
 Rule 54    expr -> { exprApoyo3 }
 Rule 55    expr -> FUNCT < TYPEID , TYPEID > OBJECTID ASSIGN OBJECTID ARROW expr ;

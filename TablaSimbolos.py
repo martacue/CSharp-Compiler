@@ -57,7 +57,7 @@ class TablaSimbolos():
         self.ambitos[-1][nombre] = tipo
         
     def checkScope(self, nombre):
-        for ambito in reversed(self.Ambitos):
+        for ambito in reversed(self.ambitos):
             if nombre in ambito:
                 return True
         

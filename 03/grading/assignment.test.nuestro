@@ -1,0 +1,90 @@
+_program
+  _using
+    System
+  _namespace
+    Programa
+    _class
+      Foo
+      Object
+      "assignment.test"
+      (
+      _attr
+        x
+        private
+        int
+        _int
+          3
+        : int
+      )
+    _class
+      Main
+      Object
+      "assignment.test"
+      (
+      _attr
+        x
+        private
+        int
+        _no_expr
+        : _no_type
+      _attr
+        y
+        private
+        string
+        _no_expr
+        : _no_type
+      _attr
+        foo
+        private
+        Foo
+        _no_expr
+        : _no_type
+      _method
+        main
+        public
+        _static
+        _formal
+          args
+          string[]
+        void
+        _block
+          _assign
+            x
+            _int
+              3
+            : int
+          : int
+          _block
+            _assign
+              x
+              _int
+                5
+              : int
+            : int
+            _block
+              _assign
+                y
+                _string
+                  "test"
+                : string
+              : string
+              _assign
+                foo
+                _new
+                  Foo
+                : Foo
+              : Foo
+            : Foo
+          : Foo
+        : Foo
+      _method
+        foo
+        public
+        _no_static
+        string
+        _return
+          _string
+            "test"
+          : string
+        : string
+      )

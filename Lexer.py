@@ -117,6 +117,7 @@ class CSharpLexer(Lexer):
         pass
     
     def ERROR(self, t):
+        self.begin(CSharpLexer)
         return t
     
         

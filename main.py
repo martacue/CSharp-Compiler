@@ -7,14 +7,14 @@ import traceback
 init()
 
 
-DIRECTORIO = os.path.expanduser("d:/user/Documents/UNICAN/CUARTO/Lenguajes de programación/C# Compiler")
+DIRECTORIO = os.path.expanduser("./")
 sys.path.append(DIRECTORIO)
 
 from Lexer import *
 from Parser import *
 from Clases import *
 
-PRACTICA = "02"  # Practica que hay que evaluar
+PRACTICA = "03"  # Practica que hay que evaluar
 DEBUG = True   # Decir si se lanzan mensajes de debug
 NUMLINEAS = 3   # Numero de lineas que se muestran antes y después de la no coincidencia
 MAX_LINEAS = 2000  # Maximo de lineas que se comprueban en el bucle de comparacion de la practica 1
@@ -25,7 +25,7 @@ TESTS = [fich for fich in FICHEROS
          if os.path.isfile(os.path.join(DIR, fich)) and
          re.search(r"^[a-zA-Z].*\.(cs|test|cl)$",fich)]
 TESTS.sort()
-#TESTS = ["badclassname.test"]
+TESTS = ["assignment.test"]
 
 for fich in TESTS:
     lexer = CSharpLexer()
@@ -77,7 +77,8 @@ for fich in TESTS:
         g.close()
         j = parser.parse(lexer.tokenize(entrada))
         try:
-            #j.Tipo()
+            if PRACTICA == '03':
+                j.Tipo()
             if j and not parser.errores:
                 resultado = '\n'.join([c for c in j.str(0).split('\n')
                                        if c and '#' not in c])

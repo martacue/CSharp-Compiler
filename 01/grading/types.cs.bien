@@ -48,7 +48,7 @@
  INT_CONST 5
  '}'
  ';'
- TYPEID Funct
+ FUNCT
  '<'
  TYPEID int
  ','

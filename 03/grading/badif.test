@@ -1,0 +1,12 @@
+namespace Programa {
+class A {
+    public void metodoa(){
+        if (3 + 4) {
+            Console.writeLine("Correct!");
+        } 
+        else {
+            Console.writeLine("Incorrect!");
+        }
+    }
+}
+}

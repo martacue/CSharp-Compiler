@@ -1,0 +1,10 @@
+namespace Programa{
+class Main {
+    public static void main(string[] args){
+        int numeros = 7;
+        foreach (int numero in numeros) {
+            Console.writeLine(numero);
+        }
+    }
+}
+}

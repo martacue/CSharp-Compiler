@@ -1,0 +1,9 @@
+namespace Programa {
+class Main
+{
+    public static void main(string[] args)
+    {
+        float numero = 5.6 + 9.7 * true;
+    }
+}
+}

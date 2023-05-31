@@ -1,0 +1,173 @@
+_program
+  _using
+    System
+  _namespace
+    Programa
+    _class
+      A
+      Object
+      "bigmethod.test"
+      (
+      _attr
+        num
+        private
+        int
+        _no_expr
+        : _no_type
+      _method
+        bigMethod
+        public
+        _no_static
+        void
+        _block
+          _new_variable
+            p
+            float
+            _float
+              3.2
+            : float
+          : float
+          _block
+            _assign
+              num
+              _int
+                3
+              : int
+            : int
+            _block
+              _static_dispatch
+                Console
+                writeLine
+                (
+                _string
+                  "Asignado num"
+                : string
+                )
+              : _no_type
+              _block
+                _static_dispatch
+                  Console
+                  writeLine
+                  (
+                  _object
+                    num
+                  : int
+                  )
+                : _no_type
+                _block
+                  _new_variable
+                    time
+                    int
+                    _int
+                      20
+                    : int
+                  : int
+                  _block
+                    _cond
+                      _leq
+                        _object
+                          time
+                        : int
+                        _int
+                          18
+                        : int
+                      : bool
+                      _static_dispatch
+                        Console
+                        writeLine
+                        (
+                        _string
+                          "Good morning"
+                        : string
+                        )
+                      : _no_type
+                      _static_dispatch
+                        Console
+                        writeLine
+                        (
+                        _string
+                          "Good afternoon!"
+                        : string
+                        )
+                      : _no_type
+                    : _no_type
+                    _loop
+                      _and
+                        _neq
+                          _object
+                            num
+                          : int
+                          _int
+                            4
+                          : int
+                        : bool
+                        _eq
+                          _object
+                            time
+                          : int
+                          _int
+                            20
+                          : int
+                        : bool
+                      : bool
+                      _block
+                        _static_dispatch
+                          Console
+                          writeLine
+                          (
+                          _object
+                            num
+                          : int
+                          )
+                        : _no_type
+                        _assign
+                          num
+                          _plus
+                            _object
+                              num
+                            : int
+                            _int
+                              1
+                            : int
+                          : int
+                        : int
+                      : int
+                    : _no_type
+                  : _no_type
+                : _no_type
+              : _no_type
+            : _no_type
+          : _no_type
+        : _no_type
+      )
+    _class
+      Main
+      Object
+      "bigmethod.test"
+      (
+      _method
+        main
+        public
+        _static
+        _formal
+          args
+          string[]
+        void
+        _block
+          _new_variable
+            a
+            A
+            _new
+              A
+            : A
+          : A
+          _dispatch
+            _object
+              a
+            : A
+            bigMethod
+            (
+            )
+          : void
+        : void
+      )

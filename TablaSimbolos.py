@@ -6,6 +6,7 @@ class TablaSimbolos():
         self.metodos = list()
         self.atributos = list()
         self.arbol = Arbol()
+        self.clase_actual = None
 
     def add_namespace(self, namespace):
         self.namespaces[namespace.nombre] = namespace
@@ -18,7 +19,7 @@ class TablaSimbolos():
     
     def encuentra_metodo(self, nombre_metodo, nombre_clase):
         for metodo in self.metodos:
-            if metodo.nombre == nombre_metodo and metodo[1] == nombre_clase:
+            if metodo[0].nombre == nombre_metodo and metodo[1] == nombre_clase:
                 return metodo
         return None
     
@@ -97,6 +98,8 @@ class Arbol:
         self.primitivos = ["int", "float", "string", "bool"]
 
     def es_subtipo(self, clase1, clase2):
+        if clase1 in self.primitivos and clase1 == clase2:
+            return True
         if self.busca_clase(clase1) is None:
             raise ValueError(f"Class {clase1} not defined.")
         clase1_nodo = self.busca_clase(clase1)

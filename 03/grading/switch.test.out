@@ -1,0 +1,77 @@
+_program
+  _namespace
+    Programa
+    _class
+      Main
+      Object
+      "switch.test"
+      (
+      _method
+        main
+        public
+        _static
+        _formal
+          args
+          string[]
+        void
+        _block
+          _new_variable
+            measurement
+            float
+            _float
+              1.75
+            : float
+          : float
+          _switch
+            _object
+              measurement
+            : float
+            _branch
+              _leq
+                _object
+                  measurement
+                : float
+                _float
+                  0.0
+                : float
+              : bool
+              _static_dispatch
+                Console
+                writeLine
+                (
+                _string
+                  "Measured value is too low."
+                : string
+                )
+              : _no_type
+            _branch
+              _neq
+                _object
+                  measurement
+                : float
+                _float
+                  15.0
+                : float
+              : bool
+              _static_dispatch
+                Console
+                writeLine
+                (
+                _string
+                  "Measured value is too high."
+                : string
+                )
+              : _no_type
+            _branch
+              _static_dispatch
+                Console
+                writeLine
+                (
+                _string
+                  "Measured value is other."
+                : string
+                )
+              : _no_type
+          : _no_type
+        : _no_type
+      )

@@ -1,0 +1,59 @@
+_program
+  _using
+    System
+  _namespace
+    Programa
+    _class
+      Main
+      Object
+      "collections.test"
+      (
+      _method
+        main
+        public
+        _static
+        _formal
+          args
+          string[]
+        void
+        _block
+          _new_variable
+            numeros
+            int[]
+            _list
+              _int
+                0
+              : int
+              _int
+                1
+              : int
+              _int
+                2
+              : int
+              _int
+                3
+              : int
+              _int
+                4
+              : int
+              _int
+                5
+              : int
+            : int[]
+          : int[]
+          _for
+            numero
+            int
+            numeros
+            _static_dispatch
+              Console
+              writeLine
+              (
+              _object
+                numero
+              : int
+              )
+            : _no_type
+          : _no_type
+        : _no_type
+      )

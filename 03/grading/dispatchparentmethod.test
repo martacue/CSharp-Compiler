@@ -1,0 +1,21 @@
+using System;
+
+namespace Programa{
+class A {
+    public void metodoa(){
+        Console.writeLine("Metodo clase A");
+    }
+}
+
+class B : A {
+    private string nombre = "b";
+}
+
+class Main {
+    public static void main(string[] args){
+        A a = new B();
+        B b = new B();
+        b.metodoa();
+    }
+}
+}

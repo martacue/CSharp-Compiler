@@ -1,0 +1,17 @@
+namespace Programa {
+class Foo {
+    private int x = 3;
+}
+
+class A {
+    private string nombre = "A";
+}
+class Main
+{
+    public static void main(string[] args)
+    {
+        Foo foo = new Foo();
+        foo = new A();
+    }
+}
+}

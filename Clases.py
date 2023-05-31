@@ -45,8 +45,8 @@ class Asignacion(Expresion):
         if not Ambito.checkScope(self.nombre):
             raise Exception(f"Variable {self.nombre} no definida")
         self.cuerpo.Tipo(Ambito)
-        if Ambito.findSymbol(self.nombre) != self.cuerpo.cast:
-            raise Exception(f"Error de tipos: {Ambito.findSymbol(self.nombre)} != {self.cuerpo.cast}")
+        if not Ambito.arbol.es_subtipo(self.cuerpo.cast, Ambito.findSymbol(self.nombre)):
+            raise Exception(f"Error de tipos: {self.cuerpo.cast} no es subtipo de {Ambito.findSymbol(self.nombre)}")
         self.cast = self.cuerpo.cast
     
 @dataclass
@@ -66,9 +66,13 @@ class NuevaVariable(Expresion):
 
     def Tipo(self, Ambito):
         self.cuerpo.Tipo(Ambito)
-        if self.tipo != self.cuerpo.cast:
-            raise Exception(f"Error de tipos: {self.tipo} != {self.cuerpo.cast}")
+        if '[]' in self.tipo:
+            if not self.cuerpo.cast == self.tipo:
+                raise Exception(f"Error de tipos: {self.cuerpo.cast} coleccion no coindice con {self.tipo}")
+        elif not Ambito.arbol.es_subtipo(self.cuerpo.cast, self.tipo):
+            raise Exception(f"Error de tipos: {self.cuerpo.cast} no es subtipo de {self.tipo}")
         Ambito.addSymbol(self.nombre, self.tipo)
+        self.cast = self.tipo
 
 
 
@@ -93,13 +97,14 @@ class LlamadaMetodoEstatico(Expresion):
         for arg in self.argumentos:
             arg.Tipo(Ambito)
         metodo = Ambito.encuentra_metodo(self.nombre_metodo, self.clase)
-        if not metodo:
+        if not metodo and self.clase != 'Console':
             raise Exception(f"No existe el metodo {self.nombre_metodo} en la clase {self.clase}")
-        for i, arg in enumerate(self.argumentos):
-            if arg.cast != metodo.formales[i].tipo:
-                raise Exception(f"El tipo de los argumentos no coincide con los formales")
+        if self.clase != 'Console':
+            for i, arg in enumerate(self.argumentos):
+                if arg.cast != metodo[0].formales[i].tipo:
+                    raise Exception(f"El tipo de los argumentos no coincide con los formales")
         
-        self.cast = metodo.tipo
+            self.cast = metodo.tipo
 
 
 
@@ -125,14 +130,17 @@ class LlamadaMetodo(Expresion):
         for arg in self.argumentos:
             arg.Tipo(Ambito)
         
-        metodo = Ambito.encuentra_metodo(self.nombre_metodo, self.cuerpo.cast)
+        if isinstance(self.cuerpo, Objeto) and self.cuerpo.cast == 'self':
+            metodo = Ambito.encuentra_metodo(self.nombre_metodo, Ambito.clase_actual)
+        else:
+            metodo = Ambito.encuentra_metodo(self.nombre_metodo, self.cuerpo.cast)
         if not metodo:
             raise Exception(f"No existe el metodo {self.nombre_metodo} en la clase {self.cuerpo.cast}")
         for i, arg in enumerate(self.argumentos):
-            if arg.cast != metodo.formales[i].tipo:
+            if arg.cast != metodo[0].formales[i].tipo:
                 raise Exception(f"El tipo de los argumentos no coincide con los formales")
         
-        self.cast = metodo.tipo
+        self.cast = metodo[0].tipo
 
 
 @dataclass
@@ -201,9 +209,9 @@ class BucleParaCada(Expresion):
         if not Ambito.checkScope(self.coleccion):
             raise Exception("No existe la coleccion")
         tipo_coleccion = Ambito.findSymbol(self.coleccion)
-        if not tipo_coleccion.startswith('list_of_'):
+        if not tipo_coleccion.endswith('[]'):
             raise Exception("No es una coleccion")
-        if not tipo_coleccion.contains(self.tipo):
+        if not self.tipo in tipo_coleccion:
             raise Exception("No es una coleccion de ese tipo")
         
         Ambito.enterScope()
@@ -295,8 +303,8 @@ class Switch(Expresion):
         tipos_cuerpos = []
         for caso in self.casos[:-1]:
             caso.Tipo(Ambito)
-            if self.expr.cast != caso.condicion.cast:
-                raise Exception(f'Error de tipos en switch: {self.expr.cast} != {caso.condicion.cast}')
+            if caso.condicion.cast != 'bool':
+                raise Exception(f'Error de tipos en switch: {caso.condicion.cast} no es booleano')
             tipos_cuerpos.append(caso.cuerpo.cast)
         self.casos[-1].Tipo(Ambito)
         tipos_cuerpos.append(self.casos[-1].cuerpo.cast)
@@ -322,13 +330,16 @@ class Funcion(Expresion):
         return resultado
     
     def Tipo(self, Ambito):
+        Ambito.add_method(Metodo(nombre=self.nombre, cuerpo=self.cuerpo, tipo=self.tipo_retorno, modificador='private',
+                                 formales=[Formal(nombre_variable=self.parametro, tipo=self.tipo_parametro)]), 
+                                 Ambito.clase_actual)
         Ambito.enterScope()
         Ambito.addSymbol(self.parametro, self.tipo_parametro)
         self.cuerpo.Tipo(Ambito)
         if self.tipo_retorno == self.cuerpo.cast:
             self.cast = self.tipo_retorno
         else:
-            print(f'Error: El tipo de retorno no coincide con el tipo de la expresion')
+            raise Exception(f'Error: El tipo de retorno no coincide con el tipo de la expresion')
         Ambito.exitScope()
     
 @dataclass
@@ -343,16 +354,15 @@ class Coleccion(Expresion):
         return resultado
     
     def Tipo(self, Ambito):
-        self.cast = 'list'
         for elemento in self.elementos:
             elemento.Tipo(Ambito)
         
         # comprobar que todos los elementos son del mismo tipo
         tipos = [elemento.cast for elemento in self.elementos]
         if len(set(tipos)) != 1:
-            print(f'Error: Los elementos de la lista no son del mismo tipo')
+            raise Exception(f'Error: Los elementos de la lista no son del mismo tipo')
         
-        self.cast += f'_of_{tipos[0]}'
+        self.cast = f'{tipos[0]}[]'
 
 @dataclass
 class Nueva(Expresion):
@@ -368,7 +378,7 @@ class Nueva(Expresion):
         if self.tipo in [clase[0] for clase in Ambito.clases]:
             self.cast = self.tipo
         else:
-            print(f'Error: Tipo {self.tipo} no definido')
+            raise Exception(f'Error: Tipo {self.tipo} no definido')
 
 
 
@@ -397,7 +407,7 @@ class Suma(OperacionBinaria):
         if self.izquierda.cast in tipos_validos and self.izquierda.cast == self.derecha.cast:
             self.cast = self.izquierda.cast
         else:
-            print('Error +: Los tipos no coinciden o no son validos')
+            raise Exception('Error +: Los tipos no coinciden o no son validos')
 
 
 @dataclass
@@ -419,7 +429,7 @@ class Resta(OperacionBinaria):
         if self.izquierda.cast in tipos_validos and self.izquierda.cast == self.derecha.cast:
             self.cast = self.izquierda.cast
         else:
-            print('Error -: Los tipos no coinciden o no son validos')
+            raise Exception('Error -: Los tipos no coinciden o no son validos')
 
 
 @dataclass
@@ -441,7 +451,7 @@ class Multiplicacion(OperacionBinaria):
         if self.izquierda.cast in tipos_validos and self.izquierda.cast == self.derecha.cast:
             self.cast = self.izquierda.cast
         else:
-            print('Error *: Los tipos no coinciden o no son validos')
+            raise Exception('Error *: Los tipos no coinciden o no son validos')
 
 
 
@@ -464,7 +474,7 @@ class Division(OperacionBinaria):
         if self.izquierda.cast in tipos_validos and self.izquierda.cast == self.derecha.cast:
             self.cast = self.izquierda.cast
         else:
-            print('Error /: Los tipos no coinciden o no son validos')
+            raise Exception('Error /: Los tipos no coinciden o no son validos')
 
 
 @dataclass
@@ -603,6 +613,8 @@ class Objeto(Expresion):
     def Tipo(self, Ambito):
         if Ambito.checkScope(self.nombre):
             self.cast = Ambito.findSymbol(self.nombre)
+        elif self.nombre == 'self':
+            self.cast = 'self'
         else:
             print(f'Error: El objeto {self.nombre} no existe en el ambito actual')
 
@@ -781,9 +793,8 @@ class Metodo(Caracteristica):
             Ambito.addSymbol(formal.nombre_variable, formal.tipo)      
         
         self.cuerpo.Tipo(Ambito)
-        if self.cuerpo.cast != self.tipo:
-            #error
-            print("Error Metodo")
+        if self.tipo != 'void' and self.cuerpo.cast != self.tipo:
+            raise Exception(f'El tipo de retorno del metodo {self.nombre} no coincide con el tipo de retorno declarado')
         Ambito.exitScope()
 
 @dataclass
@@ -800,9 +811,9 @@ class Atributo(Caracteristica):
     
     def Tipo(self, Ambito):
         self.cuerpo.Tipo(Ambito)
-        if self.cuerpo.cast == self.tipo:
+        if self.cuerpo.cast == '_no_type':
             Ambito.addSymbol(self.nombre, self.tipo)
-        elif self.cuerpo.cast == '_no_type':
+        elif Ambito.arbol.es_subtipo(self.cuerpo.cast, self.tipo):
             Ambito.addSymbol(self.nombre, self.tipo)
         else:
             print(f'Error Atributo {self.nombre}')
@@ -830,10 +841,11 @@ class Clase(Nodo):
 
     def Tipo(self, Ambito):
         Ambito.enterScope()
+        Ambito.clase_actual = self.nombre
         for atributo in self.atributos:
             atributo.Tipo(Ambito)
         # anhadir al ambito los atributos del padre que no esten redefinidos
-        for atributo in [atributo[0] for atributo in Ambito.atributos if atributo[1] == self.padre and 
+        for atributo in [atributo[0] for atributo in Ambito.atributos if atributo[1] == self.nombre and 
                          atributo[0].nombre not in [atributo.nombre for atributo in self.atributos]]:
             Ambito.addSymbol(atributo.nombre, atributo.tipo)
         for metodo in self.metodos:

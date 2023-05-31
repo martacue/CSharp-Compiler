@@ -1,0 +1,51 @@
+_program
+  _using
+    System
+  _namespace
+    Programa
+    _class
+      Main
+      Object
+      "funct.test"
+      (
+      _method
+        main
+        public
+        _static
+        _formal
+          args
+          string[]
+        void
+        _block
+          _def
+            f
+            int
+            int
+            _mul
+              _object
+                x
+              : int
+              _object
+                x
+              : int
+            : int
+          : int
+          _static_dispatch
+            Console
+            writeLine
+            (
+            _dispatch
+              _object
+                self
+              : self
+              f
+              (
+              _int
+                3
+              : int
+              )
+            : int
+            )
+          : _no_type
+        : _no_type
+      )

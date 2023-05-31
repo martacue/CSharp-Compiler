@@ -1,0 +1,7 @@
+namespace Programa {
+class A {
+    public string metodoa(){
+        return 3;
+    }
+}
+}

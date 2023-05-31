@@ -1,0 +1,10 @@
+using System;
+
+namespace Programa{
+class Main {
+    public static void main(string[] args){
+        Funct<int, int> f = x => x * x;
+        Console.writeLine(f(3));
+    }
+}
+}

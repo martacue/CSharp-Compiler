@@ -89,7 +89,7 @@ class CSharpLexer(Lexer):
     DEFAULT = r'\bdefault\b'
     BREAK = r'\bbreak\b'
     FUNCT = r'\bFunct\b'
-    TYPEID = r'int\[\]|float\[\]|string\[\]|int|float|string|[A-Z][\w_]*'
+    TYPEID = r'int\[\]|float\[\]|string\[\]|int|float|string|bool|[A-Z][\w_]*'
     OBJECTID = r'[a-z][\w_]*' 
     
     @_(r'"')

@@ -11,7 +11,7 @@
  '+'
  INT_CONST 2
  ';'
- OBJECTID bool
+ TYPEID bool
  OBJECTID test
  ASSIGN
  BOOL_CONST true

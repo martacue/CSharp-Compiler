@@ -3,6 +3,8 @@ from dataclasses import dataclass, field
 from typing import List
 from TablaSimbolos import TablaSimbolos
 
+clase_actual = None
+atributos = dict()
 
 @dataclass
 class Nodo:
@@ -21,6 +23,10 @@ class Formal(Nodo):
         resultado += f'{(n)*" "}_formal\n'
         resultado += f'{(n+2)*" "}{self.nombre_variable}\n'
         resultado += f'{(n+2)*" "}{self.tipo}\n'
+        return resultado
+    
+    def codigo(self, n):
+        resultado = f'{(n)*" "}{self.nombre_variable}'
         return resultado
 
 
@@ -48,6 +54,14 @@ class Asignacion(Expresion):
         if not Ambito.arbol.es_subtipo(self.cuerpo.cast, Ambito.findSymbol(self.nombre)):
             raise Exception(f"Error de tipos: {self.cuerpo.cast} no es subtipo de {Ambito.findSymbol(self.nombre)}")
         self.cast = self.cuerpo.cast
+
+    def codigo(self, n):
+        global clase_actual, atributos
+        if self.nombre in atributos[clase_actual]:
+            resultado = f'{(n)*" "}self.{self.nombre} = {self.cuerpo.codigo(0)}'
+        else:
+            resultado = f'{(n)*" "}{self.nombre} = {self.cuerpo.codigo(0)}'
+        return resultado
     
 @dataclass
 class NuevaVariable(Expresion):
@@ -73,6 +87,10 @@ class NuevaVariable(Expresion):
             raise Exception(f"Error de tipos: {self.cuerpo.cast} no es subtipo de {self.tipo}")
         Ambito.addSymbol(self.nombre, self.tipo)
         self.cast = self.tipo
+
+    def codigo(self, n):
+        resultado = f'{(n)*" "}{self.nombre} = {self.cuerpo.codigo(0)}'
+        return resultado
 
 
 
@@ -105,6 +123,20 @@ class LlamadaMetodoEstatico(Expresion):
                     raise Exception(f"El tipo de los argumentos no coincide con los formales")
         
             self.cast = metodo.tipo
+        
+    def codigo(self, n):
+        metodos_traducidos = {'writeLine': 'print'}
+        resultado = ''
+        if self.nombre_metodo in metodos_traducidos:
+            resultado += f'{(n)*" "}{metodos_traducidos[self.nombre_metodo]}('
+        else:
+            resultado += f'{(n)*" "}{self.nombre_metodo}('
+        for argumento in self.argumentos:
+            resultado += argumento.codigo(0)
+            if argumento != self.argumentos[-1]:
+                resultado += ', '
+        resultado += ')'
+        return resultado
 
 
 
@@ -142,6 +174,15 @@ class LlamadaMetodo(Expresion):
         
         self.cast = metodo[0].tipo
 
+    def codigo(self, n):
+        resultado = f'{(n)*" "}{self.cuerpo.codigo(0)}.{self.nombre_metodo}('
+        for argumento in self.argumentos:
+            resultado += argumento.codigo(0)
+            if argumento != self.argumentos[-1]:
+                resultado += ', '
+        resultado += ')'
+        return resultado
+
 
 @dataclass
 class Condicional(Expresion):
@@ -168,6 +209,13 @@ class Condicional(Expresion):
             raise Exception("Los tipos de las ramas no coinciden")
         self.cast = self.verdadero.cast
 
+    def codigo(self, n):
+        resultado = f'{(n)*" "}if {self.condicion.codigo(0)}:\n'
+        resultado += f'{self.verdadero.codigo(n+2)}\n'
+        resultado += f'{(n)*" "}else:\n'
+        resultado += f'{self.falso.codigo(n+2)}\n'
+        return resultado
+
 
 @dataclass
 class Bucle(Expresion):
@@ -187,6 +235,11 @@ class Bucle(Expresion):
         if self.condicion.cast != 'bool':
             raise Exception("La condicion no es booleana")
         self.cuerpo.Tipo(Ambito)
+
+    def codigo(self, n):
+        resultado = f'{(n)*" "}while {self.condicion.codigo(0)}:\n'
+        resultado += self.cuerpo.codigo(n+2)
+        return resultado
 
 @dataclass
 class BucleParaCada(Expresion):
@@ -220,6 +273,11 @@ class BucleParaCada(Expresion):
         Ambito.exitScope()
 
         self.cast = self.cuerpo.cast
+
+    def codigo(self, n):
+        resultado = f'{(n)*" "}for {self.nombre_variable} in {self.coleccion}:\n'
+        resultado += self.cuerpo.codigo(n+2)
+        return resultado
         
 
 @dataclass
@@ -237,6 +295,10 @@ class Retorno(Expresion):
         self.cuerpo.Tipo(Ambito)
         self.cast = self.cuerpo.cast
 
+    def codigo(self, n):
+        resultado = f'{(n)*" "}return {self.cuerpo.codigo(0)}'
+        return resultado
+
 @dataclass
 class Bloque(Expresion):
     expresiones: List[Expresion] = field(default_factory=list)
@@ -253,6 +315,12 @@ class Bloque(Expresion):
         for expresion in self.expresiones:
             expresion.Tipo(Ambito)
         self.cast = self.expresiones[-1].cast
+
+    def codigo(self, n):
+        resultado = ''
+        for expresion in self.expresiones:
+            resultado += f'{expresion.codigo(n)}\n'
+        return resultado
 
 @dataclass
 class Rama(Nodo):
@@ -275,6 +343,11 @@ class RamaCase(Rama):
         resultado += self.cuerpo.str(n+2)
         return resultado
     
+    def codigo(self, n):
+        resultado = f'{(n)*" "}case {self.condicion.codigo(0)}:\n'
+        resultado += self.cuerpo.codigo(n+2)
+        return resultado
+    
 @dataclass
 class RamaDefault(Rama):
 
@@ -282,6 +355,11 @@ class RamaDefault(Rama):
         resultado = super().str(n)
         resultado += f'{(n)*" "}_branch\n'
         resultado += self.cuerpo.str(n+2)
+        return resultado
+    
+    def codigo(self, n):
+        resultado = f'{(n)*" "}default:\n'
+        resultado += self.cuerpo.codigo(n+2)
         return resultado
 
 
@@ -309,6 +387,13 @@ class Switch(Expresion):
         self.casos[-1].Tipo(Ambito)
         tipos_cuerpos.append(self.casos[-1].cuerpo.cast)
         self.cast = tipos_cuerpos[0]
+
+    def codigo(self, n):
+        resultado = f'{n*" "}'
+        resultado += f'match {self.expr.codigo(0)}:\n'
+        for caso in self.casos:
+            resultado += f'{caso.codigo(n+2)}\n'
+        return resultado
 
 
 @dataclass
@@ -342,6 +427,11 @@ class Funcion(Expresion):
             raise Exception(f'Error: El tipo de retorno no coincide con el tipo de la expresion')
         Ambito.exitScope()
     
+    def codigo(self, n):
+        resultado = f'{n*" "}'
+        resultado += f'self.{self.nombre} = lambda {self.parametro}: {self.cuerpo.codigo(0)}'
+        return resultado
+    
 @dataclass
 class Coleccion(Expresion):
     elementos: List[Expresion] = field(default_factory=list)
@@ -364,6 +454,16 @@ class Coleccion(Expresion):
         
         self.cast = f'{tipos[0]}[]'
 
+    def codigo(self, n):
+        resultado = f'{(n)*" "}'
+        resultado += f'['
+        for elemento in self.elementos:
+            resultado += f'{elemento.codigo(0)}'
+            if elemento != self.elementos[-1]:
+                resultado += f', '
+        resultado += f']'
+        return resultado
+
 @dataclass
 class Nueva(Expresion):
     tipo: str = '_no_set'
@@ -379,6 +479,11 @@ class Nueva(Expresion):
             self.cast = self.tipo
         else:
             raise Exception(f'Error: Tipo {self.tipo} no definido')
+        
+    def codigo(self, n):
+        resultado = f'{(n)*" "}'
+        resultado += f'{self.tipo}()'
+        return resultado
 
 
 
@@ -386,6 +491,11 @@ class Nueva(Expresion):
 class OperacionBinaria(Expresion):
     izquierda: Expresion = None
     derecha: Expresion = None
+
+    def codigo(self, n):
+        resultado = f'{(n)*" "}'
+        resultado += f'{self.izquierda.codigo(0)} {self.operando} {self.derecha.codigo(0)}'
+        return resultado
 
 
 @dataclass
@@ -557,6 +667,10 @@ class Not(Expresion):
             self.cast = 'bool'
         else:
             print('Error not: La expresion no es booleana')
+    
+    def codigo(self, n):
+        resultado = f'{(n)*" "}not {self.expr.codigo(0)}'
+        return resultado
 
 @dataclass
 class And(OperacionBinaria):
@@ -577,6 +691,10 @@ class And(OperacionBinaria):
             self.cast = 'bool'
         else:
             print('Error and: Los tipos de las expresiones no son booleanos')
+
+    def codigo(self, n):
+        resultado = f'{(n)*" "}{self.izquierda.codigo(0)} and {self.derecha.codigo(0)}'
+        return resultado
     
 @dataclass
 class Or(OperacionBinaria):
@@ -617,6 +735,15 @@ class Objeto(Expresion):
             self.cast = 'self'
         else:
             print(f'Error: El objeto {self.nombre} no existe en el ambito actual')
+    
+    def codigo(self, n):
+        resultado = f'{(n)*" "}'
+        global clase_actual, atributos
+        if self.nombre in atributos[clase_actual]:
+            resultado += f'self.{self.nombre}'
+        else:
+            resultado += f'{self.nombre}'
+        return resultado
 
 
 @dataclass
@@ -647,6 +774,10 @@ class Entero(Expresion):
     def Tipo(self, Ambito):
         self.cast = 'int'
 
+    def codigo(self, n):
+        resultado = f'{(n)*" "}{self.valor}'
+        return resultado
+
 
 @dataclass
 class String(Expresion):
@@ -662,6 +793,11 @@ class String(Expresion):
     def Tipo(self, Ambito):
         self.cast = 'string'
 
+    def codigo(self, n):
+        resultado = f'{(n)*" "}{self.valor}'
+        return resultado
+    
+
 
 @dataclass
 class Flotante(Expresion):
@@ -676,6 +812,10 @@ class Flotante(Expresion):
     
     def Tipo(self, Ambito):
         self.cast = 'float'
+    
+    def codigo(self, n):
+        resultado = f'{(n)*" "}{self.valor}'
+        return resultado
 
 
 @dataclass
@@ -691,6 +831,10 @@ class Booleano(Expresion):
     
     def Tipo(self, Ambito):
         self.cast = 'bool'
+    
+    def codigo(self, n):
+        resultado = f'{(n)*" "}{self.valor}'
+        return resultado
 
 @dataclass
 class IterableNodo(Nodo):
@@ -732,7 +876,23 @@ class Programa(IterableNodo):
         for namespace in self.secuencia:
             namespace.Tipo(Ambito)
         
-        Ambito.exitScope()            
+        Ambito.exitScope()
+
+    def codigo(self, n):
+        resultado = ''
+        for using in self.usings:
+            resultado += using.codigo(n)
+        resultado += '''
+class Object:
+    def typeof(self):
+        return type(self).__name__
+    def copy(self):
+        return copy.copy(self)
+
+'''
+        for namespace in self.secuencia:
+            resultado += namespace.codigo(n)
+        return resultado
 
 
 
@@ -744,6 +904,13 @@ class Using(Nodo):
         resultado = super().str(n)
         resultado += f'{(n)*" "}_using\n'
         resultado += f'{(n+2)*" "}{self.nombre}\n'
+        return resultado
+    
+    def codigo(self, n):
+        traducciones = {'System': 'sys'}
+        resultado = f'{(n)*" "}'
+        nombre = traducciones[self.nombre] if self.nombre in traducciones else self.nombre
+        resultado += f'import {nombre}\n'
         return resultado
     
 @dataclass
@@ -761,6 +928,12 @@ class Namespace(Nodo):
     def Tipo(self, Ambito):
         for clase in self.clases:
             clase.Tipo(Ambito)
+
+    def codigo(self, n):
+        resultado = ''
+        for clase in self.clases:
+            resultado += clase.codigo(n)
+        return resultado
 
 @dataclass
 class Caracteristica(Nodo):
@@ -796,6 +969,16 @@ class Metodo(Caracteristica):
         if self.tipo != 'void' and self.cuerpo.cast != self.tipo:
             raise Exception(f'El tipo de retorno del metodo {self.nombre} no coincide con el tipo de retorno declarado')
         Ambito.exitScope()
+    
+    def codigo(self, n):
+        resultado = f'{(n)*" "}'
+        resultado += f'def {self.nombre}(self'
+        for formal in self.formales:
+            resultado += f', {formal.nombre_variable}'
+        resultado += '):\n'
+
+        resultado += self.cuerpo.codigo(n+2)
+        return resultado
 
 @dataclass
 class Atributo(Caracteristica):
@@ -817,6 +1000,17 @@ class Atributo(Caracteristica):
             Ambito.addSymbol(self.nombre, self.tipo)
         else:
             print(f'Error Atributo {self.nombre}')
+
+    def codigo(self, n):
+        resultado = ''
+        tipos_primitivos = ['int', 'float', 'bool', 'string']
+        if self.tipo in tipos_primitivos and isinstance(self.cuerpo, NoExpr):
+            resultado += f'{(n)*" "}self.{self.nombre} = {self.tipo}()'
+        elif isinstance(self.cuerpo, NoExpr):
+            resultado += f'{(n)*" "}self.{self.nombre} = None'
+        else:
+            resultado += f'{(n)*" "}self.{self.nombre} = {self.cuerpo.codigo(0)}'
+        return resultado
 
 @dataclass
 class Clase(Nodo):
@@ -851,4 +1045,25 @@ class Clase(Nodo):
         for metodo in self.metodos:
             metodo.Tipo(Ambito)
         Ambito.exitScope()
+    
+    def codigo(self, n):
+        # obtener el nombre de los atributos de la clase
+        atributos_clase = [atributo.nombre for atributo in self.atributos]
+        global clase_actual, atributos
+        if self.padre in atributos.keys():
+            atributos_clase += atributos[self.padre]
+        clase_actual = self.nombre
+        atributos[self.nombre] = atributos_clase
+
+        resultado = f'{(n)*" "}'
+        resultado += f'class {self.nombre}({self.padre}):\n'
+
+        if len(self.atributos) > 0:
+            resultado += f'{(n+2)*" "}def __init__(self):\n'
+            for atributo in self.atributos:
+                resultado += f'{atributo.codigo(n+4)}\n'
+        
+        for metodo in self.metodos:
+            resultado += f'{metodo.codigo(n+2)}\n'
+        return resultado
         

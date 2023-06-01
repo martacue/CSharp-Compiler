@@ -358,7 +358,7 @@ class RamaDefault(Rama):
         return resultado
     
     def codigo(self, n):
-        resultado = f'{(n)*" "}default:\n'
+        resultado = f'{(n)*" "}case _:\n'
         resultado += self.cuerpo.codigo(n+2)
         return resultado
 
@@ -716,6 +716,10 @@ class Or(OperacionBinaria):
         else:
             print('Error or: Los tipos de las expresiones no son booleanos')
 
+    def codigo(self, n):
+        resultado = f'{(n)*" "}{self.izquierda.codigo(0)} or {self.derecha.codigo(0)}'
+        return resultado
+
 
 @dataclass
 class Objeto(Expresion):
@@ -882,11 +886,11 @@ class Programa(IterableNodo):
         resultado = ''
         for using in self.usings:
             resultado += using.codigo(n)
-        resultado += '''
+        resultado += '''import copy
 class Object:
-    def typeof(self):
+    def getType(self):
         return type(self).__name__
-    def copy(self):
+    def memberwiseClone(self):
         return copy.copy(self)
 
 '''

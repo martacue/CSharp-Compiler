@@ -25,7 +25,7 @@ TESTS = [fich for fich in FICHEROS
          if os.path.isfile(os.path.join(DIR, fich)) and
          re.search(r"^[a-zA-Z].*\.(cs|test|cl)$",fich)]
 TESTS.sort()
-#TESTS = ["funct.cs"]
+#TESTS = ["parameters.test"]
 
 for fich in TESTS:
     lexer = CSharpLexer()

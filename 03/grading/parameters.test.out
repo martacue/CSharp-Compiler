@@ -1,0 +1,181 @@
+_program
+  _namespace
+    Programa
+    _class
+      A
+      Object
+      "parameters.test"
+      (
+      _method
+        print_suma
+        public
+        _no_static
+        _formal
+          a
+          int
+        _formal
+          b
+          int
+        _formal
+          c
+          int
+        int
+        _block
+          _new_variable
+            suma
+            int
+            _plus
+              _plus
+                _object
+                  a
+                : int
+                _object
+                  b
+                : int
+              : int
+              _object
+                c
+              : int
+            : int
+          : int
+          _block
+            _static_dispatch
+              Console
+              writeLine
+              (
+              _object
+                suma
+              : int
+              )
+            : _no_type
+            _return
+              _object
+                suma
+              : int
+            : int
+          : int
+        : int
+      )
+    _class
+      Persona
+      Object
+      "parameters.test"
+      (
+      _method
+        print_info
+        public
+        _no_static
+        _formal
+          nombre
+          string
+        _formal
+          edad
+          int
+        _formal
+          ciudad
+          string
+        string
+        _block
+          _static_dispatch
+            Console
+            writeLine
+            (
+            _object
+              nombre
+            : string
+            )
+          : _no_type
+          _block
+            _static_dispatch
+              Console
+              writeLine
+              (
+              _object
+                edad
+              : int
+              )
+            : _no_type
+            _block
+              _static_dispatch
+                Console
+                writeLine
+                (
+                _object
+                  ciudad
+                : string
+                )
+              : _no_type
+              _return
+                _object
+                  nombre
+                : string
+              : string
+            : string
+          : string
+        : string
+      )
+    _class
+      Main
+      Object
+      "parameters.test"
+      (
+      _method
+        main
+        public
+        _static
+        void
+        _block
+          _new_variable
+            a
+            A
+            _new
+              A
+            : A
+          : A
+          _block
+            _dispatch
+              _object
+                a
+              : A
+              print_suma
+              (
+              _int
+                5
+              : int
+              _int
+                3
+              : int
+              _int
+                2
+              : int
+              )
+            : int
+            _block
+              _new_variable
+                p
+                Persona
+                _new
+                  Persona
+                : Persona
+              : Persona
+              _dispatch
+                _object
+                  p
+                : Persona
+                print_info
+                (
+                _string
+                  "Juan"
+                : string
+                _int
+                  20
+                : int
+                _string
+                  "Valencia"
+                : string
+                )
+              : string
+            : string
+          : string
+        : string
+      )
